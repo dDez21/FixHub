@@ -15,10 +15,6 @@
         
         
         <link rel="icon" type="image/png" href="{{ asset('icon/browIcon.png') }}"> <!-- logo browser tab -->
-
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
 
     <body>
