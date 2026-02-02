@@ -7,7 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         
-        <title>{{ config('app.name', 'FixHub') }}</title>
+        <title>{{ config('FixHub') }}</title>
 
         <!-- stili testi -->
         <link rel="preconnect" href="https://fonts.bunny.net">
