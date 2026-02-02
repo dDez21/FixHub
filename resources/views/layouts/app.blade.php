@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config( 'Laravel') }}</title>
+        <title>{{ config('app.name', 'FixHub') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -13,7 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <link rel="stylesheet" href="{{ asset('CSS/app.css') }}">
+        <link rel="stylesheet" href="{{ asset(path: 'CSS/app.css') }}">
         <link rel="stylesheet" href="{{ asset('CSS/footer.css') }}">
         <link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
         <link rel="stylesheet" href="{{ asset('CSS/guest.css') }}">
