@@ -1,0 +1,27 @@
+.button{
+    background: var(--btn-primary-color);
+    border: 1px solid #fff;
+    color: var(--btn-text-color);
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-right: 12px;
+    padding-left: 12px;
+    border-radius: 10px;
+    transition: background-color .2s, color .2s;;
+    text-decoration: none;
+    display: inline-flex; /* adatto larghezza al contenuto, una sola riga */
+    align-items: center; /* allineo elementi verticalmente al centro*/
+    justify-content: center; /* allineo elementi orizzontalmente al centro*/
+}
+
+.button:hover{
+    background: var(--btn-primary-hover-color);
+    color: var(--btn-text-hover-color);
+  }
+
+.button-login{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex; /* centra orizzontalmente*/
+    justify-content: center; /* centro orizzontale */
+}

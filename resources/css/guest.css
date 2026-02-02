@@ -1,0 +1,158 @@
+.carousel{
+    width: 100%;
+    height: 700px;
+    overflow: hidden; /* nascondo immagini fuori schermo */
+    position: relative; /* posizione bottoni per scorrere tra foto */
+    background: #000;
+    margin-top: -20px;
+}
+
+
+/* scorrimento */
+.carousel-track{
+    display: flex; /* scorrimento orizzontale */
+    transition: transform .6s ease; /* animazione cambio immagine */
+    will-change: transform; /* miglioro animazioni */
+}
+
+
+/* per singola slide */
+.carousel-slide{
+    flex: 0 0 100%; /* adatto dimensioni foto */
+}
+
+
+/* immagini */
+.carousel-slide img{
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+
+/* bottoni */
+.carousel-button{
+    position: absolute; /* sopra carosello */
+    top: 50%; /* posizione */
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(0,0,0,.45);
+    color: #fff;
+    cursor: pointer;
+    z-index: 2;
+    transition: background-color .2s, opacity .2s;
+
+    /* centro immagine interna */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.carousel-button.prev{
+    left: 20px;
+}
+
+/* contenuto bottone prev */
+.carousel-button.prev::before{
+    content: "‹";
+    font-size: 28px;
+    line-height: 1;
+    transform: translateY(-1px);
+}
+
+.carousel-button.next{
+    right: 20px;
+}
+
+/* contenuto bottone next */
+.carousel-button.next::before{
+    content: "›";
+    font-size: 28px;
+    line-height: 1;
+      transform: translateY(-1px);
+}
+
+.carousel-button:hover{
+    background: rgba(0,0,0,.65);
+}
+
+/* pallini in basso */
+.carousel-dots{
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+}
+
+/* singolo pallino */
+.carousel-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(255,255,255,.45);
+  cursor: pointer;
+}
+
+.carousel-dot.is-active{
+  background: rgba(255,255,255,.95);
+}
+
+/* testo sotto */
+.text-section{
+    text-align: center; /* centro  testo */
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 150px 50px; 
+}
+
+.catalog-section{
+    border-top: 3px solid #ADCA21;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.catalog-top{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.catalog-button{
+    margin-right: 20px;
+}
+
+.catalog-categories{
+    display: flex; /* scorrimento orizzontale */
+    gap: 70px;
+    overflow-x: auto;          /* abilita scroll orizzontale */
+    overflow-y: hidden;
+    padding: 20px 50px 20px;       /* spazio per non tagliare ombra/bordo */
+    scrollbar-width: none;
+}
+
+.catalog-slide{
+    flex: 0 0 220px; /* dimensioni card */
+    border: 1px solid #ADCA21;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.catalog-slide img{
+    width: 180px;
+    height: 240px; 
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
