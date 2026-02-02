@@ -19,6 +19,12 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="{{ asset('CSS/footer.css') }}">
+        <link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
+        <link rel="stylesheet" href="{{ asset('CSS/guest.css') }}">
+        <link rel="stylesheet" href="{{ asset('CSS/footer.css') }}">
+        <link rel="stylesheet" href="{{ asset('CSS/components/button.css') }}">
+        <link rel="stylesheet" href="{{ asset('CSS/components/form.css') }}">
     </head>
 
     <body>
