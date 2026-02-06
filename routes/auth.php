@@ -28,41 +28,11 @@ Route::middleware('guest')->group(function () {
 
     /* autentica utente */
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
-
-    /* reset ppw */
-    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-        ->name('password.request');
-
-    /* invio email per il reset */
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-        ->name('password.email');
-
-    /* nuova ppw */
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-        ->name('password.reset');
-
-    /* salvo nuova ppw + autenticazione */
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-        ->name('password.store');
 });
 
 
 /* utente loggato */
 Route::middleware('auth')->group(function () {
-
-    /* verifica email */
-    Route::get('verify-email', EmailVerificationPromptController::class)
-        ->name('verification.notice');
-
-    /* conferma email */
-    Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
-        ->middleware(['signed', 'throttle:6,1'])
-        ->name('verification.verify');
-
-    /* reinvia email di verifica */
-    Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-        ->middleware('throttle:6,1')
-        ->name('verification.send');
 
     /* form ppw */
     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])

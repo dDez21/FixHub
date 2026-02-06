@@ -1,9 +1,3 @@
-@import "./header.css";
-@import "./guest.css";
-@import "./footer.css";
-@import "./components/form.css";
-@import "./components/button.css";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -39,7 +33,6 @@ body{
 .text {
     font-size: 20px;
     opacity: .8;
-    margin-top: 30px;
     color: #fff;
 }
 
@@ -62,12 +55,22 @@ body{
     margin-top: 20px;
     margin-bottom: 10px;
     color: var(--nav-color);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700px;
     transition: color .2s, background-color .2s;
+    text-decoration: none; /* rimuovo sottolineatura */
 }
 
 .selected:hover {
     color: var(--nav-hover-color);
+    text-decoration: none; /* rimuovo sottolineatura */
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.page {
+    margin: 0 auto;
 }
 

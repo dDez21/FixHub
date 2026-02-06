@@ -1,43 +1,53 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CenterController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 //home non loggato
 Route::get('/', function () {
-    return view('guest.home');
+    return view('pages.home');
 })->name('home');
 
 
-Route::get('/guest/where', function () {
-    return view('guest.where');
-})->name('where');
-
-Route::get('/guest/catalog', function () {
-    return view('guest.catalog');
-})->name('catalog');
+//pagina elenco centri
+Route::get('/pages/where', [CenterController::class, 'show'])
+->name('where');
 
 
-// utente loggato
+//pagina catalogo
+Route::get('/pages/catalog', [CategoriesController::class,'show'])
+->name('catalog');
+
+
+//pagina prodotto
+Route::get('/pages/product/{product}', [ProductController::class,'show'])
+->name('product');
+
+
+// utente loggato, middleware per verificare auth
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile'); //pagina profilo utente
 });
 
 
-// tecnico
+
+// rotte tecnico
 Route::name('tecn.')->prefix('tecn')->middleware(['auth', 'tecn'])->group(function () {
 
 });
 
 
-// staff
+
+// rotte staff
 Route::name('staff.')->prefix('staff')->middleware(['auth', 'staff'])->group(function () {
 
 });
 
-// admin
+// rotte admin
 Route::name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
 });

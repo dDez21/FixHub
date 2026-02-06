@@ -4,7 +4,7 @@
         
         <!-- servizi -->
         <div class="footer-element">
-            <p class="text">I nostri servizi</p>
+            <p class="text footer-text-margin">I nostri servizi</p>
             
             <!-- pagine selezionabili -->
             <ul class="small-text info">
@@ -20,7 +20,7 @@
 
         <!-- orari -->
         <div class="footer-element">
-            <p class="text">I nostri orari</p>
+            <p class="text footer-text-margin">I nostri orari</p>
 
             <ul class="small-text info">
                 <li>Lun - Ven: 09:00 - 12:30    14:30 - 18:30</li>
@@ -32,7 +32,7 @@
 
         <!-- contatti -->
         <div class="footer-element">
-            <p class="text">Contatti</p>
+            <p class="text footer-text-margin">Contatti</p>
 
             <ul class="small-text info">
                 <li class="elements">

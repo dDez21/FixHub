@@ -9,6 +9,7 @@
     border-radius: 10px;
     transition: background-color .2s, color .2s;;
     text-decoration: none;
+    cursor: pointer; /* trasforma il cursore in una mano al passaggio */
     display: inline-flex; /* adatto larghezza al contenuto, una sola riga */
     align-items: center; /* allineo elementi verticalmente al centro*/
     justify-content: center; /* allineo elementi orizzontalmente al centro*/
@@ -19,9 +20,10 @@
     color: var(--btn-text-hover-color);
   }
 
-.button-login{
+
+.login-confirm{
     margin-top: 15px;
     margin-bottom: 15px;
-    display: flex; /* centra orizzontalmente*/
+    display: flex; /* dispongo elementi in riga */
     justify-content: center; /* centro orizzontale */
 }

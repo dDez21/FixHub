@@ -1,27 +1,39 @@
 .login-form{
     width: 400px;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto 0;
+
 }
 
+/* etichetta form */
 .form-label{
-    width: 100%;
+    margin-bottom: 8px;
     display: block;
-    border-radius: 10px;
 }
 
-.form-label:focus{
+/* input form */
+.login-input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.login-input:focus{
     outline: none;
     border: 2px solid #ADCA21;
     box-shadow: 0 0 5px #ADCA21;
 }
 
+/* pulsante remember me */
 .remember-me{
+    width: 100%;
     display: flex;
-    justify-content: center;
-    margin-top: 5px;
-    margin-left: auto;
-    margin-right: auto;
+    align-items: center;
+    justify-content: center;  /* testo e checkbox centrati */
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    cursor: pointer;
 }
-

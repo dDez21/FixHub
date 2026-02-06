@@ -27,9 +27,11 @@ class AppServiceProvider extends ServiceProvider
         /* ricavo il livello di autenticazione */
         View::composer('*', function ($view) {
         $role = auth()->check() ? auth()->user()->role : 'guest'; /* verifico login */
-        $links = config("level.$role") ?? config("level.guest"); /* prendo elementi in base al livello di login*/
+        $links = config("level.$role") ?? config("level.guest"); /* prendo elementi in base al livello di login da file in config/level */
         $view->with('navLinks', $links);
         $view->with('navRole', $role); 
     });
+
+
     }
 }

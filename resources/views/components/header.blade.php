@@ -21,7 +21,7 @@
 
 
             @auth
-                <a class="button button-login" href="{{ route('userPage') }}">
+                <a class="button button-login" href="{{ route('profile') }}">
                     {{ auth()->user()->username }}
                     <img class="button-icon" src="{{ asset('icon/userIcon.png') }}" alt="" aria-hidden="true">
                 </a>            

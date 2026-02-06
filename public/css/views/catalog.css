@@ -1,0 +1,157 @@
+/* layout generale */
+.catalog-layout{
+    display: flex;
+}
+
+/* colonna categorie */
+.categories-layout{
+  position: relative;
+  margin-right: 30px;
+  margin-left: 15px;
+  padding-right: 12px;       /* spazio per la linea */
+}
+
+.categories-layout::after{
+  content: "";
+  position: absolute;
+  top: 55px;                 /* distacco dall’alto */
+  bottom: 55px;              /* distacco dal basso */
+  right: 0;                  /* attaccata al lato destro del box */
+  width: 1.5px;
+  background: #ADCA21;
+}
+
+/* titolo categorie */
+.categories-title{
+    font-size: 25px;
+    margin-top: 15px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+/* elenco categorie*/
+.categories-list{
+    margin-left: 30px;
+    margin-top: 25px;
+    font-size: 25px;
+    margin-bottom: 60px;
+}
+
+/* singola categoria */
+.single-category {
+    transition: color .2s, background-color .2s;
+    font-size: 16px;
+    opacity: .8;
+    color: #fff;
+    text-decoration: none;
+}
+
+.single-category.selected,
+.single-category.selected:hover{
+  color: #ADCA21;
+  opacity: 1;
+  font-weight: 700;
+}
+
+.single-category:not(.selected):hover {
+    color: var(--nav-hover-color);
+    text-decoration: none;
+}
+
+/* sezione prodotti */
+.products-grid{
+    width: 100%;
+}
+
+/* barra di ricerca */
+.search-bar{
+  background: #000;
+  border-radius: 15px;
+  padding: 10px 14px;
+  width: 100%;
+  border: 2px solid #ADCA21;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-bottom: 25px;
+}
+
+.search-input{
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: #000;
+  font-size: 16px;
+  color: #fff;
+}
+
+.search-input::placeholder{
+  color: rgba(255,255,255,.55);  /* placeholder più soft */
+}
+
+/* categoria selezionata */
+.category-selected{
+    font-size: 18px;
+    font-weight: 300px;
+    color: #fff;
+    margin-bottom: 50px;
+}
+
+/* disposizione prodotti */
+.products-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 elementi per riga */
+  gap: 90px; /* spazio tra le card */
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+}
+
+/* immagine prodotto */
+.product-card{
+  display: flex;
+  flex-direction: column; /* disposizione verticale */
+  align-items: center; /* centro tutto */
+  padding: 12px;
+  gap: 20px; /* spazio tra immagine e nome */
+}
+
+/* contenitore immagine */
+.product-icon{
+  width: 250px;
+  height: 250px;
+  padding: 10px; /* margine interno attorno all'immagine */
+  box-sizing: border-box; /* lascio dimensioni fisse */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* immagine dentro */
+.product-icon img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* evito che contenitore si ingrandisca */
+  object-fit: cover; /* adatto la foto allo spazio */
+  display: block; /* rimuovo spazio che appare di default per un'immagine */
+}
+
+/* contenitore nome */
+.product-info{
+  width: 100%;
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* nome prodotto */
+.product-name{
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.no-results{
+  font-size: 20px;
+  color: #fff;
+  margin-left: 100px;
+}
