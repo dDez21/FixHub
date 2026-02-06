@@ -22,7 +22,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => 'mysql',
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
             'driver' => 'mysql',
             'url' => env('DB_URL'),
             'host' => $HOST,
-            'port' => 3326,
+            'port' => isset($PORT) ? $PORT : 3306,
             'database' => $DB,
             'username' => $USER,
             'password' => $PASSWORD,
