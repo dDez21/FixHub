@@ -1,6 +1,7 @@
 .product-card{
     height: 500px;
-    width: 1050px;
+    width: 900px;
+    max-width: 900px;
     margin: 50px auto;
     width: 100%;
     display: flex;
