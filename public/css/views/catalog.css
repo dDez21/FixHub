@@ -61,6 +61,7 @@
 /* sezione prodotti */
 .products-grid{
     width: 100%;
+    margin-right: 20px;
 }
 
 /* barra di ricerca */
