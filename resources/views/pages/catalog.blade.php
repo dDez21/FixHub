@@ -47,9 +47,6 @@
         <p class="category-selected">
             <span id="selected-category-label">Tutte le categorie</span>
         </p>
-
-        <!-- contenitore prodotti -->
-        <div class="products-layout">
             
             <!-- griglia prodotti -->
             <div class="products-grid">
@@ -84,7 +81,6 @@
             </div>
 
             <p class="no-results" id="no-results" style="display:none;">La ricerca non ha prodotto risultati</p>
-        </div>
     </div>
 </div>
 @endsection

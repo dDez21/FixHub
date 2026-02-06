@@ -8,7 +8,8 @@
   position: relative;
   margin-right: 30px;
   margin-left: 15px;
-  padding-right: 12px;       /* spazio per la linea */
+  padding-right: 12px;
+  min-width: 260px;       /* spazio per la linea */
 }
 
 .categories-layout::after{
@@ -27,6 +28,7 @@
     margin-top: 15px;
     margin-left: 40px;
     margin-right: 40px;
+    white-space: nowrap;
 }
 
 /* elenco categorie*/
@@ -67,12 +69,10 @@
 .search-bar{
   background: #000;
   border-radius: 15px;
-  padding-right: 20px;
-  padding-left: 30px;
+  padding: 10px 14px;
   width: 100%;
   border: 2px solid #ADCA21;
-  margin-left: 10px;
-  margin-right: 20px;
+  margin: 25px 0;
   box-sizing: border-box;
 }
 
@@ -100,8 +100,8 @@
 /* sezione prodotti */
 .products-layout{
   width: 100%;
-  padding-right: 20px;
-  padding-left: 30px;
+  margin-left: 30px;
+  padding: 0 40px 0 40px;
   box-sizing: border-box;
 }
 
@@ -110,7 +110,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* 3 elementi per riga */
   gap: 40px; /* spazio tra le card */
-  margin: 0 50px 50px 50px;
+  margin: 0 0 50px 0;
   box-sizing: border-box;
 }
 
