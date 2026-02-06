@@ -48,39 +48,43 @@
             <span id="selected-category-label">Tutte le categorie</span>
         </p>
 
-
-        <!-- griglia prodotti -->
-        <div class="products-grid">
+        <!-- contenitore prodotti -->
+        <div class="products-layout">
             
-            <!-- mostro elenco prodotti -->
-            @forelse ($products as $product)
+            <!-- griglia prodotti -->
+            <div class="products-grid">
+                
+                <!-- mostro elenco prodotti -->
+                @forelse ($products as $product)
 
-                <!-- creo card singolo prodotto -->
-                <div class="card product-card"
-                    data-name="{{ $product->name }}"
-                    data-photo="{{ $product->photo }}"
-                    data-description="{{ $product->description }}"                    
-                    data-category-id="{{ $product->category_id }}">
-                    
-                    <!-- foto prodotto -->
-                    <img class="product-icon" src="{{ $product->photo ? Storage::url($product->photo) : asset('images/noPhoto.png') }}">
-                    
-                    <!-- nome prodotto -->
-                    <div class="product-info">                    
+                    <!-- creo card singolo prodotto -->
+                    <div class="card product-card"
+                        data-name="{{ $product->name }}"
+                        data-photo="{{ $product->photo }}"
+                        data-description="{{ $product->description }}"                    
+                        data-category-id="{{ $product->category_id }}">
+                        
+                        <!-- foto prodotto -->
+                        <div class="product-icon">
+                            <img src="{{ $product->photo ? Storage::url($product->photo) : asset('images/noPhoto.png') }}" alt="">
+                        </div>
+                        
+                        <!-- nome prodotto -->
+                        <div class="product-info">                    
 
-                            <!-- gli do link a sua scheda -->
-                            <a class="product-name" href="{{ route('product', $product) }}">{{ $product->name }}</a>                    
+                                <!-- gli do link a sua scheda -->
+                                <a class="product-name" href="{{ route('product', $product) }}">{{ $product->name }}</a>                    
+                        </div>
                     </div>
-                </div>
-            @empty
+                @empty
 
-                <!-- nessun prodotto salvato -->
-                <p class="text">Nessun prodotto presente</p>
-            @endforelse
+                    <!-- nessun prodotto salvato -->
+                    <p class="text">Nessun prodotto presente</p>
+                @endforelse
+            </div>
+
+            <p class="no-results" id="no-results" style="display:none;">La ricerca non ha prodotto risultati</p>
         </div>
-
-        <p class="no-results" id="no-results" style="display:none;">La ricerca non ha prodotto risultati</p>
-
     </div>
 </div>
 @endsection

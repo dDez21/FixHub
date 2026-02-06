@@ -61,7 +61,6 @@
 /* sezione prodotti */
 .products-grid{
     width: 100%;
-    margin-right: 20px;
 }
 
 /* barra di ricerca */
@@ -71,9 +70,8 @@
   padding: 10px 14px;
   width: 100%;
   border: 2px solid #ADCA21;
-  margin-top: 25px;
-  margin-left: 10px;
-  margin-bottom: 25px;
+  margin: 25px 50px;
+  box-sizing: border-box;
 }
 
 .search-input{
@@ -97,14 +95,21 @@
     margin-bottom: 50px;
 }
 
+/* sezione prodotti */
+.products-layout{
+  width: 100%;
+  padding-right: 50px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
 /* disposizione prodotti */
 .products-grid{
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 elementi per riga */
-  gap: 90px; /* spazio tra le card */
-  margin-left: 25px;
-  margin-right: 25px;
-  margin-bottom: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* 3 elementi per riga */
+  gap: 40px; /* spazio tra le card */
+  margin: 0 50px 50px 50px;
+  box-sizing: border-box;
 }
 
 /* immagine prodotto */
@@ -134,7 +139,6 @@
   width: 100%;
   height: 100%;
   object-fit: contain; /* evito che contenitore si ingrandisca */
-  object-fit: cover; /* adatto la foto allo spazio */
   display: block; /* rimuovo spazio che appare di default per un'immagine */
 }
 
