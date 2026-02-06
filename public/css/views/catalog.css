@@ -114,7 +114,7 @@
   box-sizing: border-box;
 }
 
-/* immagine prodotto */
+/* contenitore immagine */
 .product-card{
   width: 300px;
   height: 330px;
@@ -125,7 +125,7 @@
   gap: 20px; /* spazio tra immagine e nome */
 }
 
-/* contenitore immagine */
+/* immagine */
 .product-icon{
   width: 250px;
   height: 250px;
@@ -136,7 +136,7 @@
   justify-content: center;
 }
 
-/* immagine dentro */
+
 .product-icon img{
   width: 100%;
   height: 100%;
