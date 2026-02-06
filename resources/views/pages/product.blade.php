@@ -18,7 +18,7 @@
         <p class="text product-name">{{ $product->name }}</p>
         <p class="product-description">{{ $product->description }}</p>
         
-        <p class="text product-use_techniques">Tecniche d'uso</p>
+        <p class="text product-use-techniques">Tecniche d'uso</p>
         <p class="product-use_techniques-data">{{ $product->use_techniques }}</p>
         
         <p class="text product-installation">Guida all'installazione</p>
