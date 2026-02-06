@@ -6,10 +6,19 @@
     max-width: 100%;
     height: 155px;
     padding: 10px 20px;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
     align-items: center;
     border-bottom: 3px solid #ADCA21;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.header-info{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 300px;
+    justify-content: center;
+    margin: 0 auto;
 }
 
   /* spazio sinistro */
@@ -33,8 +42,11 @@
     display: flex;
     justify-self: center; /* centro perfettamente */
     align-items: center;
-    flex-wrap: wrap; 
-    gap: clamp(16px, 4vw, 60px);
+    flex-wrap: nowrap; /* tutti in una unica riga */
+    white-space: nowrap;
+    min-width: 0;
+    overflow: hidden; /* impossibile sforare */
+    gap: clamp(12px, 2vw, 32px);
   }
 
   /* spazio destro */

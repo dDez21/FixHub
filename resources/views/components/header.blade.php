@@ -1,5 +1,6 @@
 <header class="site-header">
 
+    <div class="header-info">
         <!-- logo e nome -->
         <div class="header-left">
             <img class="header-logo" src="{{ asset('images/logo.png') }}" alt="FixHub">
@@ -27,6 +28,7 @@
                 </a>            
             @endauth
         </div>
+    </div>
 </header>
 
 
