@@ -33,7 +33,7 @@
 .categories-list{
     margin-left: 30px;
     margin-top: 25px;
-    font-size: 25px;
+    font-size: 20px;
     margin-bottom: 60px;
 }
 
@@ -67,10 +67,12 @@
 .search-bar{
   background: #000;
   border-radius: 15px;
-  padding: 10px 14px;
+  padding-right: 20px;
+  padding-left: 30px;
   width: 100%;
   border: 2px solid #ADCA21;
-  margin: 25px 50px;
+  margin-left: 10px;
+  margin-right: 20px;
   box-sizing: border-box;
 }
 
@@ -98,8 +100,8 @@
 /* sezione prodotti */
 .products-layout{
   width: 100%;
-  padding-right: 50px;
-  padding-left: 10px;
+  padding-right: 20px;
+  padding-left: 30px;
   box-sizing: border-box;
 }
 
