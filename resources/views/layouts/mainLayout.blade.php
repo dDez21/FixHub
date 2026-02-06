@@ -18,16 +18,16 @@
 
 
         <!-- Scripts -->
-        <link rel="stylesheet" href="{{ asset(path: 'CSS/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('CSS/components/header.css') }}">
-        <link rel="stylesheet" href="{{ asset('CSS/views/home.css') }}">
-        <link rel="stylesheet" href="{{ asset('CSS/components/footer.css') }}">
-        <link rel="stylesheet" href="{{ asset('CSS/views/where.css') }}">
-        <link rel="stylesheet" href="{{ asset('CSS/views/catalog.css') }}">
-        <link rel="stylesheet" href="{{ asset('CSS/views/user.css') }}">
-        <link rel="stylesheet" href="{{ asset('CSS/components/card.css') }}">
-        <link rel="stylesheet" href="{{ asset('CSS/components/button.css') }}">
-        <link rel="stylesheet" href="{{ asset('CSS/components/form.css') }}">
+        <link rel="stylesheet" href="{{ asset(path: 'css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/components/header.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/views/home.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/components/footer.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/views/where.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/views/catalog.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/views/user.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/components/card.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/components/button.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/components/form.css') }}">
     </head>
 
     <body>
