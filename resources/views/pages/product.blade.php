@@ -16,13 +16,13 @@
     <!-- sezione dati prodotto -->
     <div class="product-section">
         <p class="text product-name">{{ $product->name }}</p>
-        <p class="product-description">{{ $product->description }}</p>
+        <p class="product-data">{{ $product->description }}</p>
         
-        <p class="text product-use-techniques">Tecniche d'uso</p>
-        <p class="product-use_techniques-data">{{ $product->use_techniques }}</p>
+        <p class="text product-name">Tecniche d'uso</p>
+        <p class="product-data">{{ $product->use_techniques }}</p>
         
-        <p class="text product-installation">Guida all'installazione</p>
-        <p class="product-installation-data">{{ $product->installation }}</p>
+        <p class="text product-name">Guida all'installazione</p>
+        <p class="product-data">{{ $product->installation }}</p>
     </div>
 
     
