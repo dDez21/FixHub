@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => { //aspetto che documento si
     if(!centers.length) return; //se non ci sono centri esco
 
     // prendo elementi card
-    const card = document.getElementById('center-data'); //card dettagli centro
     const nameCenter = document.getElementById('center-name'); //nome centro
     const addressCenter = document.getElementById('center-address'); //indirizzo centro
     const phoneCenter = document.getElementById('center-phone'); //telefono centro

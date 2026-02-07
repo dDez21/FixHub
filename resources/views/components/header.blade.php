@@ -8,6 +8,8 @@
 
         <!-- pagine selezionabili -->
         <div class="header-center">
+            
+            <!-- gestione quali mostrare in Providers -->
             @foreach($navLinks as $link)
                 <a class="selected" href="{{ url($link['path']) }}">{{ $link['label'] }}</a>
             @endforeach

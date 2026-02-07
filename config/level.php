@@ -19,7 +19,7 @@ return [
     ],
 
     'admin' => [
-        ['label' => 'Utenti',            'path' => '/'], // cambia path quando hai la route admin vera
+        ['label' => 'Utenti',            'path' => '/users'],
         ['label' => 'Dove trovarci',     'path' => 'pages/where'],
         ['label' => 'Catalogo prodotti', 'path' => 'pages/catalog'],
     ],
