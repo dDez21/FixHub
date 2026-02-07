@@ -24,15 +24,16 @@
 
 .product-name{
   height: auto;
-  margin: 10px 0 15px 0;
+  margin: 10px 0 25px 0;
   color: #000;
   font-size: 25px;
 }
 
 .product-cat{
   height: auto;
-  margin: 15px 0 15px 0;
+  margin: 15px 0 20px 0;
   color: #000;
+  font-size: 20px;
 }
 
 
@@ -54,7 +55,7 @@
   align-items: center;
   justify-content: center;
   margin-right: 40px;
-  margin: 30px 40px 30px 0;
+  margin: 40px 40px 40px 0;
 }
 
 .product-photo img{
