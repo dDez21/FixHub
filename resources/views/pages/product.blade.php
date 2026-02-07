@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- card prodotto -->
-<div class="card product-card-info">
+<div class="card product-space">
     
     <!-- sezione dati prodotto -->
     <div class="product-section">
