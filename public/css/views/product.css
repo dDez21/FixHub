@@ -10,7 +10,7 @@
 
 
 .product-photo{
-  width: 35px;
+  width: 350px;
   height: 350px;
   padding: 10px; /* margine interno attorno all'immagine */
   box-sizing: border-box; /* lascio dimensioni fisse */
