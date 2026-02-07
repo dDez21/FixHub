@@ -69,7 +69,7 @@
                         <div class="product-info">                    
 
                                 <!-- gli do link a sua scheda -->
-                                <a class="product-name" href="{{ route('product', $product) }}">{{ $product->name }}</a>                    
+                                <a class="product-name-ref" href="{{ route('product', $product) }}">{{ $product->name }}</a>                    
                         </div>
                     </div>
                 @empty
