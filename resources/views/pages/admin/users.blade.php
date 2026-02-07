@@ -25,7 +25,7 @@
                         <p class="medium-text user-item">{{ $user->name }} {{ $user->surname }}</p>
                         
                         <!-- ruolo utente -->
-                        <p class="medium-text user-item">
+                        <p class="small-text user-item"> 
                             @if($user->role == 'admin')Admin
                             @elseif($user->role == 'tech')Tecnico
                             @elseif($user->role == 'staff')Staff
@@ -43,7 +43,7 @@
         <div class="card card-user-data" id="user-data"> <!-- la mostro solo quando ho un utente selezionato -->
         
             <!-- nome utente -->
-            <div class="user-item title">
+            <div class="user-item-name">
                         <h1 class="user-item title" id="user-name"></h1> 
                         <h1 class="user-item title" id="user-surname"></h1>
             </div> 
