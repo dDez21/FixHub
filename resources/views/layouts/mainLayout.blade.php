@@ -24,7 +24,8 @@
         <link rel="stylesheet" href="{{ asset('css/components/footer.css') }}">
         <link rel="stylesheet" href="{{ asset('css/views/where.css') }}">
         <link rel="stylesheet" href="{{ asset('css/views/catalog.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/views/user.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/views/users.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/views/profile.css') }}">
         <link rel="stylesheet" href="{{ asset('css/views/product.css') }}">
         <link rel="stylesheet" href="{{ asset('css/components/card.css') }}">
         <link rel="stylesheet" href="{{ asset('css/components/button.css') }}">
