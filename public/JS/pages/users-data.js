@@ -8,9 +8,35 @@ document.addEventListener('DOMContentLoaded', () => { //aspetto che documento si
     const surnameUser = document.getElementById('user-surname'); //cognome utente
     const roleUser = document.getElementById('user-role'); //ruolo utente
     const usernameUser = document.getElementById('user-username'); //username utente
+    const techBox = document.getElementById('tech-data');
+    const techCenter = document.getElementById('user-tech-center'); //centro tecnico
+    const techCategories = document.getElementById('user-tech-categories'); //categorie tecnico
+
+
+
+    function roleLabel(role){
+    if (role === 'admin') return 'Admin';
+    if (role === 'tech') return 'Tecnico';
+    if (role === 'staff') return 'Staff';
+    return role || '';
+    }
+
+    async function fetchTechDetails(el){
+        const url = el.dataset.techUrl;
+        if (!url) return null;
+
+        try{
+        const res = await fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' }});
+        if (!res.ok) return null;
+        return await res.json();
+        }catch(e){
+        console.error('Errore fetch tech:', e);
+        return null;
+        }
+    }
 
     //prendo utente selezionato
-    function showUser(el){
+    async function showUser(el){
         
         //metto i dati dell'utente selezionato nella card
         const name = el.dataset.name || '';
@@ -24,12 +50,24 @@ document.addEventListener('DOMContentLoaded', () => { //aspetto che documento si
         if (roleUser) roleUser.textContent = role ? `Ruolo: ${roleLabel(role)}` : '';
         if (usernameUser) usernameUser.textContent = `Username: ${username || ''}`;
         
-        //se tecnico
-        if (data.tech){
-            centerEl.textContent = data.tech.center ? `Centro: ${data.tech.center.name}` : '';
+        //evito rimanga presente sezione tecnico
+        if (techBox) techBox.style.display = 'none';
+        if (techCenter) techCenter.textContent = '';
+        if (techCategories) techCategories.textContent = '';
+        
+        //mostro se tecnico
+        if (role === 'tech'){
+            const data = await fetchTechDetails(el);
 
-            const categories = data.tech?.categories || [];
-            categoriesEl.textContent = categories.length ? `Categorie: ${categories.join(', ')}` : '';
+            if (data && data.tech) {
+                if (techBox) techBox.style.display = 'block';
+
+                const centerName = data.tech.center || '';
+                const categories = data.tech.categories || [];
+
+                if (techCenter) techCenter.textContent = centerName ? `Centro: ${data.tech.center.name}` : '';
+                if (techCategories) techCategories.textContent = categories.length ? `Categorie: ${categories.join(', ')}` : '';
+            }
         }
     }
 

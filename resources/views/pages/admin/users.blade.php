@@ -56,9 +56,9 @@
 
             <!-- se tecnico -->
             <div id="tech-data" style="display: none;">
-                <p class="user-item medium-text" id="user-tech-specialization"></p>
-                <p class="user-item medium-text" id="user-tech-experience"></p>
-
+                <p class="user-item medium-text" id="user-tech-center"></p>
+                <p class="user-item medium-text" id="user-tech-categories"></p>
+            </div>
 
         </div>     
 </div>
