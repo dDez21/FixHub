@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CenterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 //home non loggato
@@ -52,7 +53,7 @@ Route::name('staff.')->prefix('staff')->middleware(['auth', 'staff'])->group(fun
 Route::name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     //pagina lista utenti
-    Route::get('/users', [ProfileController::class, 'show'])
+    Route::get('/users', [UsersController::class, 'show'])
     ->name('users');
 });
 

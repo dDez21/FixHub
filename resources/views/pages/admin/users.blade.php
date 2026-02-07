@@ -17,12 +17,7 @@
                 data-address="{{ $user->surname }}"
                 data-civic="{{ $user->role }}"
                 data-city="{{ $user->username }}"
-                data-phone="{{ $user->password }}">
-
-                <!-- prendo ruolo utente -->
-                
-
-
+                data-phone="{{ $user->password }}"> 
 
                 <!-- dati mostrati nell'elenco centri -->
                 <p class="medium-text center-item">{{ $user->name }} {{ $user->surname }}</p>
