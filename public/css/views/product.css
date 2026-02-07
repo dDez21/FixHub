@@ -1,3 +1,14 @@
+.product-space{
+    width: 1200px;
+    height: auto;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+
 /* dati prodotto */
 .product-section{
     flex: 1;
