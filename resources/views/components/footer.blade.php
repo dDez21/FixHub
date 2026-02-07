@@ -10,7 +10,9 @@
             <ul class="small-text info">
                 @foreach($navLinks as $link)
                     <li>
-                        <a class="selected-footer" href="{{ url($link['path']) }}">{{ $link['label'] }}</a>
+                        <a class="selected-footer" href="{{ isset($link['route']) ? route($link['route']) : url($link['path']) }}">
+                            {{ $link['label'] }}
+                        </a>
                     </li>
                 @endforeach
             </ul>
