@@ -40,7 +40,7 @@ class UsersController extends Controller{
 
     //creo utente
     public function create(){
-        return view('pages.admin.users.create'); // o come la chiami tu
+        return view('pages.admin.users.createUser');
     }
 
 }
