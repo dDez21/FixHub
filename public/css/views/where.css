@@ -18,7 +18,8 @@
     display: flex; /* dispongo elementi in fila */
     flex-direction: column; /* do orientamento verticale */
     gap: 16px; /* spazio tra centri */
-    height: 600px; /* altezza contenitore */
+    max-height: 600px;
+    height: auto; /* altezza contenitore */
     overflow-y: auto; /* abilita scroll verticale se necessario */
     padding: 15px 10px;
 }
