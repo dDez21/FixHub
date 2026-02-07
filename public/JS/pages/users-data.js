@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => { //aspetto che documento si
     const surnameUser = document.getElementById('user-surname'); //cognome utente
     const roleUser = document.getElementById('user-role'); //ruolo utente
     const usernameUser = document.getElementById('user-username'); //username utente
-    const passwordUser = document.getElementById('user-password'); //password utente
 
     //prendo utente selezionato
     function showUser(el){
@@ -22,8 +21,16 @@ document.addEventListener('DOMContentLoaded', () => { //aspetto che documento si
         //controllo sui dati
         if(nameUser) nameUser.textContent = name || '';
         if(surnameUser) surnameUser.textContent = surname || '';
-        if(roleUser) roleUser.textContent = role || '';
-        if(usernameUser) usernameUser.textContent = username || '';
+        if (roleUser) roleUser.textContent = role ? `Ruolo: ${roleLabel(role)}` : '';
+        if (usernameUser) usernameUser.textContent = `Username: ${username || ''}`;
+        
+        //se tecnico
+        if (data.tech){
+            centerEl.textContent = data.tech.center ? `Centro: ${data.tech.center.name}` : '';
+
+            const categories = data.tech?.categories || [];
+            categoriesEl.textContent = categories.length ? `Categorie: ${categories.join(', ')}` : '';
+        }
     }
 
 

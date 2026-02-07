@@ -19,7 +19,8 @@
                         data-name="{{ $user->name }}"
                         data-surname="{{ $user->surname }}"
                         data-role="{{ $user->role }}"
-                        data-username="{{ $user->username }}">
+                        data-username="{{ $user->username }}"
+                        data-tech-url="{{ route('admin.users.tech', $user) }}">
 
                         <!-- dati mostrati nell'elenco centri -->
                         <p class="medium-text user-item">{{ $user->name }} {{ $user->surname }}</p>
@@ -51,6 +52,14 @@
             <!-- nome utente -->
             <p class="user-item medium-text" id="user-role"></p>
             <p class="user-item medium-text" id="user-username"></p>
+
+
+            <!-- se tecnico -->
+            <div id="tech-data" style="display: none;">
+                <p class="user-item medium-text" id="user-tech-specialization"></p>
+                <p class="user-item medium-text" id="user-tech-experience"></p>
+
+
         </div>     
 </div>
 

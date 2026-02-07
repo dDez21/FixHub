@@ -55,6 +55,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     //pagina lista utenti
     Route::get('/users', [UsersController::class, 'show'])
     ->name('users');
+
+    //dettagli tecnico
+    Route::get('/users/{user}/tech', [UsersController::class, 'tech'])
+    ->name('users.tech');
 });
 
 

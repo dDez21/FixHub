@@ -66,9 +66,15 @@
 }
 
 .user-item-name{
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: nowrap; /* non va a capo */
+}
+
+.user-item-name .title{
+  margin: 0; /* h1 ha margin di default */
+  line-height: 1.1;
 }
 
 /* card dettagli utente selezionato */
