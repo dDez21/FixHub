@@ -38,19 +38,19 @@ Route::middleware('auth')->group(function () {
 
 
 // rotte tecnico
-Route::name('tecn.')->prefix('tecn')->middleware(['auth', 'tecn'])->group(function () {
+Route::prefix('tecn')->name('tecn.')->middleware(['auth', 'role:tech'])->group(function () {
 
 });
 
 
 
 // rotte staff
-Route::name('staff.')->prefix('staff')->middleware(['auth', 'staff'])->group(function () {
+Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->group(function () {
 
 });
 
 // rotte admin
-Route::name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
 
     //pagina lista utenti
     Route::get('/users', [UsersController::class, 'show'])
