@@ -18,14 +18,12 @@ document.addEventListener('DOMContentLoaded', () => { //aspetto che documento si
         const surname = el.dataset.surname || '';
         const role = el.dataset.role || '';
         const username = el.dataset.username || '';
-        const password = el.dataset.password || '';
 
         //controllo sui dati
         if(nameUser) nameUser.textContent = name || '';
         if(surnameUser) surnameUser.textContent = surname || '';
         if(roleUser) roleUser.textContent = role || '';
         if(usernameUser) usernameUser.textContent = username || '';
-        if(passwordUser) passwordUser.textContent = password ? `Password: ${password}` : '';
     }
 
 

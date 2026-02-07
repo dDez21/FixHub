@@ -17,10 +17,9 @@
                     <!-- prendo dati ogni utente-->
                     <div class="user-single" role="button" tabindex="0"
                         data-name="{{ $user->name }}"
-                        data-address="{{ $user->surname }}"
-                        data-civic="{{ $user->role }}"
-                        data-city="{{ $user->username }}"
-                        data-phone="{{ $user->password }}"> 
+                        data-surname="{{ $user->surname }}"
+                        data-role="{{ $user->role }}"
+                        data-username="{{ $user->username }}">
 
                         <!-- dati mostrati nell'elenco centri -->
                         <p class="medium-text user-item">{{ $user->name }} {{ $user->surname }}</p>
@@ -52,7 +51,6 @@
             <!-- nome utente -->
             <p class="user-item medium-text" id="user-role"></p>
             <p class="user-item medium-text" id="user-username"></p>
-            <p class="user-item medium-text" id="user-password"></p>
         </div>     
 </div>
 
