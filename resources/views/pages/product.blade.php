@@ -7,12 +7,6 @@
 <!-- card prodotto -->
 <div class="card product-card">
     
-    <!-- foto prodotto -->
-    <div class="product-photo">
-        <img src="{{ $product->photo ? Storage::url($product->photo) : asset('images/noPhoto.png') }}" alt="">
-    </div>
-    
-    
     <!-- sezione dati prodotto -->
     <div class="product-section">
         <p class="text product-name">{{ $product->name }}</p>
@@ -25,7 +19,10 @@
         <p class="product-data">{{ $product->installation }}</p>
     </div>
 
-    
+    <!-- foto prodotto -->
+    <div class="product-photo">
+        <img src="{{ $product->photo ? Storage::url($product->photo) : asset('images/noPhoto.png') }}" alt="">
+    </div>
 
 </div>
 @endsection
