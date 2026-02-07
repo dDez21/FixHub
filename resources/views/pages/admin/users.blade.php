@@ -8,10 +8,16 @@
     <div class="users-list">
         <!-- card utenti -->
         <div class="card">
-                    
+              
+            <div class="add_user">
+                <li class="elements">
+                    <img class="icon" src="{{ asset('icon/new.png') }}" alt="" aria-hidden="true">
+                </li>
+            </div>
+            
             <!-- scroller verticale -->
             <div class="users" role="list">
-                        
+
                 @forelse ($users as $user)
                             
                     <!-- prendo dati ogni utente-->
