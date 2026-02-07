@@ -8,13 +8,12 @@
     <div class="users-list">
         <!-- card utenti -->
         <div class="card">
-              
-            <div class="add_user">
-                <li class="elements">
-                    <img class="icon" src="{{ asset('icon/new.png') }}" alt="" aria-hidden="true">
-                </li>
-            </div>
             
+            <!-- nuovo utente -->
+            <a class="add-user" href="{{ route('admin.users.create') }}">
+                <img class="add-user-icon" src="{{ asset('icon/new.png') }}" alt="">
+            </a>
+
             <!-- scroller verticale -->
             <div class="users" role="list">
 

@@ -59,6 +59,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     //dettagli tecnico
     Route::get('/users/{user}/tech', [UsersController::class, 'tech'])
     ->name('users.tech');
+
+    //crea utente
+    Route::get('/users/create', [UsersController::class, 'create'])
+    ->name('users.create');
 });
 
 
