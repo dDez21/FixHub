@@ -12,10 +12,10 @@
         <p class="text product-name">{{ $product->name }}</p>
         <p class="product-data">{{ $product->description }}</p>
         
-        <p class="text product-name">Tecniche d'uso</p>
+        <p class="text product-cat">Tecniche d'uso</p>
         <p class="product-data">{{ $product->use_techniques }}</p>
         
-        <p class="text product-name">Guida all'installazione</p>
+        <p class="text product-cat">Guida all'installazione</p>
         <p class="product-data">{{ $product->installation }}</p>
     </div>
 
