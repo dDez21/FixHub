@@ -1,0 +1,7 @@
+.users-layout{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonne */
+    gap: 150px;
+    height: auto;
+    margin: 50px 150px;
+}
