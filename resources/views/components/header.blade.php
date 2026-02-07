@@ -11,7 +11,9 @@
             
             <!-- gestione quali mostrare in Providers -->
             @foreach($navLinks as $link)
-                <a class="selected" href="{{ url($link['path']) }}">{{ $link['label'] }}</a>
+                <a class="selected" href="{{ isset($link['route']) ? route($link['route']) : url($link['path']) }}">
+                    {{ $link['label'] }}
+                </a>
             @endforeach
         </div>
 
