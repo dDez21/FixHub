@@ -5,39 +5,40 @@
 
 <div class="users-layout">
 
-    <!-- card utenti -->
-    <div class="card">
-                
-        <!-- scroller verticale -->
-        <div class="centers" role="list">
+    <div class="users-list">
+        <!-- card utenti -->
+        <div class="card">
                     
-            @forelse ($users as $user)
+            <!-- scroller verticale -->
+            <div class="users" role="list">
                         
-                <!-- prendo dati ogni utente-->
-                <div class="center-single" role="button" tabindex="0"
-                    data-name="{{ $user->name }}"
-                    data-address="{{ $user->surname }}"
-                    data-civic="{{ $user->role }}"
-                    data-city="{{ $user->username }}"
-                    data-phone="{{ $user->password }}"> 
+                @forelse ($users as $user)
+                            
+                    <!-- prendo dati ogni utente-->
+                    <div class="user-single" role="button" tabindex="0"
+                        data-name="{{ $user->name }}"
+                        data-address="{{ $user->surname }}"
+                        data-civic="{{ $user->role }}"
+                        data-city="{{ $user->username }}"
+                        data-phone="{{ $user->password }}"> 
 
-                    <!-- dati mostrati nell'elenco centri -->
-                    <p class="medium-text center-item">{{ $user->name }} {{ $user->surname }}</p>
-                    
-                    <!-- ruolo utente -->
-                    <p class="medium-text center-item">
-                        @if($user->role == 'admin')Admin
-                        @elseif($user->role == 'tech')Tecnico
-                        @elseif($user->role == 'staff')Staff
-                        @endif
-                    </p>
-                </div>
+                        <!-- dati mostrati nell'elenco centri -->
+                        <p class="medium-text user-item">{{ $user->name }} {{ $user->surname }}</p>
+                        
+                        <!-- ruolo utente -->
+                        <p class="medium-text user-item">
+                            @if($user->role == 'admin')Admin
+                            @elseif($user->role == 'tech')Tecnico
+                            @elseif($user->role == 'staff')Staff
+                            @endif
+                        </p>
+                    </div>
 
-            @empty
-            @endforelse
+                @empty
+                @endforelse
+            </div>
         </div>
     </div>
-
 
         <!-- dettagli utente selezionato -->
         <div class="card card-user-data" id="user-data"> <!-- la mostro solo quando ho un utente selezionato -->

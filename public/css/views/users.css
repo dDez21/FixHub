@@ -21,3 +21,57 @@
     color: #000;
     font-weight: 900;
 }
+
+/* sezione elenco centri */
+.users-list{
+    height: 700px;
+    width: 350px;
+    margin-left: 150px;
+}
+
+
+/* scroller verticale per i centri */
+.users{
+    display: flex; /* dispongo elementi in fila */
+    flex-direction: column; /* do orientamento verticale */
+    gap: 16px; /* spazio tra centri */
+    max-height: 600px;
+    height: auto; /* altezza contenitore */
+    overflow-y: auto; /* abilita scroll verticale se necessario */
+    padding: 15px 10px;
+}
+
+
+/* card singolo centro */
+.user-single{
+    width: 100%;
+    height: 90px;
+    background: rgba(255,255,255,0.03); /* colore sfondo */
+    border: 1px solid rgba(173,202,33,0.2); /* colore bordo */
+    padding-left: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; /* transazione hover */
+    cursor: pointer;
+}
+
+.user-single:is(.is-selected){
+  outline: 2px solid rgba(173,202,33,0.9);
+  outline-offset: 3px;
+}
+
+.user-single:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+}
+
+
+/* card dettagli utente selezionato */
+.card-user-data{
+    width: auto;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 120px;
+    padding: 20px;
+}
