@@ -27,6 +27,7 @@ Route::get('/pages/product/{product}', [ProductController::class,'show'])
 ->name('product');
 
 
+
 // utente loggato, middleware per verificare auth
 Route::middleware('auth')->group(function () {
 
@@ -50,6 +51,9 @@ Route::name('staff.')->prefix('staff')->middleware(['auth', 'staff'])->group(fun
 // rotte admin
 Route::name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
+    //pagina lista utenti
+    Route::get('/users', [ProfileController::class, 'show'])
+    ->name('users');
 });
 
 
