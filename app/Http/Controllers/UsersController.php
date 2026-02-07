@@ -13,7 +13,7 @@ class UsersController extends Controller{
 
         $users = User::orderBy('name')->get(); //prendo tutti gli utenti
         
-        return view('pages.users', compact('users')); //passo gli utenti alla vista
+        return view('pages.admin.users', compact('users')); //passo gli utenti alla vista
     }
 
 }
