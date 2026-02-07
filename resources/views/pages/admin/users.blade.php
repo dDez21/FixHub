@@ -10,7 +10,7 @@
         <div class="card">
             
             <!-- nuovo utente -->
-            <a class="add-user" href="{{ route('admin.users.create') }}">
+            <a class="add-user" href="{{ route('admin.users.createUser') }}">
                 <img class="add-user-icon" src="{{ asset('icon/new.png') }}" alt="">
             </a>
 
