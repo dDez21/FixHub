@@ -9,7 +9,7 @@
     <div class="card">
                 
         <!-- scroller verticale -->
-        <div class="centes" role="list">
+        <div class="centers" role="list">
                     
             @forelse ($users as $user)
                         
