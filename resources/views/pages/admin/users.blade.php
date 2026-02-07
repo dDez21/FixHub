@@ -55,5 +55,5 @@
     
 </div>
 
-<script src="{{ asset('JS/pages/center-data-where.js') }}" defer></script>
+<script src="{{ asset('JS/pages/users-data.js') }}" defer></script>
 @endsection
