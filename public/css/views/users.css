@@ -81,6 +81,13 @@
   line-height: 1.1;
 }
 
+
+.user-data-container{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
 /* card dettagli utente selezionato */
 .card-user-data{
     width: auto;

@@ -48,26 +48,36 @@
     </div>
 
         <!-- dettagli utente selezionato -->
-        <div class="card card-user-data" id="user-data"> <!-- la mostro solo quando ho un utente selezionato -->
-        
-            <!-- nome utente -->
-            <div class="user-item-name">
-                        <h1 class="user-item title" id="user-name"></h1> 
-                        <h1 class="user-item title" id="user-surname"></h1>
-            </div> 
+        <div class="user-data-container">
+            <div class="card card-user-data" id="user-data"> <!-- la mostro solo quando ho un utente selezionato -->
             
-            <!-- nome utente -->
-            <p class="user-item medium-text" id="user-role"></p>
-            <p class="user-item medium-text" id="user-username"></p>
+                <!-- nome utente -->
+                <div class="user-item-name">
+                            <h1 class="user-item title" id="user-name"></h1> 
+                            <h1 class="user-item title" id="user-surname"></h1>
+                </div> 
+                
+                <!-- nome utente -->
+                <p class="user-item medium-text" id="user-role"></p>
+                <p class="user-item medium-text" id="user-username"></p>
 
 
-            <!-- se tecnico -->
-            <div id="tech-data" style="display: none;">
-                <p class="user-item medium-text" id="user-tech-center"></p>
-                <p class="user-item medium-text" id="user-tech-categories"></p>
+                <!-- se tecnico -->
+                <div id="tech-data" style="display: none;">
+                    <p class="user-item medium-text" id="user-tech-center"></p>
+                    <p class="user-item medium-text" id="user-tech-categories"></p>
+                </div>
+
+            </div>  
+
+
+            <!-- modifica utente -->
+            <div class="new-element">
+                <a class="modify-user" href="{{ route('admin.users.editUser', $user) }}">
+                    <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
+                </a>
             </div>
-
-        </div>     
+        </div>   
 </div>
 
 <script src="{{ asset('JS/pages/users-data.js') }}" defer></script>

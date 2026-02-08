@@ -65,6 +65,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     ->name('users.createUser');
 
     Route::post('/users', [UsersController::class, 'store'])->name('users.store');
+
+
+    //modifica dati utente
+    Route::get('/users/{user}/edit', [UsersController::class, 'edit'])
+    ->name('users.editUser');
+
+    Route::put('/users/{user}', [UsersController::class, 'update'])->name('users.update');
 });
 
 

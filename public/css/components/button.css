@@ -27,10 +27,3 @@
     display: flex; /* dispongo elementi in riga */
     justify-content: center; /* centro orizzontale */
 }
-
-
-/* aggiungi utente */
-.new-element{
-    margin-top: 30px;
-    margin-left: 10px;
-}
