@@ -39,7 +39,7 @@
                     <input type="checkbox" id="change-password-toggle">
                     <span>Cambia password</span>
                 </label>
-                
+
                 <div id="password-box" hidden>
                     <div class="form-space">
                         <label class="form-label" for="password">Nuova password</label>
@@ -64,7 +64,7 @@
             <!-- ruolo -->
             <div class="form-space">    
                 <label class="form-label" for="role">Ruolo</label>
-                <select class="form-space" name="role" id="role" required>
+                <select class="list-space" name="role" id="role" required>
                     <option class="list-value" value="tech"  @selected(old('role')=='tech')>Tecnico</option>
                     <option class="list-value" value="staff" @selected(old('role')=='staff')>Staff</option>
                     <option class="list-value" value="admin" @selected(old('role')=='admin')>Admin</option>
@@ -98,7 +98,7 @@
                     <!-- categorie -->
                     <div class="form-group">
 
-                        <p class="text form-label">Categorie</p>
+                        <p class="form-label">Categorie</p>
 
                         <div class="categories-box">
                             @foreach($categories as $category)
