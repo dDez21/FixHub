@@ -3,6 +3,9 @@
 
 @section('content')
 
+<!-- se tecnico -->
+@php $isTech = old('role') === 'tech'; @endphp
+
 <!-- card nuovo utente -->
 <div class="card user-space">
 
@@ -42,32 +45,28 @@
         </select>
 
 
+        <!-- opzioni tecnico -->
+        <div id="tech-options" @if(!$isTech) hidden @endif>
 
-        <!-- se tecnico -->
-        @php $isTech = old('role') === 'tech'; @endphp
-
-            
-            <div id="tech-options" @if(!$isTech) hidden @endif>
-
-                <!-- data di nascita -->
-                <div class="form-group">
-                    <label class="form-label" for="birth_date">Data di nascita</label>
-                    <input class="form-input"type="date" id="birth_date" name="birth_date" max="{{ now()->toDateString() }}" required>
-                </div>
+            <!-- data di nascita -->
+            <div class="form-group">
+                <label class="form-label" for="birth_date">Data di nascita</label>
+                <input class="form-input"type="date" id="birth_date" name="birth_date" value="{{ old('birth_date') }}" max="{{ now()->toDateString() }}">
+            </div>
 
 
-                <!-- centro associato -->
-                <div class="form-group">
-                    <label class="form-label" for="center">Centro</label>
-                    <select name="center_id" id="center_id">
+            <!-- centro associato -->
+            <div class="form-group">
+                <label class="form-label" for="center">Centro</label>
+                <select name="center_id" id="center_id">                    
                     <option value="">Nessun centro</option>
                     @foreach($centers as $center)
                         <option value="{{ $center->id }}" @selected(old('center_id')==$center->id)>
                         {{ $center->name }}, {{ $center->city }}
                         </option>
-                    @endforeach
-                    </select>
-                </div>
+                    @endforeach                    
+                </select>
+            </div>
 
 
                 <!-- categorie -->
@@ -87,13 +86,14 @@
                         @endforeach
                     </div>
             </div>   
-</div>
+        </div>
     
         <!-- conferma creazione -->
         <div class="form-confirm">
             <button type="submit" class="button button-confirm">Crea utente</button>
         </div>
     </form>
+</div>
 
 <script src="{{ asset('js/new-user-tech.js') }}" defer></script>
 @endsection
