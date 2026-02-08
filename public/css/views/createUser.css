@@ -1,5 +1,20 @@
 .user-space{
-    margin: 30px 250px;
+    margin: 30px 250px 30px 250px;
     width: 100%;
     height: auto;
+}
+
+/* contiene form */
+.create-user-form{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+/* singolo form */
+.form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }

@@ -11,27 +11,27 @@
         @csrf
 
         <!-- nome -->
-        <div class="form-group">
-            <label for="name">Nome</label>
-            <input type="text" id="name" name="name" required>
+        <div class="login-form">
+            <label class="form-label" for="name">Nome</label>
+            <input class="login-input" type="text" id="name" name="name" required>
         </div>
 
         <!-- cognome -->
-        <div class="form-group">
-            <label for="surname">Cognome</label>
-            <input type="text" id="surname" name="surname" required>
+        <div class="login-form">
+            <label class="form-label" for="surname">Cognome</label>
+            <input class="login-input"type="text" id="surname" name="surname" required>
         </div>
 
         <!-- username -->
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
+        <div class="login-form">
+            <label class="form-label" for="username">Username</label>
+            <input class="login-input"type="text" id="username" name="username" required>
         </div>
 
         <!-- password -->
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
+        <div class="login-form">
+            <label class="form-label" for="password">Password</label>
+            <input class="login-input" type="password" id="password" name="password" required>
         </div>
 
         <!-- ruolo -->
@@ -49,14 +49,14 @@
 
                 <!-- data di nascita -->
                 <div class="form-group">
-                    <label for="birth_date">Data di nascita</label>
-                    <input type="date" id="birth_date" name="birth_date" required>
+                    <label class="form-label" for="birth_date">Data di nascita</label>
+                    <input class="login-input"type="date" id="birth_date" name="birth_date" required>
                 </div>
 
 
                 <!-- centro -->
                 <div class="form-group">
-                    <label for="center">Centro</label>
+                    <label class="form-label" for="center">Centro</label>
                     <select name="center" id="center">
                         <option value="">Seleziona un centro</option>
                         @foreach($centers as $center)
@@ -67,7 +67,7 @@
 
                 <!-- categorie -->
                 <div class="form-group">
-                    <label for="categories">Categorie</label>
+                    <label class="form-label" for="categories">Categorie</label>
                     <select name="categories[]" id="categories">
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
