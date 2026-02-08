@@ -10,9 +10,11 @@
         <div class="card">
             
             <!-- nuovo utente -->
-            <a class="add-user" href="{{ route('admin.users.createUser') }}">
-                <img class="add-user-icon" src="{{ asset('icon/new.png') }}" alt="">
-            </a>
+            <div class="new-user">
+                <a class="add-user" href="{{ route('admin.users.createUser') }}">
+                    <img class="add-user-icon" src="{{ asset('icon/new.png') }}" alt="">
+                </a>
+            </div>
 
             <!-- scroller verticale -->
             <div class="users" role="list">

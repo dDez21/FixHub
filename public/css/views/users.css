@@ -86,7 +86,13 @@
     padding: 20px;
 }
 
+
 /* aggiungi utente */
+.new-user{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
 .add-user{
     width: 30px;
     height: 30px;
