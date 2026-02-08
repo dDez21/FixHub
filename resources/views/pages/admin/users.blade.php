@@ -81,12 +81,12 @@
 
                     <!-- elimina utente -->
                     <div class="new-element">
-                        <a class="add-user" href="{{ route('admin.users.deleteUser', $user) }}">
+                        <a class="add-user" href="{{ route('admin.deleteUser', $user) }}">
                             <img class="add-user-icon" src="{{ asset('icon/delete.png') }}" alt="">
                         </a>
                     </div>
                 </div>
-                
+
             </div>
         </div>   
 </div>
