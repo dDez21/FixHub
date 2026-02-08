@@ -16,7 +16,10 @@
                 @method('DELETE')
                 <button type="submit" class="button">Elimina</button>
             </form>
-            <a href="{{ route('admin.users') }}" class="button">Annulla</a>
+            
+            <div class="form-confirm">
+                <button type="submit" class="button button-back">Annulla</button>
+            </div>
         </div>
     </div>
 @endsection
