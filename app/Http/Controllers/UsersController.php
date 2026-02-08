@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use App\Models\User;
@@ -168,4 +169,9 @@ class UsersController extends Controller{
         return redirect()->route('admin.users')->with('success', 'Utente aggiornato!');
     }
 
+    //elimino utente
+    public function delete(User $user): RedirectResponse {
+        $user->delete();  // cascata: tech + category_tech
+        return redirect()->route('admin.users.index');
+    }
 }

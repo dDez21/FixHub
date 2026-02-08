@@ -71,7 +71,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::get('/users/{user}/edit', [UsersController::class, 'edit'])
     ->name('users.editUser');
 
-    Route::put('/users/{user}', [UsersController::class, 'update'])->name('users.update');
+    Route::put('/users/{user}', [UsersController::class, 'update'])
+    ->name('users.update');
+
+
+    //elimina utente
+    Route::delete('/users/{user}', [UsersController::class, 'delete'])
+    ->name('users.delete');
 });
 
 
