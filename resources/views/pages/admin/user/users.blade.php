@@ -1,94 +1,87 @@
 @extends("layouts.mainLayout")
 
-
 @section('content')
 
 <div class="users-layout">
 
     <div class="users-list">
-        <!-- card utenti -->
         <div class="card users-card">
-            
-            <!-- nuovo utente -->
+
             <div class="new-element">
                 <a class="add-user" href="{{ route('admin.users.createUser') }}">
                     <img class="add-user-icon" src="{{ asset('icon/new.png') }}" alt="">
                 </a>
             </div>
 
-            <!-- scroller verticale -->
             <div class="users" role="list">
-
-                @forelse ($users as $user)
-                            
-                    <!-- prendo dati ogni utente-->
+                @forelse ($users as $u)
                     <div class="user-single" role="button" tabindex="0"
-                        data-name="{{ $user->name }}"
-                        data-surname="{{ $user->surname }}"
-                        data-role="{{ $user->role }}"
-                        data-username="{{ $user->username }}"
-                        data-tech-url="{{ route('admin.users.tech', $user) }}">
+                        data-id="{{ $u->id }}"
+                        data-name="{{ $u->name }}"
+                        data-surname="{{ $u->surname }}"
+                        data-role="{{ $u->role }}"
+                        data-username="{{ $u->username }}"
 
-                        <!-- dati mostrati nell'elenco centri -->
-                        <p class="medium-text user-item">{{ $user->name }} {{ $user->surname }}</p>
-                        
-                        <!-- ruolo utente -->
-                        <p class="small-text user-item"> 
-                            @if($user->role == 'admin')Admin
-                            @elseif($user->role == 'tech')Tecnico
-                            @elseif($user->role == 'staff')Staff
+                        data-tech-url="{{ route('admin.users.tech', $u) }}"
+                        data-staff-url="{{ route('admin.users.staff', $u) }}"
+
+                        data-edit-url="{{ route('admin.users.editUser', $u) }}"
+                        data-delete-url="{{ route('admin.users.deleteConfirm', $u) }}"
+                    >
+                        <p class="medium-text user-item">{{ $u->name }} {{ $u->surname }}</p>
+
+                        <p class="small-text user-item">
+                            @if($u->role == 'admin')Admin
+                            @elseif($u->role == 'tech')Tecnico
+                            @elseif($u->role == 'staff')Staff
                             @endif
                         </p>
                     </div>
-
                 @empty
                 @endforelse
             </div>
         </div>
     </div>
 
-        <!-- dettagli utente selezionato -->
-        <div class="user-data-container">
-            <div class="card card-user-data" id="user-data"> <!-- la mostro solo quando ho un utente selezionato -->
-            
-                <!-- nome utente -->
-                <div class="user-item-name">
-                            <h1 class="user-item title" id="user-name"></h1> 
-                            <h1 class="user-item title" id="user-surname"></h1>
-                </div> 
-                
-                <!-- nome utente -->
-                <p class="user-item medium-text" id="user-role"></p>
-                <p class="user-item medium-text" id="user-username"></p>
+    <div class="user-data-container">
+        <div class="card card-user-data" id="user-data">
 
-
-                <!-- se tecnico -->
-                <div id="tech-data" style="display: none;">
-                    <p class="user-item medium-text" id="user-tech-center"></p>
-                    <p class="user-item medium-text" id="user-tech-categories"></p>
-                </div>
-
-              
-
-                <div class="user-action">
-                    <!-- modifica utente -->
-                    <div class="new-element">
-                        <a class="add-user" href="{{ route('admin.users.editUser', $user) }}">
-                            <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
-                        </a>
-                    </div>
-
-
-                    <!-- elimina utente -->
-                    <div class="new-element">
-                        <a class="add-user" href="{{ route('admin.users.deleteConfirm', $user) }}">
-                            <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-
+            <div class="user-item-name">
+                <h1 class="user-item title" id="user-name"></h1>
+                <h1 class="user-item title" id="user-surname"></h1>
             </div>
-        </div>   
+
+            <p class="user-item medium-text" id="user-role"></p>
+            <p class="user-item medium-text" id="user-username"></p>
+
+            <!-- TECH -->
+            <div id="tech-data" style="display: none;">
+                <p class="user-item medium-text" id="user-tech-center"></p>
+                <p class="user-item medium-text" id="user-tech-categories"></p>
+            </div>
+
+            <!-- STAFF -->
+            <div id="staff-data" style="display: none;">
+                <p class="user-item medium-text" id="user-staff-categories"></p>
+            </div>
+
+            <div class="user-action">
+                <div class="new-element">
+                    <a id="user-edit-link" class="add-user" href="#">
+                        <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
+                    </a>
+                </div>
+
+                <div class="new-element">
+                    <a id="user-delete-link" class="add-user" href="#">
+                        <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </div>
 
 <script src="{{ asset('JS/pages/users-data.js') }}" defer></script>

@@ -60,6 +60,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::get('/users/{user}/tech', [UsersController::class, 'tech'])
     ->name('users.tech');
 
+    //dettagli staff
+    Route::get('/users/{user}/staff', [UsersController::class, 'staff'])
+    ->name( 'users.staff');
+
+
     //crea utente
     Route::get('/users/create', [UsersController::class, 'create'])
     ->name('users.createUser');

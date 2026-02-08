@@ -2,17 +2,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const roleSelect = document.getElementById('role'); //ruolo selezionato
     const techOptions = document.getElementById('tech-options'); //sezione ulteriore tecnico
+    const categoriesOptions = document.getElementById('categories-options'); //sezione categorie
     
-    if (!roleSelect || !techOptions) return;
+    if (!roleSelect) return;
 
-    const fields = techOptions.querySelectorAll('input, select, textarea'); //campi tecnico
+    const techFields = techOptions ? techOptions.querySelectorAll('input, select, textarea') : [];
     const birthDate = document.getElementById('birth_date');
 
+    const catFields = categoriesOptions ? categoriesOptions.querySelectorAll('input') : [];
+
     function update() {
-        const isTech = roleSelect.value === 'tech';
+        const role = roleSelect.value;
+        const isTech = role === 'tech';
+        const isStaff = role === 'staff';
+        const showCats = isTech || isStaff;
+
+        // tech
+        if (techOptions) {
         techOptions.hidden = !isTech;
-        fields.forEach(f => (f.disabled = !isTech));
+        techFields.forEach(f => (f.disabled = !isTech));
+        }
         if (birthDate) birthDate.required = isTech;
+
+        // categorie
+        if (categoriesOptions) {
+        categoriesOptions.hidden = !showCats;
+        catFields.forEach(f => (f.disabled = !showCats));
+        }
     }
 
     roleSelect.addEventListener('change', update);

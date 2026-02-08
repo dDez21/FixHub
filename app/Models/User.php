@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function tech(){
         return $this -> hasOne(Tech::class);
     }
+
+    public function staff(){
+        return $this -> hasOne(Staff::class);
+    }
 }

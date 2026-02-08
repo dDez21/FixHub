@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Center;
 use App\Models\Category;
 use App\Models\Tech;
+use App\Models\Staff;
 
 class UsersController extends Controller{
 
@@ -47,6 +48,25 @@ class UsersController extends Controller{
     }
 
 
+    //categorie staff
+    public function staff(User $user)
+    {
+        abort_unless($user->role === 'staff', 404);
+
+        $user->load([
+            'staff.categories:id,name'
+        ]);
+
+        $staff = $user->staff;
+
+        return response()->json([
+            'staff' => $staff ? [
+                'categories' => $staff->categories->pluck('name')->values(),
+            ] : null,
+        ]);
+    }
+
+
     //vado a pagina crea utente
     public function create(){
 
@@ -72,6 +92,8 @@ class UsersController extends Controller{
             // solo tech
             'birth_date' => ['required_if:role,tech', 'date', 'before_or_equal:today'],
             'center_id' => ['nullable','exists:centers,id'],
+            
+            //solo tech e staff
             'categories' => ['nullable','array'],
             'categories.*' => ['integer','exists:categories,id'],
         ]);
@@ -97,6 +119,16 @@ class UsersController extends Controller{
 
                 $tech->categories()->sync($data['categories'] ?? []);
             }
+
+            //salvo dati staff
+            if ($user->role === 'staff') {
+                $staff = Staff::create([
+                    'user_id' => $user->id,
+                    'center_id' => null, // se non lo usi nel form
+                ]);
+
+                $staff->categories()->sync($data['categories'] ?? []);
+            }
         });
 
         return redirect()->route('admin.users')->with('success', 'Utente creato!');
@@ -106,7 +138,7 @@ class UsersController extends Controller{
     //prendo dati per pagina modifica utente
     public function edit(User $user){
 
-        $user->load(['tech.center', 'tech.categories']);
+        $user->load(['tech.center', 'tech.categories', 'staff.categories']);
         $centers = Center::orderBy('name')->get(['id','name','city']);
         $categories = Category::orderBy('name')->get(['id','name']);
 
@@ -130,6 +162,8 @@ class UsersController extends Controller{
             // campi tech
             'birth_date' => ['required_if:role,tech','date','before_or_equal:today'],
             'center_id' => ['nullable','exists:centers,id'],
+
+            // categorie (tech/staff)
             'categories' => ['nullable','array'],
             'categories.*' => ['integer','exists:categories,id'],
         ]);
@@ -147,6 +181,17 @@ class UsersController extends Controller{
 
             $user->save();
 
+            // pulizia se cambio ruolo
+            if ($user->role !== 'tech' && $user->tech) {
+                $user->tech->categories()->detach();
+                $user->tech->delete();
+            }
+            if ($user->role !== 'staff' && $user->staff) {
+                $user->staff->categories()->detach();
+                $user->staff->delete();
+            }
+
+            // tech
             if ($user->role === 'tech') {
                 $tech = Tech::updateOrCreate(
                     ['user_id' => $user->id],
@@ -155,30 +200,47 @@ class UsersController extends Controller{
                         'birth_date' => $data['birth_date'],
                     ]
                 );
-
                 $tech->categories()->sync($data['categories'] ?? []);
-            } else {
-                
-                if ($user->tech) {
-                    $user->tech->categories()->detach();
-                    $user->tech->delete();
-                }
+            }
+
+            // staff
+            if ($user->role === 'staff') {
+                $staff = Staff::updateOrCreate(
+                    ['user_id' => $user->id],
+                    [
+                        'center_id' => null,
+                    ]
+                );
+                $staff->categories()->sync($data['categories'] ?? []);
             }
         });
 
         return redirect()->route('admin.users')->with('success', 'Utente aggiornato!');
     }
 
-
-
-    public function deleteConfirm(User $user){
+    public function deleteConfirm(User $user)
+    {
         return view('pages.admin.user.deleteUser', compact('user'));
     }
 
+    public function delete(User $user): RedirectResponse
+    {
+        DB::transaction(function () use ($user) {
+            $user->load(['tech', 'staff']);
 
-    //elimino utente
-    public function delete(User $user): RedirectResponse {
-        $user->delete();  // cascata: tech + category_tech
+            if ($user->tech) {
+                $user->tech->categories()->detach();
+                $user->tech->delete();
+            }
+
+            if ($user->staff) {
+                $user->staff->categories()->detach();
+                $user->staff->delete();
+            }
+
+            $user->delete();
+        });
+
         return redirect()->route('admin.users')->with('success', 'Utente eliminato!');
     }
 }

@@ -12,9 +12,18 @@
         @php
             $role = old('role', $user?->role ?? 'tech');
             $isTech = ($role === 'tech');
+            $isStaff = ($role === 'staff');
+            $showCategories = ($isTech || $isStaff);
 
             $centerSelected = old('center_id', $user?->tech?->center_id);
-            $selectedCategories = old('categories', $user?->tech?->categories?->pluck('id')->all() ?? []);
+
+            // categorie prese in base al ruolo
+            $selectedCategories = old(
+                'categories',
+                $isStaff
+                    ? ($user?->staff?->categories?->pluck('id')->all() ?? [])
+                    : ($user?->tech?->categories?->pluck('id')->all() ?? [])
+            );
         @endphp
 
             <!-- nome -->
@@ -104,19 +113,19 @@
 
 
                     <!-- categorie -->
-                    <div class="form-group">
+                    <div id="categories-options" @if(!$showCategories) hidden @endif>
+                        <div class="form-group">
+                            <p class="form-label">Categorie</p>
 
-                        <p class="form-label">Categorie</p>
-
-                        <div class="categories-box">
-                            
-                            @foreach($categories as $category)
-                                <label class="category-item">
-                                    <input type="checkbox" name="categories[]" value="{{ $category->id }}"
-                                        @checked(in_array($category->id, $selectedCategories))>
-                                    <span>{{ $category->name }}</span>
-                                </label>
-                            @endforeach
+                            <div class="categories-box">
+                                @foreach($categories as $category)
+                                    <label class="category-item">
+                                        <input type="checkbox" name="categories[]" value="{{ $category->id }}"
+                                            @checked(in_array($category->id, $selectedCategories))>
+                                        <span>{{ $category->name }}</span>
+                                    </label>
+                                @endforeach
+                            </div>
                         </div>
-                </div>   
+                    </div>   
             </div>
