@@ -17,7 +17,6 @@
 
             $centerSelected = old('center_id', $user?->tech?->center_id);
 
-            // categorie prese in base al ruolo
             $selectedCategories = old(
                 'categories',
                 $isStaff
@@ -25,6 +24,7 @@
                     : ($user?->tech?->categories?->pluck('id')->all() ?? [])
             );
         @endphp
+
 
             <!-- nome -->
             <div class="form-space">
@@ -110,22 +110,24 @@
                         @endforeach                    
                     </select>
                 </div>
-
-
-                    <!-- categorie -->
-                    <div id="categories-options" @if(!$showCategories) hidden @endif>
-                        <div class="form-group">
-                            <p class="form-label">Categorie</p>
-
-                            <div class="categories-box">
-                                @foreach($categories as $category)
-                                    <label class="category-item">
-                                        <input type="checkbox" name="categories[]" value="{{ $category->id }}"
-                                            @checked(in_array($category->id, $selectedCategories))>
-                                        <span>{{ $category->name }}</span>
-                                    </label>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>   
             </div>
+
+            
+    <!-- categorie -->
+    <div id="categories-options" @if(!$showCategories) hidden @endif>
+        <div class="form-group">
+            <p class="form-label">Categorie</p>
+
+            <div class="categories-box">
+                @foreach($categories as $category)
+                    <label class="category-item">
+                        <input type="checkbox" name="categories[]" value="{{ $category->id }}"
+                            @checked(in_array($category->id, $selectedCategories))>
+                        <span>{{ $category->name }}</span>
+                    </label>
+                @endforeach
+            </div>
+        </div>
+    </div>
+  
+            

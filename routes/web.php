@@ -81,7 +81,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
 
     //elimina utente
-    Route::get('/admin/users/{user}/delete', [UsersController::class, 'deleteConfirm'])
+    Route::get('/users/{user}/delete', [UsersController::class, 'deleteConfirm'])
     ->name('users.deleteConfirm');
 
     Route::delete('/users/{user}', [UsersController::class, 'delete'])

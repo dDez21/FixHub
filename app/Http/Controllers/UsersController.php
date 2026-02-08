@@ -207,11 +207,15 @@ class UsersController extends Controller{
             if ($user->role === 'staff') {
                 $staff = Staff::updateOrCreate(
                     ['user_id' => $user->id],
-                    [
-                        'center_id' => null,
+                    ['center_id' => null,
                     ]
                 );
                 $staff->categories()->sync($data['categories'] ?? []);
+            }else {
+                    if ($user->staff) {
+                        $user->staff->categories()->detach();
+                        $user->staff->delete();
+                    }
             }
         });
 
