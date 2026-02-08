@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => { //aspetto che documento si
                 const centerName = data.tech.center || '';
                 const categories = data.tech.categories || [];
 
-                if (techCenter) techCenter.textContent = centerName ? `Centro: ${centerName}` : '';
+                if (techCenter) techCenter.textContent = centerName ? `Centro: ${centerName}` : 'Centro: Nessun centro associato';
                 if (techCategories) techCategories.textContent = categories.length ? `Categorie: ${categories.join(', ')}` : '';
             }
         }

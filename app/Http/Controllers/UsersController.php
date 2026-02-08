@@ -170,7 +170,7 @@ class UsersController extends Controller{
     }
 
 
-    
+
     public function deleteConfirm(User $user){
         return view('pages.admin.deleteUser', compact('user'));
     }
@@ -179,6 +179,6 @@ class UsersController extends Controller{
     //elimino utente
     public function delete(User $user): RedirectResponse {
         $user->delete();  // cascata: tech + category_tech
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users')->with('success', 'Utente eliminato!');
     }
 }
