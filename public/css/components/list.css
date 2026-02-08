@@ -1,0 +1,21 @@
+.list-space{
+    width: 400px;
+    margin: 20px auto 0;
+
+}
+
+.list-space:focus{
+    outline: none;
+    border: 2px solid #ADCA21;
+    box-shadow: 0 0 5px #ADCA21;
+}
+
+.list-value{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+

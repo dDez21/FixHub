@@ -38,10 +38,10 @@
         </div>
 
         <!-- ruolo -->
-        <select class="form-group" name="role" id="role" required>
-            <option class="role-value" value="tech"  @selected(old('role')=='tech')>Tecnico</option>
-            <option class="role-value" value="staff" @selected(old('role')=='staff')>Staff</option>
-            <option class="role-value" value="admin" @selected(old('role')=='admin')>Admin</option>
+        <select class="list-space" name="role" id="role" required>
+            <option class="list-value" value="tech"  @selected(old('role')=='tech')>Tecnico</option>
+            <option class="list-value" value="staff" @selected(old('role')=='staff')>Staff</option>
+            <option class="list-value" value="admin" @selected(old('role')=='admin')>Admin</option>
         </select>
 
 
@@ -49,19 +49,19 @@
         <div id="tech-options" @if(!$isTech) hidden @endif>
 
             <!-- data di nascita -->
-            <div class="form-group">
+            <div class="form-space">
                 <label class="form-label" for="birth_date">Data di nascita</label>
                 <input class="form-input"type="date" id="birth_date" name="birth_date" value="{{ old('birth_date') }}" max="{{ now()->toDateString() }}">
             </div>
 
 
             <!-- centro associato -->
-            <div class="form-group">
+            <div class="list-space">
                 <label class="form-label" for="center">Centro</label>
                 <select name="center_id" id="center_id">                    
                     <option value="">Nessun centro</option>
                     @foreach($centers as $center)
-                        <option value="{{ $center->id }}" @selected(old('center_id')==$center->id)>
+                        <option class="list-value" value="{{ $center->id }}" @selected(old('center_id')==$center->id)>
                         {{ $center->name }}, {{ $center->city }}
                         </option>
                     @endforeach                    
