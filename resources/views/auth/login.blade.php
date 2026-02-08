@@ -6,17 +6,17 @@
             @csrf
 
             <!-- Username  -->
-            <div class="login-form">
+            <div class="form-space">
                 <x-ui.input-label class="form-label" for="username" :value="__('Username')" />
-                <x-ui.text-input class="login-input" id="username" type="text" name="username" :value="old('username')" required autofocus />
+                <x-ui.text-input class="form-input" id="username" type="text" name="username" :value="old('username')" required autofocus />
                 <x-ui.input-error :messages="$errors->get('username')" class="mt-2" />
             </div>
 
 
             <!-- Password -->
-            <div class="login-form">
+            <div class="form-space">
                 <x-ui.input-label class="form-label" for="password" :value="__('Password')" />
-                <x-ui.text-input class="login-input"
+                <x-ui.text-input class="form-input"
                                 id="password"
                                 type="password"
                                 name="password"

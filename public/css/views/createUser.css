@@ -1,6 +1,6 @@
 .user-space{
-    margin: 30px 250px 30px 250px;
-    width: 100%;
+    margin: 30px auto;
+    width: min(100%, 1200px);
     height: auto;
 }
 
