@@ -20,7 +20,7 @@ class UsersController extends Controller{
 
         $users = User::orderBy('name')->get(); //prendo tutti gli utenti
         
-        return view('pages.admin.users', compact('users')); //passo gli utenti alla vista
+        return view('pages.admin.user.users', compact('users')); //passo gli utenti alla vista
     }
 
 
@@ -54,7 +54,7 @@ class UsersController extends Controller{
         $centers = Center::orderBy('name')->get(['id','name','city']);
         $categories = Category::orderBy('name')->get(['id','name']);
 
-        return view('pages.admin.createUser', compact('centers', 'categories'));
+        return view('pages.admin.user.createUser', compact('centers', 'categories'));
     }
 
 
@@ -110,7 +110,7 @@ class UsersController extends Controller{
         $centers = Center::orderBy('name')->get(['id','name','city']);
         $categories = Category::orderBy('name')->get(['id','name']);
 
-        return view('pages.admin.editUser', compact('user','centers','categories'));
+        return view('pages.admin.user.editUser', compact('user','centers','categories'));
     }
 
 
@@ -172,7 +172,7 @@ class UsersController extends Controller{
 
 
     public function deleteConfirm(User $user){
-        return view('pages.admin.deleteUser', compact('user'));
+        return view('pages.admin.user.deleteUser', compact('user'));
     }
 
 
