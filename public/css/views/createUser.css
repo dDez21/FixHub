@@ -5,12 +5,18 @@
     padding: 30px;
 }
 
-/* contiene form */
+/* contenitori form */
 .create-user-form{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    min-height: 70vh;  
+}
+
+.create-user-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  align-items: start;
 }
 
 /* singolo form */
@@ -21,17 +27,47 @@
 }
 
 #tech-options[hidden]{
-  display: none !important;
+    display: none !important;
 }
 
 .categories-box{
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 220px;
+    overflow: auto;
 }
 
 .category-item{
-  display: flex;
-  gap: 10px;
-  align-items: center;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 16px;
+    color: #000;
+}
+
+.category-item input[type="checkbox"]{
+  width: 18px;
+  height: 18px;
+  accent-color: #ADCA21;
+}
+
+.category-item:hover{
+  background: rgba(173, 202, 33, 0.10);
+  border-radius: 6px;
+  padding: 6px;
+  margin: -6px;
+}
+
+.form-confirm{
+    margin-top: auto;
+    padding-top: 24px;
+    display: flex;
+    justify-content: center;
 }
