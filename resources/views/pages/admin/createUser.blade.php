@@ -38,7 +38,8 @@
         </div>
 
         <!-- ruolo -->
-        <select class="list-space" name="role" id="role" required>
+        <select class="form-space" name="role" id="role" required>
+            <label class="form-label" for="role">Ruolo</label>
             <option class="list-value" value="tech"  @selected(old('role')=='tech')>Tecnico</option>
             <option class="list-value" value="staff" @selected(old('role')=='staff')>Staff</option>
             <option class="list-value" value="admin" @selected(old('role')=='admin')>Admin</option>
@@ -56,9 +57,9 @@
 
 
             <!-- centro associato -->
-            <div class="list-space">
+            <div class="form-space">
                 <label class="form-label" for="center">Centro</label>
-                <select name="center_id" id="center_id">                    
+                <select name="center_id" id="center_id" class="list-space">                    
                     <option value="">Nessun centro</option>
                     @foreach($centers as $center)
                         <option class="list-value" value="{{ $center->id }}" @selected(old('center_id')==$center->id)>
