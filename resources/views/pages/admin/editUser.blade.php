@@ -13,9 +13,9 @@
         @include('pages.admin.form', ['user' => $user])
     </div>
 
-
+    <!-- bottoni azioni -->
     <div class="button-section">
-      <div class="form-back">
+      <div class="form-confirm">
         <button type="submit" class="button button-back">Annulla</button>
       </div>
 

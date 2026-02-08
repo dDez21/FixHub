@@ -65,12 +65,17 @@
   margin: -6px;
 }
 
-.form-confirm{
+
+.button-section{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
     margin-top: auto;
     padding-top: 24px;
     display: flex;
     justify-content: center;
 }
+
 
 .ppw{
     grid-column: 1 / -1;
