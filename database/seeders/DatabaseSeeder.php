@@ -157,6 +157,12 @@ class DatabaseSeeder extends Seeder
             $catTelefoniTablet->id,
         ]);
 
+        //associo categorie allo staff
+        $staff->categories()->sync([
+            $catStampantiScanner->id,
+            $catWiFi->id,
+        ]);
+
 
         //immagine prodotto non esistente
         $this->seedImage('noPhoto.png');
