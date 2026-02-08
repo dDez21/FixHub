@@ -44,11 +44,10 @@
 
 
         <!-- se tecnico -->
-        @php $isTech = old('role', 'tech') === 'tech';
-        @endphp
+        @php $isTech = old('role') === 'tech'; @endphp
 
             
-            <div id="tech-options" {{ $isTech ? '' : 'hidden' }}>
+            <div id="tech-options" @if(!$isTech) hidden @endif>
 
                 <!-- data di nascita -->
                 <div class="form-group">
