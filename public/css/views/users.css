@@ -97,6 +97,17 @@
     padding: 20px;
 }
 
+
+.user-action{
+    display: flex;
+    flex-direction: row;
+    gap: 120px;
+    margin-top: auto;
+    padding-top: 24px;
+    display: flex;
+    justify-content: center;
+}
+
 .add-user{
     width: 30px;
     height: 30px;
