@@ -94,7 +94,7 @@ class UsersController extends Controller{
             }
         });
 
-        return redirect()->route('admin.users.index')->with('success', 'Utente creato!');
+        return redirect()->route('admin.users')->with('success', 'Utente creato!');
     }
 
 }
