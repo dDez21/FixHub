@@ -36,15 +36,19 @@
 
         <!-- ruolo -->
         <select class="form-group" name="role" id="role" required>
-            <option class="role-value" value="tech">Tecnico</option>
-            <option class="role-value" value="staff">Staff</option>
-            <option class="role-value" value="admin">Admin</option>
+            <option class="role-value" value="tech"  @selected(old('role')=='tech')>Tecnico</option>
+            <option class="role-value" value="staff" @selected(old('role')=='staff')>Staff</option>
+            <option class="role-value" value="admin" @selected(old('role')=='admin')>Admin</option>
         </select>
 
 
-        @if (old('role') == 'tech')
 
-            <!-- se tecnico -->
+        <!-- se tecnico -->
+        @php
+            $isTech = old('role', 'tech') === 'tech';
+        @endphp
+
+            
             <div id="tech-options">
 
                 <!-- data di nascita -->
@@ -54,7 +58,7 @@
                 </div>
 
 
-                <!-- centro -->
+                <!-- centro associato -->
                 <div class="form-group">
                     <label class="form-label" for="center">Centro</label>
                     <select name="center" id="center">
@@ -65,23 +69,24 @@
                     </select>
                 </div>
 
+
                 <!-- categorie -->
                 <div class="form-group">
                     <label class="form-label" for="categories">Categorie</label>
-                    <select name="categories[]" id="categories">
+                    <select name="categories[]" id="categories" multiple>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
-            </div>
-        @endif
+            </div>   
+</div>
+    
+        <!-- conferma creazione -->
+        <div class="form-confirm">
+            <button type="submit" class="button button-confirm">Crea utente</button>
+        </div>
     </form>
-</div>
-    
-<!-- conferma creazione -->
-<div class="form-confirm">
-    <button type="submit" class="button button-confirm">Crea utente</button>
-</div>
-    
+
+<script src="{{ asset('js/new-user-tech.js') }}"></script>
 @endsection

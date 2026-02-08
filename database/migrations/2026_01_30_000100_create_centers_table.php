@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('phone')->unique();
             $table->string('email')->unique();
-            $table->string('region')->required();
-            $table->string('provincia',2)->required();
-            $table->string('city')->required();
-            $table->string('address')->required();
+            $table->string('region');
+            $table->string('provincia',2);
+            $table->string('city');
+            $table->string('address');
             $table->string('civic')->nullable();
             $table->timestamps();
         });

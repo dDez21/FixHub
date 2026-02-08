@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username')->unique();
-            $table->string('password')->required();
-            $table->string('name')->required();
-            $table->string('surname')->required();
+            $table->string('password');
+            $table->string('name');
+            $table->string('surname');
             $table->string('role')->default('tech'); //se non definisco ruolo di default tech
             $table->rememberToken();
             $table->timestamps();
