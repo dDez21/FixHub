@@ -40,12 +40,14 @@
             @if($user)
 
                 <!-- modifico password -->
-                <label class="category-item">
-                    <input type="checkbox" id="change-password-toggle">
-                    <span>Cambia password</span>
-                </label>
+                <div class="form-space ppw ppw-toggle">
+                    <label class="ppw-toggle-label">
+                        <input type="checkbox" id="change-password-toggle">
+                        <span>Cambia password</span>
+                    </label>
+                </div>
 
-                <div id="password-box" hidden>
+                <div id="password-box" class="ppw ppw-box" hidden>
                     <div class="form-space">
                         <label class="form-label" for="password">Nuova password</label>
                         <input class="form-input" type="password" id="password" name="password" disabled>
@@ -82,7 +84,7 @@
                 <!-- data di nascita -->
                 <div class="form-space">
                     <label class="form-label" for="birth_date">Data di nascita</label>
-                    <input class="form-input"type="date" id="birth_date" name="birth_date" value="{{ old('birth_date', $user?->birth_date) }}" max="{{ now()->toDateString() }}">
+                    <input class="form-input"type="date" id="birth_date" name="birth_date" value="{{ old('birth_date', $user?->tech?->birth_date) }}" max="{{ now()->toDateString() }}">
                 </div>
 
 
