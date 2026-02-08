@@ -8,16 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const fields = techOptions.querySelectorAll('input, select, textarea'); //campi tecnico
     const birthDate = document.getElementById('birth_date');
 
-    const updateTechOptions = () => {
+    function update() {
         const isTech = roleSelect.value === 'tech';
-
         techOptions.hidden = !isTech;
-        techOptions.style.display = isTech ? 'block' : 'none';
-        fields.forEach(f => { f.disabled = !isTech; });
+        fields.forEach(f => (f.disabled = !isTech));
+        if (birthDate) birthDate.required = isTech;
+    }
 
-        if (birthDate) birthDate.required = isTech; //obbligatoria solo per tech
-    };
-
-    roleSelect.addEventListener('change', updateTechOptions);
-    updateTechOptions();
+    roleSelect.addEventListener('change', update);
+    update();
 });

@@ -10,24 +10,29 @@
 
 
         @php
-            $role = old('role', $user?->role);
+            $role = old('role', $user?->role ?? 'tech');
+            $isTech = ($role === 'tech');
+
+            $centerSelected = old('center_id', $user?->tech?->center_id);
+            $selectedCategories = old('categories', $user?->tech?->categories?->pluck('id')->all() ?? []);
         @endphp
+
             <!-- nome -->
             <div class="form-space">
                 <label class="form-label" for="name">Nome</label>
-                <input class="form-input" type="text" id="name" name="name" required>
+                <input class="form-input" type="text" id="name" name="name" value="{{ old('name', $user?->name) }}" required>
             </div>
 
             <!-- cognome -->
             <div class="form-space">
                 <label class="form-label" for="surname">Cognome</label>
-                <input class="form-input"type="text" id="surname" name="surname" required>
+                <input class="form-input"type="text" id="surname" name="surname" value="{{ old('surname', $user?->surname) }}" required>
             </div>
 
             <!-- username -->
             <div class="form-space">
                 <label class="form-label" for="username">Username</label>
-                <input class="form-input"type="text" id="username" name="username" required>
+                <input class="form-input"type="text" id="username" name="username" value="{{ old('username', $user?->username) }}" required>
             </div>
 
 
@@ -64,10 +69,10 @@
             <!-- ruolo -->
             <div class="form-space">    
                 <label class="form-label" for="role">Ruolo</label>
-                <select class="list-space" name="role" id="role" required>
-                    <option class="list-value" value="tech"  @selected(old('role')=='tech')>Tecnico</option>
-                    <option class="list-value" value="staff" @selected(old('role')=='staff')>Staff</option>
-                    <option class="list-value" value="admin" @selected(old('role')=='admin')>Admin</option>
+                <select class="list-space" name="role" id="role" required >
+                    <option value="tech"  @selected($role==='tech')>Tecnico</option>
+                    <option value="staff" @selected($role==='staff')>Staff</option>
+                    <option value="admin" @selected($role==='admin')>Admin</option>                
                 </select>
             </div>
 
@@ -77,7 +82,7 @@
                 <!-- data di nascita -->
                 <div class="form-space">
                     <label class="form-label" for="birth_date">Data di nascita</label>
-                    <input class="form-input"type="date" id="birth_date" name="birth_date" value="{{ old('birth_date') }}" max="{{ now()->toDateString() }}">
+                    <input class="form-input"type="date" id="birth_date" name="birth_date" value="{{ old('birth_date', $user?->birth_date) }}" max="{{ now()->toDateString() }}">
                 </div>
 
 
@@ -86,8 +91,9 @@
                     <label class="form-label" for="center">Centro</label>
                     <select name="center_id" id="center_id" class="list-space">                    
                         <option value="">Nessun centro</option>
+                        
                         @foreach($centers as $center)
-                            <option class="list-value" value="{{ $center->id }}" @selected(old('center_id')==$center->id)>
+                            <option class="list-value" value="{{ $center->id }}" @selected((string)$centerSelected === (string)$center->id)>
                             {{ $center->name }}, {{ $center->city }}
                             </option>
                         @endforeach                    
@@ -101,14 +107,13 @@
                         <p class="form-label">Categorie</p>
 
                         <div class="categories-box">
+                            
                             @foreach($categories as $category)
-                            <label class="category-item">
-                                <input type="checkbox"
-                                    name="categories[]"
-                                    value="{{ $category->id }}"
-                                    @checked(in_array($category->id, old('categories', [])))>
-                                <span>{{ $category->name }}</span>
-                            </label>
+                                <label class="category-item">
+                                    <input type="checkbox" name="categories[]" value="{{ $category->id }}"
+                                        @checked(in_array($category->id, $selectedCategories))>
+                                    <span>{{ $category->name }}</span>
+                                </label>
                             @endforeach
                         </div>
                 </div>   
