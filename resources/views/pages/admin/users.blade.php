@@ -68,14 +68,15 @@
                     <p class="user-item medium-text" id="user-tech-categories"></p>
                 </div>
 
-            </div>  
+              
 
 
-            <!-- modifica utente -->
-            <div class="new-element">
-                <a class="modify-user" href="{{ route('admin.users.editUser', $user) }}">
-                    <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
-                </a>
+                <!-- modifica utente -->
+                <div class="new-element">
+                    <a class="modify-user" href="{{ route('admin.users.editUser', $user) }}">
+                        <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
+                    </a>
+                </div>
             </div>
         </div>   
 </div>
