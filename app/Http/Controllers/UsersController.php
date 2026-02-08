@@ -169,6 +169,13 @@ class UsersController extends Controller{
         return redirect()->route('admin.users')->with('success', 'Utente aggiornato!');
     }
 
+
+    
+    public function deleteConfirm(User $user){
+        return view('pages.admin.deleteUser', compact('user'));
+    }
+
+
     //elimino utente
     public function delete(User $user): RedirectResponse {
         $user->delete();  // cascata: tech + category_tech
