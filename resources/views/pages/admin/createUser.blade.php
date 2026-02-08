@@ -13,6 +13,16 @@
     <form method="POST" action="{{ route('admin.users.store') }}" class="create-user-form">
         @csrf
 
+        @if ($errors->any())
+            <div class="card" style="padding:12px; border:1px solid #c00;">
+                <ul style="margin:0; padding-left:18px;">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </div>
+            @endif
+
         <!-- elementi form -->
         <div class="user-grid">
             <!-- nome -->
