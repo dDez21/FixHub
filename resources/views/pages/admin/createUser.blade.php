@@ -95,5 +95,5 @@
     </form>
 </div>
 
-<script src="{{ asset('js/new-user-tech.js') }}" defer></script>
+<script src="{{ asset('JS/admin/new-user-tech.js') }}" defer></script>
 @endsection
