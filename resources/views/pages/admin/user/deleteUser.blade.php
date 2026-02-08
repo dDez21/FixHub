@@ -8,7 +8,8 @@
 <div class="delete-user-layout">
 
     <div class="delete-user-card card">
-        <h1 class="title">Sei sicuro di voler eliminare l'utente {{ $user->name }} {{ $user->surname }}?</h1>
+        <h1 class="title deleteText">Sei sicuro di voler eliminare l'utente {{ $user->name }} {{ $user->surname }}?</h1>
+        
         <div class="buttons">
             <form action="{{ route('admin.users.delete', $user) }}" method="POST">
                 @csrf

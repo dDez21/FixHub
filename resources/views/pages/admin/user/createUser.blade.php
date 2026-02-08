@@ -15,7 +15,7 @@
         
         <div class="user-grid">
             <!-- prendo elementi form -->
-        @include('pages.admin.form', ['user' => null])
+        @include('pages.admin.user.formUser', ['user' => null])
         </div>
         
 
