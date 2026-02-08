@@ -73,7 +73,7 @@
 
                 <!-- modifica utente -->
                 <div class="new-element">
-                    <a class="modify-user" href="{{ route('admin.users.editUser', $user) }}">
+                    <a class="add-user" href="{{ route('admin.users.editUser', $user) }}">
                         <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
                     </a>
                 </div>
