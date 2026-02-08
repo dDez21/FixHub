@@ -44,41 +44,49 @@
 
 
         <!-- se tecnico -->
-        @php
-            $isTech = old('role', 'tech') === 'tech';
+        @php $isTech = old('role', 'tech') === 'tech';
         @endphp
 
             
-            <div id="tech-options">
+            <div id="tech-options" {{ $isTech ? '' : 'hidden' }}>
 
                 <!-- data di nascita -->
                 <div class="form-group">
                     <label class="form-label" for="birth_date">Data di nascita</label>
-                    <input class="form-input"type="date" id="birth_date" name="birth_date" required>
+                    <input class="form-input"type="date" id="birth_date" name="birth_date" max="{{ now()->toDateString() }}" required>
                 </div>
 
 
                 <!-- centro associato -->
                 <div class="form-group">
                     <label class="form-label" for="center">Centro</label>
-                    <select name="center" id="center">
-                        <option value="">Seleziona un centro</option>
-                        @foreach($centers as $center)
-                            <option class="center-value" value="{{ $center->id }}">{{ $center->name }}, {{ $center->city }}</option>
-                        @endforeach
+                    <select name="center_id" id="center_id">
+                    <option value="">Nessun centro</option>
+                    @foreach($centers as $center)
+                        <option value="{{ $center->id }}" @selected(old('center_id')==$center->id)>
+                        {{ $center->name }}, {{ $center->city }}
+                        </option>
+                    @endforeach
                     </select>
                 </div>
 
 
                 <!-- categorie -->
                 <div class="form-group">
-                    <label class="form-label" for="categories">Categorie</label>
-                    <select name="categories[]" id="categories" multiple>
+
+                    <p class="text form-label">Categorie</p>
+
+                    <div class="categories-box">
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <label class="category-item">
+                            <input type="checkbox"
+                                name="categories[]"
+                                value="{{ $category->id }}"
+                                @checked(in_array($category->id, old('categories', [])))>
+                            <span>{{ $category->name }}</span>
+                        </label>
                         @endforeach
-                    </select>
-                </div>
+                    </div>
             </div>   
 </div>
     
@@ -88,5 +96,5 @@
         </div>
     </form>
 
-<script src="{{ asset('js/new-user-tech.js') }}"></script>
+<script src="{{ asset('js/new-user-tech.js') }}" defer></script>
 @endsection

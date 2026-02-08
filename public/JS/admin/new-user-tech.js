@@ -12,9 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const isTech = roleSelect.value === 'tech';
 
         techOptions.hidden = !isTech;
-        fields.forEach(f => {
-            f.disabled = !isTech;
-        });        
+        fields.forEach(f => { f.disabled = !isTech; });
+
         if (birthDate) birthDate.required = isTech; //obbligatoria solo per tech
     };
 

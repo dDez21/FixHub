@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Center;
 use App\Models\Category;
+use App\Models\Tech;
 
 class UsersController extends Controller{
 
@@ -50,7 +53,7 @@ class UsersController extends Controller{
         return view('pages.admin.createUser', compact('centers', 'categories'));
     }
 
-    
+
     //immagazzino nuovo utente
     public function store(Request $request)
     {
@@ -62,7 +65,7 @@ class UsersController extends Controller{
             'role' => ['required','in:tech,staff,admin'],
 
             // solo tech
-            'birth_date' => ['required_if:role,tech','date'],
+            'birth_date' => ['required_if:role,tech', 'date', 'before_or_equal:today'],
             'center_id' => ['nullable','exists:centers,id'],
             'categories' => ['nullable','array'],
             'categories.*' => ['integer','exists:categories,id'],
