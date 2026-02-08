@@ -57,6 +57,8 @@ class UsersController extends Controller{
     //immagazzino nuovo utente
     public function store(Request $request)
     {
+        dd('STORE HIT', $request->all());
+
         $data = $request->validate([
             'name' => ['required','string','max:255'],
             'surname' => ['required','string','max:255'],
