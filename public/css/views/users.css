@@ -131,14 +131,21 @@
 }
 
 
+.delete-user-layout{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 60px;
+  box-sizing: border-box;
+}
+
+
 .delete-user-card{
-    width: 900px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+    width: min(900px, 100%);
+    margin: 40px auto;
+    padding: 24px;
+    box-sizing: border-box;
 }
 
 .deleteText{
@@ -146,7 +153,19 @@
 }
 
 .buttons{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.buttons .button{
+  width: 180px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
 }
