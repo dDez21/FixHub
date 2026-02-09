@@ -4,13 +4,13 @@
 @section('content')
 
 <!-- card nuovo prodotto -->
-<div class="card product-space">
+<div class="card user-space">
 
     <!-- sezione form -->
     <form method="POST" action="{{ route('admin.products.store') }}" class="create-product-form">
         @csrf   
         
-        <div class="product-grid">
+        <div class="user-grid">
             <!-- prendo elementi form -->
             @include('pages.admin.product.formProduct', ['product' => null])
         </div>

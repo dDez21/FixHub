@@ -16,9 +16,11 @@
         <div class="categories-list">
 
             <!-- mostro tutti i prodotti -->
-            <li>
-                <a class="single-category" href="#" data-category-id="">Tutte le categorie</a>
-            </li>
+            @if(!auth()->check() || auth()->user()->role !== 'staff')
+                <li>
+                    <a class="single-category" href="#" data-category-id="">Tutte le categorie</a>
+                </li>
+            @endif
             
             <!-- riferimenti per singola categoria -->
             @forelse ($categories as $category)

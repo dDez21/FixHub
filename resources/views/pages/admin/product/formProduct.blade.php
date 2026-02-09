@@ -17,17 +17,16 @@
 
 
     <!-- categoria prodotto -->
-    <div class="form-group">
-        <label class="input-label" for="category_id">Categoria prodotto</label>
+    <div class="form-space">
+        <label class="form-label" for="category_id">Categoria prodotto</label>
 
-        <select id="category_id" name="category_id" class="select-input" required>
+        <select id="category_id" name="category_id" required>
             <option value="" disabled {{ old('category_id', $product->category_id ?? '') === '' ? 'selected' : '' }}>
                 Seleziona una categoria
             </option>
 
             @foreach($categories as $cat)
-                <option value="{{ $cat->id }}"
-                    {{ (string) old('category_id', $product->category_id ?? '') === (string) $cat->id ? 'selected' : '' }}>
+                <option class="list-value" value="{{ $cat->id }}" {{ (string) old('category_id', $product->category_id ?? '') === (string) $cat->id ? 'selected' : '' }}>
                     {{ $cat->name }}
                 </option>
             @endforeach
@@ -36,29 +35,29 @@
 
 
     <!-- descrizione prodotto -->
-    <div class="text-space">
-        <label class="text-label" for="description">Descrizione</label>
-        <textarea class="text-input" id="description" name="description" required>{{ old('description', $product?->description) }}</textarea>
+    <div class="form-space">
+        <label class="form-label" for="description">Descrizione</label>
+        <textarea class="form-input" id="description" name="description" required>{{ old('description', $product?->description) }}</textarea>
     </div>
 
 
     <!-- tecniche d'uso -->
-    <div class="text-space">
-        <label class="text-label" for="use_techniques">Tecniche d'uso</label>
-        <textarea class="text-input" id="use_techniques" name="use_techniques" required>{{ old('use_techniques', $product?->use_techniques) }}</textarea>
+    <div class="form-space">
+        <label class="form-label" for="use_techniques">Tecniche d'uso</label>
+        <textarea class="form-input" id="use_techniques" name="use_techniques" required>{{ old('use_techniques', $product?->use_techniques) }}</textarea>
     </div>
 
 
     <!-- installazione -->
-    <div class="text-space">
-        <label class="text-label" for="installation">Guida all'installazione</label>
-        <textarea class="text-input" id="installation" name="installation" required>{{ old('installation', $product?->installation) }}</textarea>
+    <div class="form-space">
+        <label class="form-label" for="installation">Guida all'installazione</label>
+        <textarea class="form-input" id="installation" name="installation" required>{{ old('installation', $product?->installation) }}</textarea>
     </div>
 
 
     <!-- Foto prodotto -->
-    <div class="form-group">
-        <label class="input-label" for="photo">Foto</label>
+    <div class="form-space">
+        <label class="form-label" for="photo">Foto</label>
 
         <div class="photo-box">
             <img
