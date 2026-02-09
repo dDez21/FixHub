@@ -7,11 +7,18 @@
 
 /* sezione elenco centri */
 .centers-list{
+    display: flex;
+    flex-direction: column;
     height: 700px;
     width: 350px;
     margin-left: 150px;
 }
 
+.centers-header{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
 
 /* scroller verticale per i centri */
 .centers{

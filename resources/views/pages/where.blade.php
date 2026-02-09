@@ -7,7 +7,14 @@
     <!-- elenco centri -->
     <div class="centers-list">
         
-        <h1 class="text">I nostri centri</h1>
+        <div class="centers-header">
+            <h1 class="text">I nostri centri</h1>
+
+            @if ($isAdmin)
+                <a class="add-user" href="{{ route('admin.centers.create') }}">
+                    <img class="add-user-icon" src="{{ asset('icon/add.png') }}" alt="">
+                </a>
+        </div>
 
         <!-- card centri -->
         <div class="card">
@@ -21,17 +28,17 @@
                     <!-- prendo dati di ogni centro-->
                     <div class="center-single" role="button" tabindex="0"
                          data-name="{{ $center->name }}"
-                         data-address="{{ $center->address }}"
+                         data-address="{{ $center->street }}"
                          data-civic="{{ $center->civic }}"
-                         data-city="{{ $center->city }}"
+                         data-city="{{ $center->city_id }}"
                          data-phone="{{ $center->phone }}"
                          data-email="{{ $center->email }}"
-                         data-provincia="{{ $center->provincia }}"
-                         data-region="{{ $center->region }}">
+                         data-provincia="{{ $center->province_id }}"
+                         data-region="{{ $center->region_id }}">
 
                         <!-- dati mostrati nell'elenco centri -->
                         <p class="medium-text center-item">{{ $center->name }}</p>
-                        <p class="small-text center-item">{{ $center->address }} {{ $center->civic }}@if($center->city), {{ $center->city }}@endif</p>
+                        <p class="small-text center-item">{{ $center->street }} {{ $center->civic }}@if($center->city_id), {{ $center->city_id }}@endif</p>
                     </div>
 
                 @empty

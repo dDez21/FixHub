@@ -11,7 +11,7 @@ class Center extends Model
 
     //dati centro
     protected $fillable = [
-        'name','phone','email','country','region','provincia','city','address','civic'
+        'name','phone','email','country','region_id','province_id','city_id','street','civic'
         ];
 
 
@@ -20,4 +20,8 @@ class Center extends Model
     {
         return $this->hasMany(Tech::class);
     }
+
+    public function region()   { return $this->belongsTo(Region::class); }
+    public function province() { return $this->belongsTo(Province::class); }
+    public function city()     { return $this->belongsTo(City::class); }
 }

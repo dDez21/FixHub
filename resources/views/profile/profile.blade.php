@@ -30,8 +30,8 @@
                 <!-- centro associato -->
                 <p><strong>Centro associato:</strong>
                     {{ $user->tech->center->name ?? '-' }} -
-                    {{ $user->tech->center->address ?? '' }} {{ $user->tech->center->civic ?? '' }},
-                    {{ $user->tech->center->city ?? '' }}
+                    {{ $user->tech->center->street ?? '' }} {{ $user->tech->center->civic ?? '' }},
+                    {{ $user->tech->center->city_id ?? '' }}
                 </p>   
             @endif
 

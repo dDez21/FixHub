@@ -56,10 +56,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Tutto elettronica',
             'phone' => '3634262456',
             'email'=> 'support.milano@fixtech.com',
-            'region' => 'Lombardia',
-            'provincia' => 'MI',
-            'city' => 'Milano',
-            'address' => 'Via Roma',
+            'region_id' => 'Lombardia',
+            'province_id' => 'MI',
+            'city_id' => 'Milano',
+            'street' => 'Via Roma',
             'civic' => '123',
         ]);
 
@@ -67,10 +67,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Centro Assistenza',
             'phone' => '3881161585',
             'email'=> 'support.osimostz@fixhub.com',
-            'region' => 'Marche',
-            'provincia' => 'AN',
-            'city' => 'Osimo Stazione',
-            'address' => 'Via D\'Azeglio',
+            'region_id' => 'Marche',
+            'province_id' => 'AN',
+            'city_id' => 'Osimo Stazione',
+            'street' => 'Via D\'Azeglio',
             'civic' => '3',
         ]);
 
@@ -79,10 +79,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Dorica Service',
             'phone' => '3469234672',
             'email'=> 'support.ancona@fixhub.com',
-            'region' => 'Marche',
-            'provincia' => 'AN',
-            'city' => 'Ancona',
-            'address' => 'Via Ruggeri',
+            'region_id' => 'Marche',
+            'province_id' => 'AN',
+            'city_id' => 'Ancona',
+            'street' => 'Via Ruggeri',
             'civic' => '6',
         ]);
 
@@ -91,10 +91,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'TT - Techno Turin',
             'phone' => '3130348893',
             'email'=> 'support.torino@fixhub.com',
-            'region' => 'Piemonte',
-            'provincia' => 'TO',
-            'city' => 'Torino',
-            'address' => 'Via Nizza',
+            'region_id' => 'Piemonte',
+            'province_id' => 'TO',
+            'city_id' => 'Torino',
+            'street' => 'Via Nizza',
             'civic' => '46',
         ]);
 
@@ -103,10 +103,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'FixHub Roma',
             'phone' => '3774142590',
             'email'=> 'support.roma@fixhub.com',
-            'region' => 'Lazio',
-            'provincia' => 'RM',
-            'city' => 'Roma',
-            'address' => 'Via Mazzarino',
+            'region_id' => 'Lazio',
+            'province_id' => 'RM',
+            'city_id' => 'Roma',
+            'street' => 'Via Mazzarino',
             'civic' => '13',
         ]);
 
@@ -115,10 +115,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Napolitech',
             'phone' => '3924115833',
             'email'=> 'support.napoli@fixhub.com',
-            'region' => 'Campania',
-            'provincia' => 'NA',
-            'city' => 'Napoli',
-            'address' => 'Via Duomo',
+            'region_id' => 'Campania',
+            'province_id' => 'NA',
+            'city_id' => 'Napoli',
+            'street' => 'Via Duomo',
             'civic' => '96',
         ]);
 
@@ -127,10 +127,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Rinascimento tecnologico',
             'phone' => '3852156675',
             'email'=> 'support.firenze@fixhub.com',
-            'region' => 'Toscana',
-            'provincia' => 'FI',
-            'city' => 'Firenze',
-            'address' => 'Via Ghibellina',
+            'region_id' => 'Toscana',
+            'province_id' => 'FI',
+            'city_id' => 'Firenze',
+            'street' => 'Via Ghibellina',
             'civic' => '127',
         ]);
 

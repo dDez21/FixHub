@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\Province;
+use App\Models\Region;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 use App\Models\Center;
 
@@ -11,9 +17,93 @@ class CenterController extends Controller{
     //mostro elenco centri
     public function show(){
 
+        $user = request()->user();
+        $role = $user?->role;
+        $isAdmin = ($role === 'admin');
+    
+    
         $centers = Center::orderBy('name')->get(); //prendo tutti i centri
         
-        return view('pages.where', compact('centers')); //passo i centri alla vista
+        return view('pages.where', compact('centers', 'isAdmin')); //passo i centri e isAdmin alla vista
     }
 
+
+    public function create(){
+
+        $regions = Region::orderBy('name')->get();
+        $provinces = Province::orderBy('name')->get();
+        $cities = City::orderBy('name')->get();
+        return view('pages.admin.centers.createCenter', compact('regions','provinces','cities'));
+    }
+
+    public function store(Request $request){
+
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:30',
+            'email' => 'required|email|max:255',
+
+            'region_id' => ['required', 'exists:regions,id'],
+            'province_id' => [
+                'required',
+                Rule::exists('provinces', 'id')->where(fn($q) => $q->where('region_id', $request->region_id))
+            ],
+            'city_id' => [
+                'required',
+                Rule::exists('cities', 'id')->where(fn($q) => $q->where('province_id', $request->province_id))
+            ],
+
+            'street' => 'required|string|max:160',
+            'civic' => 'nullable|string|max:20',
+        ]);
+
+        Center::create($data);
+
+        return redirect()->route('where')->with('success','Centro creato');        
+    }
+
+    public function edit(Center $center){
+        
+        $regions = Region::orderBy('name')->get();
+        $provinces = Province::orderBy('name')->get();
+        $cities = City::orderBy('name')->get();
+        return view('pages.admin.centers.editCenter', compact('regions','provinces','cities'));
+    }
+
+    public function update(Request $request, Center $center){
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:30',
+            'email' => 'required|email|max:255',
+
+            'region_id' => ['required', 'exists:regions,id'],
+            'province_id' => [
+                'required',
+                Rule::exists('provinces', 'id')->where(fn($q) => $q->where('region_id', $request->region_id))
+            ],
+            'city_id' => [
+                'required',
+                Rule::exists('cities', 'id')->where(fn($q) => $q->where('province_id', $request->province_id))
+            ],
+
+            'street' => 'required|string|max:160',
+            'civic' => 'nullable|string|max:20',
+            ]);
+    }
+
+
+    public function deleteConfirm(Center $center){
+        return view('pages.admin.centers.deleteCenter', compact('center'));
+    }
+
+
+    public function delete(Center $center): RedirectResponse
+    {
+        DB::transaction(function () use ($center) {
+
+            $center->delete();
+        });
+
+        return redirect()->route('where')->with('success', 'Centro eliminato.');
+    }
 }

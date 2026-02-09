@@ -6,6 +6,7 @@ use App\Http\Controllers\CenterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\MalfunctionsController;
+use App\Http\Controllers\GeoController;
 use Illuminate\Support\Facades\Route;
 
 //home non loggato
@@ -34,6 +35,12 @@ Route::get('/pages/product/{product}', [ProductController::class,'show'])
 Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile'); //pagina profilo utente
+
+
+    Route::middleware('auth')->group(function () {
+    Route::get('/geo/regions/{region}/provinces', [GeoController::class, 'provinces'])->name('geo.provinces');
+    Route::get('/geo/provinces/{province}/cities', [GeoController::class, 'cities'])->name('geo.cities');
+});
 });
 
 
@@ -124,6 +131,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
 
 
+
+
     //crea prodotto
     Route::get('/products/create', [ProductController::class, 'create'])
     ->name('products.createProduct');
@@ -146,6 +155,30 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
     Route::delete('/products/{product}', [ProductController::class, 'delete'])
     ->name('products.delete');
+
+
+
+
+    // crea centro
+    Route::get('/centers/create', [CenterController::class, 'create'])
+    ->name('centers.create');
+
+    Route::post('/centers', [CenterController::class, 'store'])
+    ->name('centers.store');
+
+    //modifica centro
+    Route::get('/centers/{center}/edit', [CenterController::class, 'edit'])
+    ->name('centers.edit');
+
+    Route::put('/centers/{center}', [CenterController::class, 'update'])
+    ->name('centers.update');
+
+    //elimina centro
+    Route::get('/centers/{center}/delete', [CenterController::class, 'deleteConfirm'])
+    ->name('centers.deleteConfirm');
+
+    Route::delete('/centers/{center}', [CenterController::class, 'delete'])
+    ->name('centers.delete');
 });
 
 
