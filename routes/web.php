@@ -40,6 +40,9 @@ Route::middleware('auth')->group(function () {
 // rotte tecnico
 Route::prefix('tecn')->name('tecn.')->middleware(['auth', 'role:tech'])->group(function () {
 
+    //pagina malfunzionamenti
+    Route::get('/malfunctions', [ProductController::class, 'malfunctions_show'])
+    ->name('malfunctions');
 });
 
 

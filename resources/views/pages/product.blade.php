@@ -18,7 +18,12 @@
         <p class="medium-text product-cat">Guida all'installazione</p>
         <p class="product-data">{{ $product->installation }}</p>
 
-
+        <!-- malfunzionamenti -->
+        @if (auth()->check() && auth()->user()->role === 'tech' or auth()->user()->role === 'staff')
+            <a id="product-edit-link" class="add-user" href="{{ route('products.malfunctions', $product) }}">
+                        <p class="medium-text product-cat">Elenco malfunzionamenti -></p>
+                    </a>
+        @endif
 
         <!-- modifica o rimuovi prodotto -->
         @if(auth()->check() && auth()->user()->role === 'admin')    
