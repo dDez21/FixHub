@@ -50,13 +50,19 @@ class MalfunctionsController extends Controller
 
 
     //vado a modifica malfunzionamento
-    public function edit(Product $product, Malfunction $malf){
+    public function edit(Product $product, Malfunction $malfunction){
 
-        $malf = Malfunction::orderBy('name')->get();
-        return view('pages.products.editMalfunction', compact('product', 'malf'));
+        abort_unless($malfunction->product_id === $product->id, 404);
+
+        return view('pages.products.editMalfunction', [
+            'product' => $product,
+            'malf' => $malfunction,
+        ]);
     }
 
-    public function update(Request $request, Product $product, Malfunction $malf){
+    public function update(Request $request, Product $product, Malfunction $malfunction){
+
+        abort_unless($malfunction->product_id === $product->id, 404);
 
         $data = $request->validate([
             'name' => 'required|string|max:255',
@@ -64,26 +70,33 @@ class MalfunctionsController extends Controller
             'solution' => 'required|string',
         ]);
 
-        $malf->update($data);
+        $malfunction->update($data);
 
         return redirect()->route('staff.products.malfunctions', $product)->with('success', 'Malfunzionamento modificato.');    
     }
 
 
     //elimino malfunzionamento
-    public function deleteConfirm(Product $product, Malfunction $malf)
+    public function deleteConfirm(Product $product, Malfunction $malfunction)
     {
-        return view('pages.products.deleteMalfunction', compact('product', 'malf'));
+        abort_unless($malfunction->product_id === $product->id, 404);
+
+        return view('pages.products.deleteMalfunction', [
+            'product' => $product,
+            'malf' => $malfunction,
+        ]);
     }
 
-    public function delete(Product $product, Malfunction $malf): RedirectResponse
+    public function delete(Product $product, Malfunction $malfunction): RedirectResponse
     {
-        DB::transaction(function () use ($malf) {
+        abort_unless($malfunction->product_id === $product->id, 404);
 
-            // elimina record dal DB
-            $malf->delete();
-        });
+    DB::transaction(function () use ($malfunction) {
+        $malfunction->delete();
+    });
 
-        return redirect()->route('staff.products.malfunctions', $product)->with('success', 'Malfunzionamento eliminato.');
+    return redirect()
+        ->route('staff.products.malfunctions', $product)
+        ->with('success', 'Malfunzionamento eliminato.');
     }
 }
