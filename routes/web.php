@@ -96,6 +96,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
     Route::post('/products', [ProductController::class, 'store'])
     ->name('products.store');
+
+
+    //modifica prodotto
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])
+    ->name('products.editProduct');
+
+    Route::put('/products/{product}', [ProductController::class, 'update'])
+    ->name('products.update');
 });
 
 
