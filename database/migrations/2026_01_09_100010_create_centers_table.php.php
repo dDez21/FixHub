@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('phone')->unique();
             $table->string('email')->unique();
-            $table->foreignId('region_id')->nullable()->after('email')->constrained('regions');
-            $table->foreignId('province_id')->nullable()->after('region_id')->constrained('provinces');
-            $table->foreignId('city_id')->nullable()->after('province_id')->constrained('cities');
-            $table->string('street')->nullable()->after('city_id');
-            $table->string('civic', 20)->nullable()->after('street');
+            $table->foreignId('region_id')->nullable()->constrained('regions')->nullOnDelete();
+            $table->foreignId('province_id')->nullable()->constrained('provinces')->nullOnDelete();
+            $table->foreignId('city_id')->nullable()->constrained('cities')->nullOnDelete();
+            $table->string('street')->nullable();
+            $table->string('civic', 20)->nullable();
             $table->timestamps();
         });
     }
