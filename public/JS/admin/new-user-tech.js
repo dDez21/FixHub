@@ -7,22 +7,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const techFields = techOptions ? techOptions.querySelectorAll('input, select, textarea') : [];
   const birthDate = document.getElementById('birth_date');
-
-  const catFields = categoriesOptions ? categoriesOptions.querySelectorAll('input') : [];
+  const catFields = categoriesOptions ? categoriesOptions.querySelectorAll('input, select, textarea') : [];
 
   function update() {
     const role = roleSelect.value;
     const isTech = role === 'tech';
     const showCats = (role === 'tech' || role === 'staff');
 
-    // TECH
+    // solo tech
     if (techOptions) {
       techOptions.hidden = !isTech;
       techFields.forEach(f => (f.disabled = !isTech));
     }
     if (birthDate) birthDate.required = isTech;
 
-    // CATEGORIES (tech + staff)
+    // categorie
     if (categoriesOptions) {
       categoriesOptions.hidden = !showCats;
       catFields.forEach(f => (f.disabled = !showCats));

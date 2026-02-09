@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //collego categorie a staff (N:N)
-        Schema::create('category_staff', function (Blueprint $table) {
+        //collego categorie a user (N:N)
+        Schema::create('category_user', function (Blueprint $table) {
             $table->id();
 
-            //prendo staff
-            $table->foreignId('staff_id')
-                    ->constrained('staff')
+            //prendo user
+            $table->foreignId('user_id')
+                    ->constrained('users')
                     ->cascadeOnDelete();
 
             //prendo categoria
@@ -25,8 +25,8 @@ return new class extends Migration
                     ->constrained('categories')
                     ->cascadeOnDelete();
 
-            //associo categorie a staff
-            $table->unique(['staff_id', 'category_id']); 
+            //associo categorie a user
+            $table->unique(['user_id', 'category_id']); 
         });
     }
 
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category_staff');
+        Schema::dropIfExists('category_user');
     }
 };

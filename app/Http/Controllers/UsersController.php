@@ -12,7 +12,6 @@ use App\Models\User;
 use App\Models\Center;
 use App\Models\Category;
 use App\Models\Tech;
-use App\Models\Staff;
 
 class UsersController extends Controller{
 
@@ -28,7 +27,7 @@ class UsersController extends Controller{
     //prendo dettagli tecnico
     public function tech(User $user){
         
-        abort_unless($user->role === 'tech', 404); //utente non è tecnico
+        abort_unless($user->role === 'tech', 404);
     
 
         //carico centro e categorie tecnico
@@ -37,12 +36,10 @@ class UsersController extends Controller{
             'tech.categories:id,name'
         ]);
 
-        $tech = $user->tech;
-
         return response()->json([
-            'tech' => $tech ? [
-                'center' => $tech->center?->name,
-                'categories' => $tech->categories->pluck('name')->values(),
+            'tech' => $user->tech ? [
+                'center' => $user->tech->center?->name,
+                'categories' => $user->categories->pluck('name')->values(),
             ] : null,
         ]);
     }
@@ -57,12 +54,10 @@ class UsersController extends Controller{
             'staff.categories:id,name'
         ]);
 
-        $staff = $user->staff;
-
         return response()->json([
-            'staff' => $staff ? [
-                'categories' => $staff->categories->pluck('name')->values(),
-            ] : null,
+            'staff' => [
+                'categories' => $user->categories->pluck('name')->values(),
+            ],
         ]);
     }
 
@@ -117,17 +112,16 @@ class UsersController extends Controller{
                     'birth_date' => $data['birth_date'],
                 ]);
 
-                $tech->categories()->sync($data['categories'] ?? []);
+                $user->categories()->sync($data['categories'] ?? []);
             }
 
             //salvo dati staff
             if ($user->role === 'staff') {
-                $staff = Staff::create([
-                    'user_id' => $user->id,
-                    'center_id' => null, // se non lo usi nel form
-                ]);
+                $user->categories()->sync($data['categories'] ?? []);
+            }
 
-                $staff->categories()->sync($data['categories'] ?? []);
+            if ($user->role === 'admin') {
+                $user->categories()->detach();
             }
         });
 
@@ -138,7 +132,7 @@ class UsersController extends Controller{
     //prendo dati per pagina modifica utente
     public function edit(User $user){
 
-        $user->load(['tech.center', 'tech.categories', 'staff.categories']);
+        $user->load(['tech.center', 'categories']);
         $centers = Center::orderBy('name')->get(['id','name','city']);
         $categories = Category::orderBy('name')->get(['id','name']);
 
@@ -181,17 +175,6 @@ class UsersController extends Controller{
 
             $user->save();
 
-            // pulizia se cambio ruolo
-            if ($user->role !== 'tech' && $user->tech) {
-                $user->tech->categories()->detach();
-                $user->tech->delete();
-            }
-            if ($user->role !== 'staff' && $user->staff) {
-                $user->staff->categories()->detach();
-                $user->staff->delete();
-            }
-
-            // tech
             if ($user->role === 'tech') {
                 $tech = Tech::updateOrCreate(
                     ['user_id' => $user->id],
@@ -200,22 +183,23 @@ class UsersController extends Controller{
                         'birth_date' => $data['birth_date'],
                     ]
                 );
-                $tech->categories()->sync($data['categories'] ?? []);
-            }
 
-            // staff
-            if ($user->role === 'staff') {
-                $staff = Staff::updateOrCreate(
-                    ['user_id' => $user->id],
-                    ['center_id' => null,
-                    ]
-                );
-                $staff->categories()->sync($data['categories'] ?? []);
-            }else {
-                    if ($user->staff) {
-                        $user->staff->categories()->detach();
-                        $user->staff->delete();
-                    }
+                $user->categories()->sync($data['categories'] ?? []);
+            } else {
+                // se non è tech, elimina profilo tech (se esiste)
+                if ($user->tech) {
+                    $user->tech->delete();
+                }
+
+                // staff: mantiene categorie
+                if ($user->role === 'staff') {
+                    $user->categories()->sync($data['categories'] ?? []);
+                }
+
+                // admin: niente categorie
+                if ($user->role === 'admin') {
+                    $user->categories()->detach();
+                }
             }
         });
 
@@ -237,9 +221,8 @@ class UsersController extends Controller{
                 $user->tech->delete();
             }
 
-            if ($user->staff) {
-                $user->staff->categories()->detach();
-                $user->staff->delete();
+            if ($user->role === 'staff') {
+                $user->categories()->detach();
             }
 
             $user->delete();

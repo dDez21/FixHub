@@ -16,13 +16,7 @@
             $showCategories = ($isTech || $isStaff);
 
             $centerSelected = old('center_id', $user?->tech?->center_id);
-
-            $selectedCategories = old(
-                'categories',
-                $isStaff
-                    ? ($user?->staff?->categories?->pluck('id')->all() ?? [])
-                    : ($user?->tech?->categories?->pluck('id')->all() ?? [])
-            );
+            $selectedCategories = old('categories', $user?->categories?->pluck('id')->all() ?? []);
         @endphp
 
 
@@ -112,7 +106,7 @@
                 </div>
             </div>
 
-            
+
     <!-- categorie -->
     <div id="categories-options" @if(!$showCategories) hidden @endif>
         <div class="form-group">

@@ -21,13 +21,11 @@
                         data-surname="{{ $u->surname }}"
                         data-role="{{ $u->role }}"
                         data-username="{{ $u->username }}"
-
                         data-tech-url="{{ route('admin.users.tech', $u) }}"
                         data-staff-url="{{ route('admin.users.staff', $u) }}"
-
                         data-edit-url="{{ route('admin.users.editUser', $u) }}"
                         data-delete-url="{{ route('admin.users.deleteConfirm', $u) }}"
-                    >
+                                            >
                         <p class="medium-text user-item">{{ $u->name }} {{ $u->surname }}</p>
 
                         <p class="small-text user-item">
@@ -43,6 +41,8 @@
         </div>
     </div>
 
+
+    <!-- contenitore dati utente -->
     <div class="user-data-container">
         <div class="card card-user-data" id="user-data">
 
@@ -54,13 +54,13 @@
             <p class="user-item medium-text" id="user-role"></p>
             <p class="user-item medium-text" id="user-username"></p>
 
-            <!-- TECH -->
+            <!-- tecj -->
             <div id="tech-data" style="display: none;">
                 <p class="user-item medium-text" id="user-tech-center"></p>
                 <p class="user-item medium-text" id="user-tech-categories"></p>
             </div>
 
-            <!-- STAFF -->
+            <!-- staff -->
             <div id="staff-data" style="display: none;">
                 <p class="user-item medium-text" id="user-staff-categories"></p>
             </div>
