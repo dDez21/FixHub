@@ -132,13 +132,7 @@ class ProductController extends Controller
     }
 
 
-
-
-
-    // mostro malfunzionamenti prodotto
-    public function malfunctions_show(Product $product)
-    {
-        $malfunctions = $product->malfunctions()->orderBy('created_at', 'desc')->get();
-        return view('pages.products.malfunctions', compact('product', 'malfunctions'));
+    public function malfunctions_create(Product $product)   {
+        return view('pages.staff.malfunctions.createMalfunction', compact('product'));
     }
 }

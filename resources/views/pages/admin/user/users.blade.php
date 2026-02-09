@@ -65,6 +65,8 @@
                 <p class="user-item medium-text" id="user-staff-categories"></p>
             </div>
 
+
+            <!-- modifica utente -->
             <div class="user-action">
                 <div class="new-element">
                     <a id="user-edit-link" class="add-user" href="#">

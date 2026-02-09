@@ -14,6 +14,15 @@
             
 
             <!-- nuovo malfunzionamento se staff -->
+            @if ($isStaff)
+
+                <div class="new-element">
+                    <a class="add-user" href="{{ route('admin.products.malfunctions.create', ['product' => $product]) }}">
+                        <img class="add-user-icon" src="{{ asset('icon/new.png') }}" alt="">
+                    </a>
+                </div>
+            @endif
+
 
             <!-- scroller verticale -->
             <div class="malfunctions" role="list">
@@ -48,7 +57,7 @@
             <div class="malfunction-desc">
                 <p class="malfunction-item medium-text" id="malfunction-description"></p> <!-- descrizione -->
             </div>
-            
+
             <p class="malfunction-item medium-text" id="malfunction-solution"></p> <!-- soluzione -->
         </div> 
     </div>

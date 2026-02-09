@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CenterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\MalfunctionsController;
 use Illuminate\Support\Facades\Route;
 
 //home non loggato
@@ -52,8 +53,15 @@ Route::prefix('tecn')->name('tecn.')->middleware(['auth', 'role:tech'])->group(f
 Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->group(function () {
 
     //pagina malfunzionamenti
-    Route::get('/products/{product}/malfunctions', [ProductController::class, 'malfunctions_show'])
+    Route::get('/products/{product}/malfunctions', [MalfunctionsController::class, 'show'])
     ->name('products.malfunctions');
+
+    //crea malfunzionamento
+    Route::get('/products/{product}/malfunctions/create', [MalfunctionsController::class, 'create'])
+    ->name('products.malfunctions.create');
+
+    Route::post('/malfunctions', [MalfunctionsController::class, 'store'])
+    ->name('malfunctions.store');
 });
 
 
