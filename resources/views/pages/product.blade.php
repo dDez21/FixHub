@@ -19,7 +19,7 @@
         <p class="product-data">{{ $product->installation }}</p>
 
 
-        <!-- modifica o rimuovi prodotto -->
+        <!-- lista malfunzionamenti -->
         @if(auth()->check() && (auth()->user()->role === 'tech' || auth()->user()->role === 'staff'))
             @php
                 $routeName = auth()->user()->role === 'staff'
@@ -41,19 +41,21 @@
     </div>
 
 
-    <div class="product-action">
-        <div class="new-element">
-            <a id="malf-edit-link" class="add-user" href="#">
-                <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
-            </a>
-        </div>
+    @if ($isStaff)
+        <div class="product-action">
+            <div class="new-element">
+                <a id="malf-edit-link" class="add-user" href="#">
+                    <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
+                </a>
+            </div>
 
-        <div class="new-element" id="delete-wrap">
-            <a id="malf-delete-link" class="add-user" href="#">
-                <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
-            </a>
+            <div class="new-element" id="delete-wrap">
+                <a id="malf-delete-link" class="add-user" href="#">
+                    <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
+                </a>
+            </div>
         </div>
-    </div>
+    @endif
 
 </div>
 @endsection
