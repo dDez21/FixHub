@@ -41,8 +41,9 @@ Route::middleware('auth')->group(function () {
 Route::prefix('tecn')->name('tecn.')->middleware(['auth', 'role:tech'])->group(function () {
 
     //pagina malfunzionamenti
-    Route::get('/malfunctions', [ProductController::class, 'malfunctions_show'])
-    ->name('malfunctions');
+    Route::get('/products/{product}/malfunctions', [ProductController::class, 'malfunctions_show'])
+    ->name('products.malfunctions');
+
 });
 
 
@@ -50,6 +51,9 @@ Route::prefix('tecn')->name('tecn.')->middleware(['auth', 'role:tech'])->group(f
 // rotte staff
 Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->group(function () {
 
+    //pagina malfunzionamenti
+    Route::get('/products/{product}/malfunctions', [ProductController::class, 'malfunctions_show'])
+    ->name('products.malfunctions');
 });
 
 

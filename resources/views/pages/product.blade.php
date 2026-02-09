@@ -20,9 +20,16 @@
 
         <!-- malfunzionamenti -->
         @if (auth()->check() && auth()->user()->role === 'tech' or auth()->user()->role === 'staff')
-            <a id="product-edit-link" class="add-user" href="{{ route('products.malfunctions', $product) }}">
+                @php
+                    $routeName = auth()->user()->role === 'staff'
+                        ? 'staff.products.malfunctions'
+                        : 'tecn.products.malfunctions';
+                @endphp
+
+        
+                <a id="product-edit-link" class="add-user" href="{{ route($routeName, $product) }}">
                         <p class="medium-text product-cat">Elenco malfunzionamenti -></p>
-                    </a>
+                </a>
         @endif
 
         <!-- modifica o rimuovi prodotto -->

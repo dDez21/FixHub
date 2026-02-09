@@ -17,8 +17,14 @@
         
 
         <!-- conferma creazione -->
-        <div class="form-confirm">
-            <button type="submit" class="button button-confirm">Crea prodotto</button>
+        <div class="button-section">
+            <div class="form-confirm">
+                <button type="submit" class="button button-back">Annulla</button>
+            </div>
+
+            <div class="form-confirm">
+                <button type="submit" class="button button-confirm">Crea prodotto</button>
+            </div>
         </div>
     </form>
 </div>

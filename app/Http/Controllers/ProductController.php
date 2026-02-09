@@ -130,4 +130,15 @@ class ProductController extends Controller
 
         return redirect()->route('catalog')->with('success', 'Prodotto eliminato.');
     }
+
+
+
+
+
+    // mostro malfunzionamenti prodotto
+    public function malfunctions_show(Product $product)
+    {
+        $malfunctions = $product->malfunctions()->orderBy('created_at', 'desc')->get();
+        return view('pages.products.malfunctions', compact('product', 'malfunctions'));
+    }
 }
