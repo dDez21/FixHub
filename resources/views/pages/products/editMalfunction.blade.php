@@ -3,13 +3,13 @@
 @section('content')
 
 <div class="card malfunction-space">
-  <form method="POST" action="{{ route('staff.malfunction.update', $malfunction) }}" class="create-malfunction-form">
+  <form method="POST" action="{{ route('staff.malfunction.update', $malf) }}" class="create-malfunction-form">
     @csrf
     @method('PUT')
 
     <div class="malfunction-grid">
         <!-- prendo elementi form -->
-        @include('pages.staff.malfunction.formMalfunction', ['malfunction' => $malfunction])
+        @include('pages.staff.malfunction.formMalfunction', ['malfunction' => $malf])
     </div>
 
     <!-- bottoni azioni -->
