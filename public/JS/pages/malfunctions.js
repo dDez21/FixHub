@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const items = document.querySelectorAll('.malfunction-single');
-
+    const card = document.getElementById('malfunction-data');
     const nameEl = document.getElementById('malfunction-name');
     const descEl = document.getElementById('malfunction-description');
     const solutionEl = document.getElementById('malfunction-solution');
