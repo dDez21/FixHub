@@ -152,7 +152,7 @@ class DatabaseSeeder extends Seeder
             ]);
 
         //associo categorie al tecnico
-        $tech->categories()->sync([
+        $tecn->categories()->sync([
             $catComputer->id,
             $catTelefoniTablet->id,
         ]);
