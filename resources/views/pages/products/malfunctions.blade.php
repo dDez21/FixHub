@@ -51,5 +51,5 @@
     
 </div>
 
-<script src="{{ asset('JS/pages/malfunction.js') }}" defer></script>
+<script src="{{ asset('JS/pages/malfunctions.js') }}" defer></script>
 @endsection
