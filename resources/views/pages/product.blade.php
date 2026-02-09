@@ -40,5 +40,20 @@
         <img src="{{ $product->photo ? Storage::url($product->photo) : asset('images/noPhoto.png') }}" alt="">
     </div>
 
+
+    <div class="product-action">
+        <div class="new-element">
+            <a id="user-edit-link" class="add-user" href="#">
+                <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
+            </a>
+        </div>
+
+        <div class="new-element" id="delete-wrap">
+            <a id="user-delete-link" class="add-user" href="#">
+                <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
+            </a>
+        </div>
+    </div>
+
 </div>
 @endsection
