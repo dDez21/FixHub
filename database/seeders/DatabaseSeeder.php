@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Malfunction;
 use App\Models\Product;
 use App\Models\Tech;
+use Database\Seeders\GeoIstatSeeder;
 
 //per immagini
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +24,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
+        $this->call(GeoIstatSeeder::class); //inserisco regioni, procince, città
 
         //seeder admin, tecnico e staff
         $admin = User::create([
