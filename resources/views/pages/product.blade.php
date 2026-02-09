@@ -29,7 +29,7 @@
 
             <p class="medium-text product-cat">Malfunzionamenti</p>
 
-            <a class="product-data" href="{{ route($routeName, $product) }}">
+            <a class="product-malf" href="{{ route($routeName, $product) }}">
                 Vedi elenco malfunzionamenti →
             </a>
         @endif

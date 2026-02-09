@@ -45,6 +45,22 @@
   padding-bottom: 12px;
 }
 
+.product-malf{
+  height: auto;
+  opacity: .8;
+  padding-bottom: 12px;
+  outline: none;
+  color: #000;
+}
+
+
+.product-malf:focus{
+    outline: none;
+    color: #ADCA21;
+    box-shadow: 0 0 5px #ADCA21;
+}
+
+
 .product-photo{
   flex: 0 0 350px;
   flex-shrink: 0;
