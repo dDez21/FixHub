@@ -24,13 +24,13 @@
         @if(auth()->check() && auth()->user()->role === 'admin')    
             <div class="user-action">
                 <div class="new-element">
-                    <a id="product-edit-link" class="add-user" href="#">
+                    <a id="product-edit-link" class="add-user" href="{{ route('admin.products.editProduct', $product) }}">
                         <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
                     </a>
                 </div>
 
                 <div class="new-element" id="delete-wrap">
-                    <a id="product-delete-link" class="add-user" href="#">
+                    <a id="product-delete-link" class="add-user" href="{{ route('admin.product.deleteConfirm', $product) }}">
                         <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
                     </a>
                 </div>
