@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="new-element" id="delete-wrap">
-                    <a id="product-delete-link" class="add-user" href="{{ route('admin.product.deleteConfirm', $product) }}">
+                    <a id="product-delete-link" class="add-user" href="{{ route('admin.products.deleteConfirm', $product) }}">
                         <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
                     </a>
                 </div>
