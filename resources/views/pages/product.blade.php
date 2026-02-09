@@ -50,7 +50,7 @@
             </div>
 
             <div class="new-element" id="delete-wrap">
-                <a id="malf-delete-link" class="add-user" href="{{ route('admin.products.deleteProduct', ['product' => $product->id]) }}">
+                <a id="malf-delete-link" class="add-user" href="{{ route('admin.products.deleteConfirm', ['product' => $product->id]) }}">
                     <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
                 </a>
             </div>
