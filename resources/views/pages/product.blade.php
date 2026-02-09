@@ -19,17 +19,16 @@
         <p class="product-data">{{ $product->installation }}</p>
 
         <!-- malfunzionamenti -->
-        @if (auth()->check() && auth()->user()->role === 'tech' or auth()->user()->role === 'staff')
-                @php
-                    $routeName = auth()->user()->role === 'staff'
-                        ? 'staff.products.malfunctions'
-                        : 'tecn.products.malfunctions';
-                @endphp
+        @if(auth()->check() && (auth()->user()->role === 'tech' || auth()->user()->role === 'staff'))
+            @php
+                $routeName = auth()->user()->role === 'staff'
+                    ? 'staff.products.malfunctions'
+                    : 'tecn.products.malfunctions';
+            @endphp
 
-        
-                <a id="product-edit-link" class="add-user" href="{{ route($routeName, $product) }}">
-                        <p class="medium-text product-cat">Elenco malfunzionamenti -></p>
-                </a>
+            <a id="product-edit-link" class="add-user" href="{{ route($routeName, $product) }}">
+                <p class="medium-text product-cat">Elenco malfunzionamenti -></p>
+            </a>
         @endif
 
         <!-- modifica o rimuovi prodotto -->
