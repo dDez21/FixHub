@@ -11,7 +11,7 @@ class Center extends Model
 
     //dati centro
     protected $fillable = [
-        'name','phone','email','country','region_id','province_id','city_id','street','civic'
+        'name','phone','email','region_id','province_id','city_id','street','civic'
         ];
 
 

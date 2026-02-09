@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
             'role'=> 'staff',
             ]);
 
+        
 
         //seeder centri assistenza
         $center = Center::create([
@@ -64,73 +65,80 @@ class DatabaseSeeder extends Seeder
             'civic' => '123',
         ]);
 
+        [$rid, $pid, $cid] = $this->geoIds('Marche', 'AN', 'Osimo');
+
         $centerUser = Center::create([
             'name' => 'Centro Assistenza',
             'phone' => '3881161585',
             'email'=> 'support.osimostz@fixhub.com',
-            'region_id' => 'Marche',
-            'province_id' => 'AN',
-            'city_id' => 'Osimo Stazione',
+            'region_id' => $rid,
+            'province_id' => $pid,
+            'city_id' => $cid,
             'street' => 'Via D\'Azeglio',
             'civic' => '3',
         ]);
 
+        [$rid, $pid, $cid] = $this->geoIds('Marche', 'AN', 'Ancona');
 
         $center = Center::create([
             'name' => 'Dorica Service',
             'phone' => '3469234672',
             'email'=> 'support.ancona@fixhub.com',
-            'region_id' => 'Marche',
-            'province_id' => 'AN',
-            'city_id' => 'Ancona',
+            'region_id' => $rid,
+            'province_id' => $pid,
+            'city_id' => $cid,
             'street' => 'Via Ruggeri',
             'civic' => '6',
         ]);
 
+        [$rid, $pid, $cid] = $this->geoIds('Piemonte', 'TO', 'Torino');
 
         $center = Center::create([
             'name' => 'TT - Techno Turin',
             'phone' => '3130348893',
             'email'=> 'support.torino@fixhub.com',
-            'region_id' => 'Piemonte',
-            'province_id' => 'TO',
-            'city_id' => 'Torino',
+            'region_id' => $rid,
+            'province_id' => $pid,
+            'city_id' => $cid,
             'street' => 'Via Nizza',
             'civic' => '46',
         ]);
 
+        [$rid, $pid, $cid] = $this->geoIds('Lazio', 'RM', 'Roma');
 
         $center = Center::create([
             'name' => 'FixHub Roma',
             'phone' => '3774142590',
             'email'=> 'support.roma@fixhub.com',
-            'region_id' => 'Lazio',
-            'province_id' => 'RM',
-            'city_id' => 'Roma',
+            'region_id' => $rid,
+            'province_id' => $pid,
+            'city_id' => $cid,
             'street' => 'Via Mazzarino',
             'civic' => '13',
         ]);
 
+        [$rid, $pid, $cid] = $this->geoIds('Campania', 'NA', 'Napoli');
 
         $center = Center::create([
             'name' => 'Napolitech',
             'phone' => '3924115833',
             'email'=> 'support.napoli@fixhub.com',
-            'region_id' => 'Campania',
-            'province_id' => 'NA',
-            'city_id' => 'Napoli',
+            'region_id' => $rid,
+            'province_id' => $pid,
+            'city_id' => $cid,
             'street' => 'Via Duomo',
             'civic' => '96',
         ]);
 
+        [$rid, $pid, $cid] = $this->geoIds('Toscana', 'FI', 'Firenze');
 
         $center = Center::create([
             'name' => 'Rinascimento tecnologico',
             'phone' => '3852156675',
             'email'=> 'support.firenze@fixhub.com',
-            'region_id' => 'Toscana',
-            'province_id' => 'FI',
-            'city_id' => 'Firenze',
+            'region_id' => $rid,
+            'province_id' => $pid,
+            'city_id' => $cid,
             'street' => 'Via Ghibellina',
             'civic' => '127',
         ]);
@@ -348,4 +356,19 @@ class DatabaseSeeder extends Seeder
     Storage::disk('public')->put($dest, File::get($source));
     return $dest;
     }
+
+    private function geoIds(string $regionName, string $provCode, string $cityName): array
+        {
+            $region = \App\Models\Region::where('name', $regionName)->first();
+            if (!$region) $region = \App\Models\Region::create(['name' => $regionName, 'code' => null]);
+
+            $province = \App\Models\Province::where('region_id', $region->id)->where('code', $provCode)->first();
+            if (!$province) $province = \App\Models\Province::create(['region_id' => $region->id, 'code' => $provCode, 'name' => $provCode]);
+
+            $city = \App\Models\City::where('province_id', $province->id)->where('name', $cityName)->first();
+            if (!$city) $city = \App\Models\City::create(['province_id' => $province->id, 'name' => $cityName, 'cap' => null]);
+
+            return [$region->id, $province->id, $city->id];
+        }
+
 }

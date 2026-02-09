@@ -46,16 +46,16 @@ class CenterController extends Controller{
             'region_id' => ['required', 'exists:regions,id'],
             'province_id' => [
                 'required',
-                Rule::exists('provinces', 'id')->where(fn($q) => $q->where('region_id', $request->region_id))
+                Rule::exists('provinces','id')->where(fn($q) => $q->where('region_id', $request->region_id)),
             ],
             'city_id' => [
                 'required',
-                Rule::exists('cities', 'id')->where(fn($q) => $q->where('province_id', $request->province_id))
+                Rule::exists('cities','id')->where(fn($q) => $q->where('province_id', $request->province_id)),
             ],
 
             'street' => 'required|string|max:160',
             'civic' => 'nullable|string|max:20',
-        ]);
+            ]);;
 
         Center::create($data);
 
@@ -79,11 +79,11 @@ class CenterController extends Controller{
             'region_id' => ['required', 'exists:regions,id'],
             'province_id' => [
                 'required',
-                Rule::exists('provinces', 'id')->where(fn($q) => $q->where('region_id', $request->region_id))
+                Rule::exists('provinces','id')->where(fn($q) => $q->where('region_id', $request->region_id)),
             ],
             'city_id' => [
                 'required',
-                Rule::exists('cities', 'id')->where(fn($q) => $q->where('province_id', $request->province_id))
+                Rule::exists('cities','id')->where(fn($q) => $q->where('province_id', $request->province_id)),
             ],
 
             'street' => 'required|string|max:160',

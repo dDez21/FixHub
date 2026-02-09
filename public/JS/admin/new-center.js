@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     await loadCities(provSel.value, '');
   });
 
-  // caso EDIT: pre-carico province/città coerenti con ciò che è salvato
   (async () => {
     if (regionSel.value) {
       await loadProvinces(regionSel.value, initialProvince);
