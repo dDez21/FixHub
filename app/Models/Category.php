@@ -12,9 +12,9 @@ class Category extends Model
 
     
     //relazione con tecnici (N:N)
-    public function techProfiles()
+    public function users()
     {
-        return $this->belongsToMany(Tech::class, 'category_user');
+        return $this->belongsToMany(User::class, 'category_user');
     }
 
     //relazione con prodotti (1:N)

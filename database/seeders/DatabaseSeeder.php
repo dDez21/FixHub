@@ -177,6 +177,13 @@ class DatabaseSeeder extends Seeder
             'installation'=> 'Configura Apple ID -> aggiorna macOS -> attiva il backup -> collega le periferiche',
         ]);
 
+        Malfunction::create([
+            'name' => 'Autonomia ridotta improvvisa',
+            'description' => 'La batteria scende rapidamente anche con utilizzo leggero o a schermo spento.',
+            'solution' => 'Controlla “Monitoraggio Attività” per processi energivori, disattiva app in avvio automatico, verifica stato batteria in Impostazioni, aggiorna macOS e fai un riavvio. Se persiste: reset SMC non applicabile su Apple Silicon -> prova spegnimento completo e aggiornamento; se ancora nulla, diagnosi in assistenza.',
+            'product_id' => $prod->id,
+        ]);
+
         $prod = Product::create([
             'name' => 'Dell XPS 13 (9315)',
             'photo' => $this->seedImage('dell_XPS_13_9315.png'),
@@ -184,6 +191,13 @@ class DatabaseSeeder extends Seeder
             'description' => 'Ultrabook compatto da 13" pensato per mobilità e lavoro quotidiano.',
             'use_techniques' => 'Aggiornare driver/BIOS (Dell Update). Non usarlo su letto/divano per non ostruire la dissipazione. Per dock/monitor usare USB-C compatibili.',
             'installation'=> 'Setup Windows -> Windows Update -> installazione driver/BIOS -> test porte USB-C/audio/video.',
+        ]);
+
+        Malfunction::create([
+            'name' => 'Non ricarica tramite USB-C',
+            'description' => 'Collegando l’alimentatore USB-C, la carica non parte o va a intermittenza.',
+            'solution' => 'Prova altro cavo/alimentatore certificato, pulisci la porta USB-C, aggiorna BIOS e driver chipset/Thunderbolt, verifica impostazioni di gestione energia. Se con alimentatore originale persiste, probabile problema porta/board: assistenza.',
+            'product_id' => $prod->id,
         ]);
 
         $prod = Product::create([
@@ -195,6 +209,20 @@ class DatabaseSeeder extends Seeder
             'installation'=> 'Setup iniziale → login Apple ID → aggiornamento iOS → Face ID → backup → ripristino/trasferimento dati (se serve).',
         ]);
 
+        Malfunction::create([
+            'name' => 'Ricarica lenta o assente via USB-C',
+            'description' => 'Il telefono non carica, carica molto lentamente o si disconnette durante la ricarica.',
+            'solution' => 'Pulisci delicatamente la porta USB-C da polvere/lanugine, prova cavo certificato e alimentatore adeguato, verifica se compare “Accessorio non supportato”, riavvia e aggiorna iOS. Se non cambia, test in assistenza per porta USB-C.',
+            'product_id' => $prod->id,
+        ]);
+
+        Malfunction::create([
+            'name' => 'Microfono con audio ovattato in chiamata',
+            'description' => 'In chiamata o nei vocali l’audio risulta basso/ovattato, soprattutto in vivavoce.',
+            'solution' => 'Verifica che non ci siano pellicole/cover che coprono i fori microfono, pulisci le griglie, prova registrazione con Memo Vocali, disattiva riduzione rumore/app terze. Aggiorna iOS. Se persiste, possibile danno hardware: assistenza.',
+            'product_id' => $prod->id,
+        ]);
+
         $prod = Product::create([
             'name' => 'Apple iPad (10ª generazione)',
             'photo' => $this->seedImage('apple_iPad_10g.png'),
@@ -202,6 +230,20 @@ class DatabaseSeeder extends Seeder
             'description' => 'Tablet per studio/ufficio e consultazione documenti, con iPadOS.',
             'use_techniques' => 'Tenere iPadOS aggiornato. Usare accessori compatibili (tastiera/penna).',
             'installation'=> 'Setup iPadOS → aggiornamento → Apple ID → backup → collegamento accessori → test Wi-Fi.',
+        ]);
+
+        Malfunction::create([
+                'name' => 'Wi-Fi instabile o disconnessioni',
+                'description' => 'Il tablet perde la rete o rallenta dopo qualche minuto, anche vicino al router.',
+                'solution' => 'Riavvia iPad e router, dimentica la rete e riconnettiti, prova banda 5 GHz/2.4 GHz, disattiva VPN, aggiorna iPadOS, reset impostazioni rete. Se solo su una rete dà problemi: controlla canale Wi-Fi e interferenze.',
+                'product_id' => $prod->id,
+            ]);
+
+         Malfunction::create([
+            'name' => 'Accessorio (penna/tastiera) non viene rilevato',
+            'description' => 'L’accessorio non si abbina o non funziona correttamente dopo il collegamento.',
+            'solution' => 'Verifica compatibilità modello/accessorio, ricarica l’accessorio, dissocia e riassocia Bluetooth, aggiorna iPadOS. Se è USB-C: prova altro cavo/adattatore, pulisci porta. Se continua: test su altro dispositivo o assistenza.',
+            'product_id' => $prod->id,
         ]);
 
         $prod = Product::create([
