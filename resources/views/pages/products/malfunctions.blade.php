@@ -68,19 +68,19 @@
 
 
             @if($isStaff)
-            <div class="malfunction-action" id="malfunction-actions" style="display:none;">
-                <div class="new-element">
-                    <a id="malf-edit-link" class="add-user" href="javascript:void(0)" aria-disabled="true">
-                        <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
-                    </a>
-                </div>
+                <div class="malfunction-action" id="malfunction-actions" style="display:none;">
+                    <div class="new-element">
+                        <a id="malf-edit-link" class="add-user" href="javascript:void(0)" aria-disabled="true">
+                            <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
+                        </a>
+                    </div>
 
-                <div class="new-element" id="delete-wrap">
-                    <a id="malf-edit-link" class="add-user" href="javascript:void(0)" aria-disabled="true">
-                        <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
-                    </a>
+                    <div class="new-element" id="delete-wrap">
+                        <a id="malf-delete-link" class="add-user" href="javascript:void(0)" aria-disabled="true">
+                            <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
+                        </a>
+                    </div>
                 </div>
-            </div>
             @endif
         </div>
     </div>

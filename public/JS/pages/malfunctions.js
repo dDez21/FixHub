@@ -10,58 +10,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!items.length || !card) return;
 
-    
-    function setDisabled(link, disabled) {
-        if (!link) return;
-        if (disabled) {
-        link.setAttribute('aria-disabled', 'true');
-        link.href = 'javascript:void(0)';
-        } else {
-        link.removeAttribute('aria-disabled');
-        }
-    }
-
-    setDisabled(editLink, true);
-    setDisabled(deleteLink, true);
-    if (actions) actions.style.display = 'none';
-
     function showMalfunction(el) {
-
-        nameEl.textContent = '';
-        descEl.textContent = '';
-        solutionEl.textContent = '';
-
         const name = el.dataset.name || '';
         const desc = el.dataset.description || '';
         const solution = el.dataset.solution || '';
+
+        card.style.display = 'block';
+        card.setAttribute('aria-hidden', 'false');
 
         nameEl.textContent = name;
         descEl.textContent = desc;
         solutionEl.textContent = solution ? `Soluzione: ${solution}` : '';
 
-        card.style.display = 'block';
-        card.setAttribute('aria-hidden', 'false');
-
-        // staff: set href e mostra bottoni
-        const editUrl = el.dataset.editUrl;
-        const deleteUrl = el.dataset.deleteUrl;
-
-        if (editLink && editUrl) {
-        editLink.href = editUrl;
-        setDisabled(editLink, false);
-        } else {
-        setDisabled(editLink, true);
+        // aggiorno i link se presenti
+        if (editLink && el.dataset.editUrl) {
+            editLink.href = el.dataset.editUrl;
+            editLink.setAttribute('aria-disabled', 'false');
         }
 
-        if (deleteLink && deleteUrl) {
-        deleteLink.href = deleteUrl;
-        setDisabled(deleteLink, false);
-        } else {
-        setDisabled(deleteLink, true);
+        if (deleteLink && el.dataset.deleteUrl) {
+            deleteLink.href = el.dataset.deleteUrl;
+            deleteLink.setAttribute('aria-disabled', 'false');
         }
 
-        if (actions) {
-        actions.style.display = (editUrl || deleteUrl) ? 'flex' : 'none';
+        if (actions && (el.dataset.editUrl || el.dataset.deleteUrl)) {
+            actions.style.display = 'flex';
         }
     }
 
@@ -74,12 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     items.forEach(el => {
         el.addEventListener('click', () => selectMalfunction(el));
+
         el.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            selectMalfunction(el);
-        }
-        });
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                selectMalfunction(el);
+                }
+            });
     });
+
     selectMalfunction(items[0]);
 });
