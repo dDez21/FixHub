@@ -21,7 +21,7 @@
 
 
         <!-- modifica o rimuovi prodotto -->
-        @if(!auth()->check() || auth()->user()->role !== 'admin')    
+        @if(auth()->check() && auth()->user()->role === 'admin')    
             <div class="user-action">
                 <div class="new-element">
                     <a id="product-edit-link" class="add-user" href="#">
