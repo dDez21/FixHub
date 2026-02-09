@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Malfunction;
-
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 class MalfunctionsController extends Controller
 {
