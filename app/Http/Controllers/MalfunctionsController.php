@@ -34,50 +34,49 @@ class MalfunctionsController extends Controller
 
 
     // salvo nuovo malfunzionamento
-    public function store(Request $request){
+    public function store(Request $request, Product $product){
         
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'solution' => 'required|string',
-            'product_id' => 'required|exists:products,id',
         ]);
 
+        $data['product_id'] = $product->id;
         Malfunction::create($data);
 
-        return redirect()->route('staff.products.malfunctions', ['product' => $data['product_id']])->with('success', 'Malfunzionamento creato.');    
+        return redirect()->route('staff.products.malfunctions', $product)->with('success', 'Malfunzionamento creato.');    
     }
 
 
     //vado a modifica malfunzionamento
-    public function edit(Malfunction $malf){
+    public function edit(Product $product, Malfunction $malf){
 
         $malf = Malfunction::orderBy('name')->get();
-        return view('pages.products.editMalfunction', compact('malf'));
+        return view('pages.products.editMalfunction', compact('product', 'malf'));
     }
 
-    public function update(Request $request, Malfunction $malf){
+    public function update(Request $request, Product $product, Malfunction $malf){
 
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'solution' => 'required|string',
-            'product_id'=> 'required|exists:products,id',
         ]);
 
         $malf->update($data);
 
-        return redirect()->route('staff.products.malfunctions', ['product' => $malf->product_id])->with('success', 'Malfunzionamento modificato.');    
+        return redirect()->route('staff.products.malfunctions', $product)->with('success', 'Malfunzionamento modificato.');    
     }
 
 
     //elimino malfunzionamento
-    public function deleteConfirm(Malfunction $malf)
+    public function deleteConfirm(Product $product, Malfunction $malf)
     {
-        return view('pages.products.deleteMalfunction', compact('malf'));
+        return view('pages.products.deleteMalfunction', compact('product', 'malf'));
     }
 
-    public function delete(Malfunction $malf): RedirectResponse
+    public function delete(Product $product, Malfunction $malf): RedirectResponse
     {
         DB::transaction(function () use ($malf) {
 
@@ -85,6 +84,6 @@ class MalfunctionsController extends Controller
             $malf->delete();
         });
 
-        return redirect()->route('catalog')->with('success', 'Malfunzionamento eliminato.');
+        return redirect()->route('staff.products.malfunctions', $product)->with('success', 'Malfunzionamento eliminato.');
     }
 }

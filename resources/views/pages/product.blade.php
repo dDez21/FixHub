@@ -43,13 +43,13 @@
 
     <div class="product-action">
         <div class="new-element">
-            <a id="user-edit-link" class="add-user" href="#">
+            <a id="malf-edit-link" class="add-user" href="#">
                 <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
             </a>
         </div>
 
         <div class="new-element" id="delete-wrap">
-            <a id="user-delete-link" class="add-user" href="#">
+            <a id="malf-delete-link" class="add-user" href="#">
                 <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
             </a>
         </div>

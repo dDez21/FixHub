@@ -30,10 +30,15 @@
                     
                     <!-- prendo dati di ogni malfunction -->
                     <div class="malfunction-single" role="button" tabindex="0"
-                         data-name="{{ $m->name }}"
-                         data-description="{{ $m->description }}"
-                         data-solution="{{ $m->solution }}"
-                         >
+                        data-name="{{ $m->name }}"
+                        data-description="{{ $m->description }}"
+                        data-solution="{{ $m->solution }}"
+
+                        @if($isStaff)
+                            data-edit-url="{{ route('staff.products.malfunctions.edit', ['product' => $product, 'malfunction' => $m]) }}"
+                            data-delete-url="{{ route('staff.products.malfunctions.deleteConfirm', ['product' => $product, 'malfunction' => $m]) }}"
+                        @endif
+                    >
 
                         <!-- dati mostrati nell'elenco centri -->
                         <p class="medium-text malfunction-item">{{ $m->name }}</p>
@@ -50,7 +55,7 @@
 
     <!-- dettagli centro selezionato -->
     <div class="malfunction-data-container">
-        <div class="card card-malfunction-data" id="malfunction-data"> <!-- la mostro solo quando ho un centro selezionato -->
+        <div class="card card-malfunction-data" id="malfunction-data" style="display:none;" aria-hidden="true"> <!-- la mostro solo quando ho un centro selezionato -->
             
             <h1 class="malfunction-item title" id="malfunction-name"></h1> <!-- nome -->
             
@@ -62,19 +67,21 @@
         
 
 
-            <div class="malfunction-action">
+            @if($isStaff)
+            <div class="malfunction-action" id="malfunction-actions" style="display:none;">
                 <div class="new-element">
-                        <a id="user-edit-link" class="add-user" href="#">
-                            <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
-                        </a>
-                    </div>
+                    <a id="malf-edit-link" class="add-user" href="javascript:void(0)" aria-disabled="true">
+                        <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
+                    </a>
+                </div>
 
-                    <div class="new-element" id="delete-wrap">
-                        <a id="user-delete-link" class="add-user" href="#">
-                            <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
-                        </a>
-                    </div>
+                <div class="new-element" id="delete-wrap">
+                    <a id="malf-edit-link" class="add-user" href="javascript:void(0)" aria-disabled="true">
+                        <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
+                    </a>
+                </div>
             </div>
+            @endif
         </div>
     </div>
     

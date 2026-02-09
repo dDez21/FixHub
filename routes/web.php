@@ -68,17 +68,17 @@ Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->grou
 
     //modifica malfunzionamento
     Route::get('/products/{product}/malfunctions/{malfunction}/edit', [MalfunctionsController::class, 'edit'])
-    ->name('.malfunctions.edit');
+    ->name('products.malfunctions.edit');
 
     Route::put('/products/{product}/malfunctions/{malfunction}', [MalfunctionsController::class, 'update'])
-    ->name('malfunctions.update');
+    ->name('products.malfunctions.update');
 
     //elimina malfunzionamento
     Route::get('/products/{product}/malfunctions/{malfunction}/delete', [MalfunctionsController::class, 'deleteConfirm'])
-    ->name('malfunctions.deleteConfirm');
+    ->name('products.malfunctions.deleteConfirm');
 
     Route::delete('/products/{product}/malfunctions/{malfunction}', [MalfunctionsController::class, 'delete'])
-    ->name('malfunctions.delete');
+    ->name('products.malfunctions.delete');
 });
 
 
