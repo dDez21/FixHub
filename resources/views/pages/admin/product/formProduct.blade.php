@@ -20,7 +20,7 @@
     <div class="form-space">
         <label class="form-label" for="category_id">Categoria prodotto</label>
 
-        <select id="category_id" name="category_id" required>
+        <select class="list-space" id="category_id" name="category_id" required>
             <option value="" disabled {{ old('category_id', $product->category_id ?? '') === '' ? 'selected' : '' }}>
                 Seleziona una categoria
             </option>
