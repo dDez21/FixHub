@@ -33,7 +33,7 @@ class UsersController extends Controller{
         //carico centro e categorie tecnico
         $user->load([
             'tech.center:id,name',
-            'tech.categories:id,name'
+            'categories:id,name'
         ]);
 
         return response()->json([
