@@ -41,7 +41,7 @@
     </div>
 
 
-    @if ($isStaff)
+    @if ($isAdmin)
         <div class="product-action">
             <div class="new-element">
                 <a id="malf-edit-link" class="add-user" href="{{ route('admin.products.editProduct', ['product' => $product->id]) }}">
