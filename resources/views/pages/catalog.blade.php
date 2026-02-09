@@ -35,17 +35,16 @@
     <!-- contenitore prodotti -->
     <div class="products-layout">
 
-        @auth
-            @if (auth()->user()->role === 'staff')
-                
-                <!-- aggiungo prodotto href="{{ route('staff.products.createProduct') }}" -->
-                <div class="new-element">
-                    <a class="add-product" >
-                        <img class="add-product-icon" src="{{ asset('icon/new.png') }}" alt="">
-                    </a>
-                </div>
-            @endif
-        @endauth
+        @if ($isAdmin)
+
+            <!-- aggiungo prodotto  -->
+            <div class="new-element">
+                <a class="add-product" href="{{ route('admin.products.createProduct') }}">
+                    <img class="add-product-icon" src="{{ asset('icon/new.png') }}" alt="">
+                </a>
+            </div>
+        @endif
+        
 
         <!-- barra di ricerca -->
         <div class="search-bar">

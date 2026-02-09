@@ -12,12 +12,31 @@ class CategoriesController extends Controller{
 
     // mostro tutte le categorie
     public function show(){
+        $user = request()->user();
+        $role = $user?->role;
 
-        $categories = Category::orderBy('name')->get(); //prendo tutte le categorie
-        $products = Product::orderBy('name')->get(); //prendo tutte le categorie
-        
-        return view('pages.catalog', compact('categories', 'products')); //passo le categorie e i prodotti alla vista        
+        $isAdmin = ($role === 'admin');
+        $isStaff = ($role === 'staff');
 
+        // se staff solo sue categorie
+        if ($isStaff) {
+            $allowedCategoryIds = $user->categories()->pluck('categories.id')->all();
+
+            $categories = Category::whereIn('id', $allowedCategoryIds)
+                ->orderBy('name')
+                ->get();
+
+            $products = Product::whereIn('category_id', $allowedCategoryIds)
+                ->orderBy('name')
+                ->get();
+        } else {
+            
+            // altri utenti vedono tutto
+            $categories = Category::orderBy('name')->get();
+            $products   = Product::orderBy('name')->get();
+        }
+
+        return view('pages.catalog', compact('categories', 'products', 'isAdmin', 'isStaff'));
     }
 
 

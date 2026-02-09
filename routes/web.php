@@ -87,6 +87,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
     Route::delete('/users/{user}', [UsersController::class, 'delete'])
     ->name('users.delete');
+
+
+
+    //crea prodotto
+    Route::get('/products/create', [ProductController::class, 'create'])
+    ->name('products.createProduct');
+
+    Route::post('/products', [ProductController::class, 'store'])
+    ->name('products.store');
 });
 
 
