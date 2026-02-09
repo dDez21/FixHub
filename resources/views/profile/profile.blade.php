@@ -13,22 +13,37 @@
             <p><strong>Cognome:</strong> {{ $user->surname }}</p>
             <p><strong>Username:</strong> {{ $user->username }}</p>
 
+
+        
             <!-- se utente loggato è tecnico -->
             @if($isTech && $user->tech)
                 
                 <!-- data di nascita -->
                 <p><strong>Data di nascita:</strong> {{ $user->tech->birth_date }} </p>
                 
-                <!-- specializzazione -->
-                <p><strong>Specializzazione:</strong> {{ $user->tech->categories->pluck('name')->implode('  -  ') ?: '  -  ' }} </p>
+                <!-- categorie associate -->
+                @php
+                    $catNames = $user->categories->pluck('name')->implode('  -  ');
+                @endphp
+                <p><strong>Categorie:</strong> {{ $catNames ?: '  -  ' }}</p>
                 
                 <!-- centro associato -->
                 <p><strong>Centro associato:</strong>
                     {{ $user->tech->center->name ?? '-' }} -
                     {{ $user->tech->center->address ?? '' }} {{ $user->tech->center->civic ?? '' }},
                     {{ $user->tech->center->city ?? '' }}
-                </p>
+                </p>   
             @endif
+
+            <!-- se utente loggato è staff -->
+            @if($isStaff)
+                @php
+                    $catNames = $user->categories->pluck('name')->implode('  -  ');
+                @endphp
+
+                <p><strong>Categorie:</strong> {{ $catNames ?: '  -  ' }}</p>
+            @endif
+            
         </div>
     </div>
 

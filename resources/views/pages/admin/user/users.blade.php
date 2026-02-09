@@ -54,7 +54,7 @@
             <p class="user-item medium-text" id="user-role"></p>
             <p class="user-item medium-text" id="user-username"></p>
 
-            <!-- tecj -->
+            <!-- tech -->
             <div id="tech-data" style="display: none;">
                 <p class="user-item medium-text" id="user-tech-center"></p>
                 <p class="user-item medium-text" id="user-tech-categories"></p>

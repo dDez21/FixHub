@@ -12,19 +12,17 @@ class ProfileController extends Controller
     {
         $user = $request->user();
         $isTech = $user->role === 'tech';
+        $isStaff = $user->role === 'staff';
+        $user->load('categories:id,name');
 
         // carico relazioni solo se è tecnico
         if ($isTech) {
             $user->load([
                 'tech.center',
-                'tech.categories',
             ]);
         }
 
-        return view('profile.profile', [
-            'user' => $user,
-            'isTech' => $isTech,
-        ]);
+        return view('profile.profile', compact('user', 'isTech', 'isStaff'));
     }
 
     
