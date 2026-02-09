@@ -64,3 +64,15 @@
   object-fit: contain;
   display: block;
 }
+
+.product-link-row{
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.product-link-row:hover{
+  opacity: 1;
+  text-decoration: underline;
+}

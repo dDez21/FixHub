@@ -32,20 +32,18 @@
         @endif
 
         <!-- modifica o rimuovi prodotto -->
-        @if(auth()->check() && auth()->user()->role === 'admin')    
-            <div class="user-action">
-                <div class="new-element">
-                    <a id="product-edit-link" class="add-user" href="{{ route('admin.products.editProduct', $product) }}">
-                        <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
-                    </a>
-                </div>
+        @if(auth()->check() && (auth()->user()->role === 'tech' || auth()->user()->role === 'staff'))
+            @php
+                $routeName = auth()->user()->role === 'staff'
+                    ? 'staff.products.malfunctions'
+                    : 'tecn.products.malfunctions';
+            @endphp
 
-                <div class="new-element" id="delete-wrap">
-                    <a id="product-delete-link" class="add-user" href="{{ route('admin.products.deleteConfirm', $product) }}">
-                        <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
-                    </a>
-                </div>
-            </div>
+            <p class="medium-text product-cat">Malfunzionamenti</p>
+
+            <a class="product-data product-link-row" href="{{ route($routeName, $product) }}">
+                Vedi elenco malfunzionamenti →
+            </a>
         @endif
     </div>
 

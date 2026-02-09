@@ -49,6 +49,8 @@ Route::prefix('tecn')->name('tecn.')->middleware(['auth', 'role:tech'])->group(f
 
 
 
+
+
 // rotte staff
 Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->group(function () {
 
@@ -62,7 +64,24 @@ Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->grou
 
     Route::post('/malfunctions', [MalfunctionsController::class, 'store'])
     ->name('malfunctions.store');
+
+
+    //modifica malfunzionamento
+    Route::get('/products/{product}/malfunctions/{malfunction}/edit', [MalfunctionsController::class, 'edit'])
+    ->name('.malfunctions.edit');
+
+    Route::put('/products/{product}/malfunctions/{malfunction}', [MalfunctionsController::class, 'update'])
+    ->name('malfunctions.update');
+
+    //elimina malfunzionamento
+    Route::get('/products/{product}/malfunctions/{malfunction}/delete', [MalfunctionsController::class, 'deleteConfirm'])
+    ->name('malfunctions.deleteConfirm');
+
+    Route::delete('/products/{product}/malfunctions/{malfunction}', [MalfunctionsController::class, 'delete'])
+    ->name('malfunctions.delete');
 });
+
+
 
 
 // rotte admin
