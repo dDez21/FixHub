@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
 Route::prefix('tecn')->name('tecn.')->middleware(['auth', 'role:tech'])->group(function () {
 
     //pagina malfunzionamenti
-    Route::get('/products/{product}/malfunctions', [ProductController::class, 'malfunctions_show'])
+    Route::get('/products/{product}/malfunctions', [MalfunctionsController::class, 'show'])
     ->name('products.malfunctions');
 
 });
