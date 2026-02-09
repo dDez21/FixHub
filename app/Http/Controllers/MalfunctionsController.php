@@ -53,10 +53,11 @@ class MalfunctionsController extends Controller
     public function edit(Product $product, Malfunction $malfunction){
 
         abort_unless($malfunction->product_id === $product->id, 404);
-
+        $products = Product::orderBy('name')->get();
         return view('pages.products.editMalfunction', [
             'product' => $product,
             'malf' => $malfunction,
+            'products' => $products,
         ]);
     }
 
