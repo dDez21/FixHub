@@ -17,6 +17,25 @@
         
         <p class="medium-text product-cat">Guida all'installazione</p>
         <p class="product-data">{{ $product->installation }}</p>
+
+
+
+        <!-- modifica o rimuovi prodotto -->
+        @if(!auth()->check() || auth()->user()->role !== 'admin')    
+            <div class="user-action">
+                <div class="new-element">
+                    <a id="product-edit-link" class="add-user" href="#">
+                        <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
+                    </a>
+                </div>
+
+                <div class="new-element" id="delete-wrap">
+                    <a id="product-delete-link" class="add-user" href="#">
+                        <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
+                    </a>
+                </div>
+            </div>
+        @endif
     </div>
 
     <!-- foto prodotto -->
