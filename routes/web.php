@@ -104,6 +104,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
     Route::put('/products/{product}', [ProductController::class, 'update'])
     ->name('products.update');
+
+
+    //elimina prodotto
+    Route::get('/products/{product}/delete', [ProductController::class, 'deleteConfirm'])
+    ->name('products.deleteConfirm');
+
+    Route::delete('/products/{product}', [ProductController::class, 'delete'])
+    ->name('products.delete');
 });
 
 

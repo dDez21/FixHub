@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\RedirectResponse;
+
 
 class ProductController extends Controller
 {
@@ -102,5 +105,29 @@ class ProductController extends Controller
         $product->update($data);
 
         return redirect()->route('product', $product)->with('success', 'Prodotto aggiornato.');
+    }
+
+
+
+    //elimino prodotto
+    public function deleteConfirm(Product $product)
+    {
+        return view('pages.admin.product.deleteProduct', compact('product'));
+    }
+
+    public function delete(Product $product): RedirectResponse
+    {
+        DB::transaction(function () use ($product) {
+
+            // elimina foto da storage (se esiste)
+            if ($product->photo) {
+                Storage::disk('public')->delete($product->photo);
+            }
+
+            // elimina record dal DB
+            $product->delete();
+        });
+
+        return redirect()->route('catalog')->with('success', 'Prodotto eliminato.');
     }
 }

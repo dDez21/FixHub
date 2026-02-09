@@ -17,10 +17,10 @@
 
             <!-- mostro tutti i prodotti -->
             @if(!auth()->check() || auth()->user()->role !== 'staff')
-                <li>
-                    <a class="single-category" href="#" data-category-id="">Tutte le categorie</a>
-                </li>
-            @endif
+            <li>
+                <a class="single-category" href="#" data-category-id="">Tutte le categorie</a>
+            </li>
+        @endif
             
             <!-- riferimenti per singola categoria -->
             @forelse ($categories as $category)
