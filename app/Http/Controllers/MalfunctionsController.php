@@ -46,4 +46,44 @@ class MalfunctionsController extends Controller
 
         return redirect()->route('staff.products.malfunctions', ['product' => $data['product_id']])->with('success', 'Malfunzionamento creato.');    
     }
+
+
+    //vado a modifica malfunzionamento
+    public function edit(Malfunction $malf){
+
+        $malf = Malfunction::orderBy('name')->get();
+        return view('pages.products.editMalfunction', compact('malf'));
+    }
+
+    public function update(Request $request, Malfunction $malf){
+
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'solution' => 'required|string',
+            'product_id'=> 'required|exists:products,id',
+        ]);
+
+        $malf->update($data);
+
+        return redirect()->route('staff.products.malfunctions', ['product' => $malf->product_id])->with('success', 'Malfunzionamento modificato.');    
+    }
+
+
+    //elimino malfunzionamento
+    public function deleteConfirm(Malfunction $malf)
+    {
+        return view('pages.products.deleteMalfunction', compact('malf'));
+    }
+
+    public function delete(Malfunction $malf): RedirectResponse
+    {
+        DB::transaction(function () use ($malf) {
+
+            // elimina record dal DB
+            $malf->delete();
+        });
+
+        return redirect()->route('catalog')->with('success', 'Malfunzionamento eliminato.');
+    }
 }
