@@ -36,7 +36,7 @@ class ProductController extends Controller
 
         // prendo tutte le categorie e le restituisco
         $categories = Category::orderBy('name')->get();
-        return view('pages.products.createProduct', compact('categories'));
+        return view('pages.admin.product.createProduct', compact('categories'));
     }
 
 
@@ -67,7 +67,7 @@ class ProductController extends Controller
     public function edit(Product $product){
 
         $categories = Category::orderBy('name')->get();
-        return view('pages.products.editProduct', compact('product', 'categories'));
+        return view('pages.admin.product.editProduct', compact('product', 'categories'));
     }
 
 
