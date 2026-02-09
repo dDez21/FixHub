@@ -9,7 +9,7 @@
 
     <div class="malfunction-grid">
         <!-- prendo elementi form -->
-        @include('pages.staff.malfunction.formMalfunction', ['malfunction' => $malf])
+        @include('pages.products.formMalfunction', ['malfunction' => $malf])
     </div>
 
     <!-- bottoni azioni -->
