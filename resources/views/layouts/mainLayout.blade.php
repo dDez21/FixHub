@@ -28,6 +28,7 @@
         <link rel="stylesheet" href="{{ asset('css/views/profile.css') }}">
         <link rel="stylesheet" href="{{ asset('css/views/createUser.css') }}">
         <link rel="stylesheet" href="{{ asset('css/views/product.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/views/malfunctions.css') }}">
         <link rel="stylesheet" href="{{ asset('css/components/card.css') }}">
         <link rel="stylesheet" href="{{ asset('css/components/button.css') }}">
         <link rel="stylesheet" href="{{ asset('css/components/form.css') }}">

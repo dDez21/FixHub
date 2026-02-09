@@ -36,12 +36,12 @@
 
 /* scroller verticale per i centri */
 .users{
-    display: flex; /* dispongo elementi in fila */
-    flex-direction: column; /* do orientamento verticale */
-    gap: 16px; /* spazio tra centri */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     max-height: 600px;
-    height: auto; /* altezza contenitore */
-    overflow-y: auto; /* abilita scroll verticale se necessario */
+    height: auto;
+    overflow-y: auto; /* abilito scroll verticale se necessario */
     padding: 15px 10px;
 }
 
