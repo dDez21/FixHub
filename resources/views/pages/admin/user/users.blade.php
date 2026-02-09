@@ -72,7 +72,7 @@
                     </a>
                 </div>
 
-                <div class="new-element">
+                <div class="new-element" id="delete-wrap">
                     <a id="user-delete-link" class="add-user" href="#">
                         <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
                     </a>

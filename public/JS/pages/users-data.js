@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const staffCategories = document.getElementById('user-staff-categories');
 
     const editLink = document.getElementById('user-edit-link');
+    const deleteWrap = document.getElementById('delete-wrap');
     const deleteLink = document.getElementById('user-delete-link');
 
     function roleLabel(role) {
@@ -79,6 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const categories = data.staff.categories || [];
             if (staffCategories) staffCategories.textContent = categories.length ? `Categorie: ${categories.join(', ')}` : 'Categorie: -';
         }
+        }
+
+        if (role === 'admin') {
+            deleteWrap.style.display = 'none';
+        } else {
+            deleteWrap.style.display = 'block';
         }
     }
 
