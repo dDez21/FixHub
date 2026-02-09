@@ -164,3 +164,25 @@
   color: #fff;
   margin-left: 100px;
 }
+
+.add-product{
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: rgba(255,255,255,0.03);
+}
+
+.add-product-icon{
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    display: block;
+}
