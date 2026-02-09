@@ -49,6 +49,7 @@ Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->grou
 
 });
 
+
 // rotte admin
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
 

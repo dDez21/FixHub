@@ -27,6 +27,6 @@ class Tech extends Model{
     //relazione con categorie (N:N)
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'category_tech');
+        return $this->belongsToMany(Category::class, 'category_user');
     }
 }

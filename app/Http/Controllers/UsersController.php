@@ -50,9 +50,7 @@ class UsersController extends Controller{
     {
         abort_unless($user->role === 'staff', 404);
 
-        $user->load([
-            'staff.categories:id,name'
-        ]);
+        $user->load('categories:id,name');
 
         return response()->json([
             'staff' => [
@@ -214,10 +212,10 @@ class UsersController extends Controller{
     public function delete(User $user): RedirectResponse
     {
         DB::transaction(function () use ($user) {
-            $user->load(['tech', 'staff']);
+            $user->load('tech');
 
             if ($user->tech) {
-                $user->tech->categories()->detach();
+                $user->categories()->detach();
                 $user->tech->delete();
             }
 
