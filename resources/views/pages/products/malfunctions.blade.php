@@ -44,7 +44,11 @@
         <div class="card card-malfunction-data" id="malfunction-data"> <!-- la mostro solo quando ho un centro selezionato -->
             
             <h1 class="malfunction-item title" id="malfunction-name"></h1> <!-- nome -->
-            <p class="malfunction-item medium-text" id="malfunction-description"></p> <!-- descrizione -->
+            
+            <div class="malfunction-desc">
+                <p class="malfunction-item medium-text" id="malfunction-description"></p> <!-- descrizione -->
+            </div>
+            
             <p class="malfunction-item medium-text" id="malfunction-solution"></p> <!-- soluzione -->
         </div> 
     </div>

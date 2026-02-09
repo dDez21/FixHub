@@ -15,9 +15,9 @@
 .card-malfunction-data{
     width: auto;
     height: auto;
-    margin-top: auto;
+    margin-top: 50px;
     margin-bottom: auto;
-    margin-right: 120px;
+    margin-right: 90px;
     padding: 20px;
 }
 
@@ -33,6 +33,11 @@
     gap: 12px;
 }
 
+
+.malfunction-desc{
+    border-bottom: 1px solid #000;
+    padding-bottom: 12px;
+}
 
 .malfunction-single{
     width: 100%;
