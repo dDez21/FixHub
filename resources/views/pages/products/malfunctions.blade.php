@@ -59,21 +59,22 @@
             </div>
 
             <p class="malfunction-item medium-text" id="malfunction-solution"></p> <!-- soluzione -->
-        </div>
-
         
-        <div class="malfunction-action">
-            <div class="new-element">
-                    <a id="user-edit-link" class="add-user" href="#">
-                        <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
-                    </a>
-                </div>
 
-                <div class="new-element" id="delete-wrap">
-                    <a id="user-delete-link" class="add-user" href="#">
-                        <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
-                    </a>
-                </div>
+
+            <div class="malfunction-action">
+                <div class="new-element">
+                        <a id="user-edit-link" class="add-user" href="#">
+                            <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
+                        </a>
+                    </div>
+
+                    <div class="new-element" id="delete-wrap">
+                        <a id="user-delete-link" class="add-user" href="#">
+                            <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
+                        </a>
+                    </div>
+            </div>
         </div>
     </div>
     
