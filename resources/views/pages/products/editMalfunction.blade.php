@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="card malfunction-space">
-  <form method="POST" action="{{ route('staff.products.malfunctions.update', $malf) }}" class="create-malfunction-form">
+  <form method="POST" action="{{ route('staff.products.malfunctions.update', [$product, $malf]) }}"  class="create-malfunction-form">
     @csrf
     @method('PUT')
 
