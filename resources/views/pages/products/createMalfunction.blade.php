@@ -12,7 +12,7 @@
         
         <div class="malfunction-grid">
             <!-- prendo elementi form -->
-        @include('pages.staff.malfunction.formMalfunction', ['malfunction' => null])
+        @include('pages.products.formMalfunction', ['malfunction' => null])
         </div>
         
 
