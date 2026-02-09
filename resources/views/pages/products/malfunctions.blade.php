@@ -17,7 +17,7 @@
             @if ($isStaff)
 
                 <div class="new-element">
-                    <a class="add-user" href="{{ route('admin.products.malfunctions.create', ['product' => $product]) }}">
+                    <a class="add-user" href="{{ route('staff.products.malfunctions.create', ['product' => $product]) }}">
                         <img class="add-user-icon" src="{{ asset('icon/new.png') }}" alt="">
                     </a>
                 </div>
