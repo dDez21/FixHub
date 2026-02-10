@@ -80,7 +80,7 @@ class ProductController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'photo' => 'nullable|image|max:4096',
+            'photo' => ['nullable','image','max:4096'],
             'category_id' => 'required|exists:categories,id',
             'use_techniques'=> 'required|string',
             'installation'=> 'required|string',
@@ -96,10 +96,9 @@ class ProductController extends Controller
 
         // Se carichi una nuova foto: sostituisci (cancella vecchia)
         if ($request->hasFile('photo')) {
-            if ($product->photo) {
-                Storage::disk('public')->delete($product->photo);
-            }
             $data['photo'] = $request->file('photo')->store('products', 'public');
+        } else {
+            unset($data['photo']);
         }
 
         $product->update($data);
