@@ -2,12 +2,10 @@
 
 @section('content') 
 
-<div class="back-row-button">
-    <div class="new-element">   
-        <a id="back" class="add-user" href="{{ route('catalog' )}}">
-            <img class="add-user-icon" src="{{ asset('icon/back.png') }}" alt="">
+<div class="new-element">
+    <a class="add-product" href="{{ route('catalog' )}}">
+            <img class="add-product-icon" src="{{ asset('icon/back.png') }}" alt="">
         </a>
-    </div>
 </div>
 
 
