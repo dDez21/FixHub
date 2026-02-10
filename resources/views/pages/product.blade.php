@@ -4,6 +4,12 @@
 
 @section('content')
 
+<div class="back-button">
+        <a id="back" class="add-user" href="{{ route('catalog' )}}">
+            <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
+        </a>
+</div>
+
 <!-- card prodotto -->
 <div class="card product-space">
     

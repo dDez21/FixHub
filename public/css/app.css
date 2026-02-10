@@ -79,3 +79,9 @@ html, body {
   overflow-x: hidden;
 }
 
+.back-button{
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 30px;
+    height: 30px;
+}

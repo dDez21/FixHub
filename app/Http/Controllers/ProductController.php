@@ -49,7 +49,7 @@ class ProductController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'photo' => 'nullable|image|max:4096',
+            'photo' => ['nullable','file','mimes:jpg,jpeg,png,webp','max:4096'],
             'category_id' => 'required|exists:categories,id',
             'use_techniques'=> 'required|string',
             'installation'=> 'required|string',
@@ -80,7 +80,7 @@ class ProductController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'photo' => ['nullable','image','max:4096'],
+            'photo' => ['nullable','file','mimes:jpg,jpeg,png,webp','max:4096'],
             'category_id' => 'required|exists:categories,id',
             'use_techniques'=> 'required|string',
             'installation'=> 'required|string',
