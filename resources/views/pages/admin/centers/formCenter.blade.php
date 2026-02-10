@@ -49,7 +49,6 @@
   <select class="form-input" id="province_id" name="province_id" required
           data-initial="{{ old('province_id', $center?->province_id) }}">
     <option value="">Seleziona una provincia</option>
-    {{-- in EDIT puoi pre-caricare $provinces, in CREATE resta vuoto e lo riempie il JS --}}
     @isset($provinces)
       @foreach($provinces as $p)
         <option value="{{ $p->id }}"

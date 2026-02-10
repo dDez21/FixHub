@@ -29,7 +29,11 @@ Route::get('/pages/catalog', [CategoriesController::class,'show'])
 Route::get('/pages/product/{product}', [ProductController::class,'show'])
 ->name('product');
 
-
+//per province e città
+Route::middleware('auth')->group(function () {
+        Route::get('/geo/regions/{region}/provinces', [GeoController::class, 'provinces'])->name('geo.provinces');
+        Route::get('/geo/provinces/{province}/cities', [GeoController::class, 'cities'])->name('geo.cities');
+    });
 
 // utente loggato, middleware per verificare auth
 Route::middleware('auth')->group(function () {
@@ -37,10 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile'); //pagina profilo utente
 
 
-    Route::middleware('auth')->group(function () {
-    Route::get('/geo/regions/{region}/provinces', [GeoController::class, 'provinces'])->name('geo.provinces');
-    Route::get('/geo/provinces/{province}/cities', [GeoController::class, 'cities'])->name('geo.cities');
-});
+    
 });
 
 
