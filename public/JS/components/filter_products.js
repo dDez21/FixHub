@@ -53,6 +53,11 @@ document.addEventListener('DOMContentLoaded', () =>{ //aspetto che pagina sia ca
         const text = norm(searchInput?.value);
         const tokens = text ? text.split(/\s+/).filter(Boolean) : [];
 
+        //se solo * mostro tutto
+        if (tokens.length === 1 && tokens[0] === "*") {
+            tokens = [];
+        }
+
         let visibleCount = 0;
 
         productCards.forEach(card => {
