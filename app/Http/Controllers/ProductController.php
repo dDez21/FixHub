@@ -76,7 +76,7 @@ class ProductController extends Controller
 
     // salvo modifiche prodotto
     public function update(Request $request, Product $product){
-
+        error_log('errore foto');
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -89,7 +89,7 @@ class ProductController extends Controller
 
         //se carico nuova foto cancello vecchia
         if ($request->hasFile('photo')) {
- error_log('foto vecchia non eliminata');
+
             
             if ($product->photo) {
                 Storage::disk('public')->delete($product->photo);
