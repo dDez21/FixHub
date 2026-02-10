@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => { //aspetto che documento si
     const addressCenter = document.getElementById('center-address'); //indirizzo centro
     const phoneCenter = document.getElementById('center-phone'); //telefono centro
     const emailCenter = document.getElementById('center-email'); //email centro
-
+    const editLink = document.getElementById('center-edit-link');
+    const deleteLink = document.getElementById('center-delete-link');
 
     //prendo centro selezionato
     function showCenter(el){
@@ -22,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => { //aspetto che documento si
         const city = el.dataset.city || '';
         const phone = el.dataset.phone || '';
         const email = el.dataset.email || '';
+        if (editLink)   editLink.href = el.dataset.editUrl || '#';
+        if (deleteLink) deleteLink.href = el.dataset.deleteUrl || '#';
 
         //controllo sui dati
         if(nameCenter) nameCenter.textContent = name || '';

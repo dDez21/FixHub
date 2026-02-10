@@ -36,7 +36,10 @@
                          data-phone="{{ $center->phone }}"
                          data-email="{{ $center->email }}"
                          data-provincia="{{ $center->province_id }}"
-                         data-region="{{ $center->region_id }}">
+                         data-region="{{ $center->region_id }}"
+                         data-edit-url="{{ route('admin.centers.edit', ['center' => $center->id]) }}"
+                         data-delete-url="{{ route('admin.centers.deleteConfirm', ['center' => $center->id]) }}"
+                        >
 
                         <!-- dati mostrati nell'elenco centri -->
                         <p class="medium-text center-item">{{ $center->name }}</p>
@@ -63,15 +66,13 @@
         @if ($isAdmin)
                 <div class="user-action">
                     <div class="new-element">
-                        <a class="add-user"
-                           href="{{ route('admin.centers.edit', ['center' => $center->id]) }}">
+                        <a id="center-edit-link" class="add-user" href="#">
                             <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
                         </a>
                     </div>
 
                     <div class="new-element">
-                        <a class="add-user"
-                           href="{{ route('admin.centers.deleteConfirm', ['center' => $center->id]) }}">
+                        <a id="center-delete-link" class="add-user" href="#">
                             <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
                         </a>
                     </div>
