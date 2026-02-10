@@ -37,7 +37,7 @@
 
     <!-- foto prodotto -->
     <div class="product-photo">
-        <img src="{{ $product->photo ? Storage::url($product->photo) : asset('images/noPhoto.png') }}" alt="">
+        <img src="{{ url(Storage::url($product->photo)) }}" alt="">
     </div>
 
 
