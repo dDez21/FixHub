@@ -75,7 +75,7 @@
                         
                         <!-- foto prodotto -->
                         <div class="product-icon">
-                            <img src="{{ $product->photo ? Storage::url($product->photo) : asset('images/noPhoto.png') }}" alt="">
+                            <img src="{{ url(Storage::url($product->photo)) }}" alt="">
                         </div>
                         
                         <!-- nome prodotto -->
