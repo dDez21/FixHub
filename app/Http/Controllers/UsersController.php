@@ -64,7 +64,7 @@ class UsersController extends Controller{
     public function create(){
 
         //prendo centri e categorie per riempire form
-        $centers = Center::orderBy('name')->get(['id','name','city']);
+        $centers = Center::orderBy('name')->get(['id','name','city_id']);
         $categories = Category::orderBy('name')->get(['id','name']);
 
         return view('pages.admin.user.createUser', compact('centers', 'categories'));
@@ -131,7 +131,7 @@ class UsersController extends Controller{
     public function edit(User $user){
 
         $user->load(['tech.center', 'categories']);
-        $centers = Center::orderBy('name')->get(['id','name','city']);
+        $centers = Center::orderBy('name')->get(['id','name','city_id']);
         $categories = Category::orderBy('name')->get(['id','name']);
 
         return view('pages.admin.user.editUser', compact('user','centers','categories'));
