@@ -53,44 +53,31 @@
 
 
     <!-- dettagli centro selezionato -->
-    <div class="centers-detail-area">
-        @forelse ($centers as $center)
-            <div class="card card-center-data center-detail"
-                id="center-data-{{ $center->id }}"
-                style="display:none;">
+    <div class="card card-center-data" id="center-data">
+        
+        <h1 class="center-item title" id="center-name"></h1> <!-- nome centro -->
+        <p class="center-item medium-text" id="center-address"></p> <!-- indirizzo centro -->
+        <p class="center-item medium-text" id="center-phone"></p> <!-- telefono centro -->
+        <p class="center-item medium-text" id="center-email"></p> <!-- email centro -->
 
-                <h1 class="center-item title" id="center-name-{{ $center->id }}">{{ $center->name }}</h1>
-                <p class="center-item medium-text">
-                    {{ $center->street }} {{ $center->civic }}
-                    @if($center->city_id), {{ $center->city_id }} @endif
-                </p>
-                <p class="center-item medium-text">Telefono: +39 {{ $center->phone }}</p>
-                <p class="center-item medium-text">Email: {{ $center->email }}</p>
-
-                @if ($isAdmin)
-                    <div class="user-action">
-                        <div class="new-element">
-                            <a class="add-user"
-                            href="{{ route('admin.centers.edit', ['center' => $center->id]) }}">
-                                <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
-                            </a>
-                        </div>
-
-                        <div class="new-element">
-                            <a class="add-user"
-                            href="{{ route('admin.centers.deleteConfirm', ['center' => $center->id]) }}">
-                                <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
-                            </a>
-                        </div>
+        @if ($isAdmin)
+                <div class="user-action">
+                    <div class="new-element">
+                        <a class="add-user"
+                           href="{{ route('admin.centers.edit', ['center' => $center->id]) }}">
+                            <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
+                        </a>
                     </div>
-                @endif
-            </div>
-        @empty
-            <div class="card card-center-data">
-                <p>Nessun centro disponibile.</p>
-            </div>
-        @endforelse
-    </div>
+
+                    <div class="new-element">
+                        <a class="add-user"
+                           href="{{ route('admin.centers.deleteConfirm', ['center' => $center->id]) }}">
+                            <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
+                        </a>
+                    </div>
+                </div>
+        @endif
+    </div> 
     
     
 </div>
