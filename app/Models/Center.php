@@ -21,7 +21,7 @@ class Center extends Model
         return $this->hasMany(Tech::class);
     }
 
-    public function region()   { return $this->belongsTo(Region::class); }
-    public function province() { return $this->belongsTo(Province::class); }
-    public function city()     { return $this->belongsTo(City::class); }
+    public function region()   { return $this->belongsTo(Region::class, 'region_id'); }
+    public function province() { return $this->belongsTo(Province::class, 'province_id'); }
+    public function city()     { return $this->belongsTo(City::class, 'city_id'); }
 }

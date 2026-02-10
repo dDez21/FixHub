@@ -32,18 +32,18 @@
                          data-name="{{ $center->name }}"
                          data-address="{{ $center->street }}"
                          data-civic="{{ $center->civic }}"
-                         data-city="{{ $center->city_id }}"
+                         data-city="{{ $center->city?->name }}"
                          data-phone="{{ $center->phone }}"
                          data-email="{{ $center->email }}"
-                         data-provincia="{{ $center->province_id }}"
-                         data-region="{{ $center->region_id }}"
+                         data-provincia="{{ $center->province?->name }}"
+                         data-region="{{ $center->region?->name }}"
                          data-edit-url="{{ route('admin.centers.edit', ['center' => $center->id]) }}"
                          data-delete-url="{{ route('admin.centers.deleteConfirm', ['center' => $center->id]) }}"
                         >
 
                         <!-- dati mostrati nell'elenco centri -->
                         <p class="medium-text center-item">{{ $center->name }}</p>
-                        <p class="small-text center-item">{{ $center->street }} {{ $center->civic }}@if($center->city_id), {{ $center->city_id }}@endif</p>
+                        <p class="small-text center-item">{{ $center->street }} {{ $center->civic }}@if($center->city?->name), {{ $center->city?->name }}@endif</p>
                     </div>
 
                 @empty
