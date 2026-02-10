@@ -54,7 +54,12 @@ class ProductController extends Controller
             'use_techniques'=> 'required|string',
             'installation'=> 'required|string',
         ]);
-
+        dd(
+            $request->hasFile('photo'),
+            $request->file('photo')?->getClientOriginalName(),
+            $request->file('photo')?->getSize(),
+            $request->file('photo')?->getMimeType()
+            );
         // salvo foto
         if($request->hasFile('photo')) {
             $data['photo'] = $request->file('photo')->store('products', 'public');

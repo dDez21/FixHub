@@ -62,7 +62,7 @@
         <div class="photo-box">
             <img
                 id="photo-preview"
-                src="{{ $product?->photo ? url(Storage::url($product->photo)) : asset('images/noPhoto.png') }}"
+                src="{{ $product?->photo ? asset('storage/'.$product->photo) : asset('images/noPhoto.png') }}"
                 alt="Anteprima foto"
                 style="max-width: 220px; border-radius: 12px; display:block;"
             >
