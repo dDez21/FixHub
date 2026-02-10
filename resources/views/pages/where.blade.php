@@ -28,6 +28,7 @@
                     
                     <!-- prendo dati di ogni centro-->
                     <div class="center-single" role="button" tabindex="0"
+                         data-id="{{ $center->id }}" 
                          data-name="{{ $center->name }}"
                          data-address="{{ $center->street }}"
                          data-civic="{{ $center->civic }}"
@@ -61,18 +62,20 @@
 
         @if ($isAdmin)
                 <div class="user-action">
-                <div class="new-element">
-                    <a id="user-edit-link" class="add-user" href="{{ route('admin.centers.edit', ['center' => $center]) }}">
-                        <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
-                    </a>
-                </div>
+                    <div class="new-element">
+                        <a class="add-user"
+                           href="{{ route('admin.centers.edit', ['center' => $center->id]) }}">
+                            <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
+                        </a>
+                    </div>
 
-                <div class="new-element" id="delete-wrap">
-                    <a id="user-delete-link" class="add-user" href="{{ route('admin.centers.deleteConfirm') }}>
-                        <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
-                    </a>
+                    <div class="new-element">
+                        <a class="add-user"
+                           href="{{ route('admin.centers.deleteConfirm', ['center' => $center->id]) }}">
+                            <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
+                        </a>
+                    </div>
                 </div>
-            </div>
         @endif
     </div> 
     
