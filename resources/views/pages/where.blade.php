@@ -62,13 +62,13 @@
         @if ($isAdmin)
                 <div class="user-action">
                 <div class="new-element">
-                    <a id="user-edit-link" class="add-user" href="#">
+                    <a id="user-edit-link" class="add-user" href="{{ route('admin.centers.editCenter') }}>
                         <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
                     </a>
                 </div>
 
                 <div class="new-element" id="delete-wrap">
-                    <a id="user-delete-link" class="add-user" href="#">
+                    <a id="user-delete-link" class="add-user" href="{{ route('admin.centers.deleteCenter') }}>
                         <img class="add-user-icon" src="{{ asset('icon/remove.png') }}" alt="">
                     </a>
                 </div>
