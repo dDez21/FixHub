@@ -73,7 +73,10 @@ class CenterController extends Controller{
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'phone' => ['required', 'regex:/^\+?[0-9]{8,15}$/'],
-            'email' => ['required','email','max:255','unique:centers,email'],
+            'email' => [
+            'required','email','max:255',
+                Rule::unique('centers', 'email')->ignore($center->id),
+            ],
 
             'region_id' => ['required', 'exists:regions,id'],
             'province_id' => [
