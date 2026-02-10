@@ -20,7 +20,7 @@
         <div class="button-section">
             <!-- annulla creazione -->
             <div class="form-confirm">
-                <button type="submit" class="button button-back">Annulla</button>
+                <button type="submit" class="button button-back" onclick="history.back()">Annulla</button>
             </div>
             
             <!-- conferma creazione -->
