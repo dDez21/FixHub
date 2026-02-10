@@ -5,8 +5,8 @@
 @section('content')
 
 <div class="back-button">
-        <a id="back" class="add-user" href="{{ route('product' )}}">
-            <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
+        <a id="back" class="add-user" href="{{ route('catalog' )}}">
+            <img class="add-user-icon" src="{{ asset('icon/back.png') }}" alt="">
         </a>
 </div>
 
