@@ -90,3 +90,7 @@
   <input class="form-input" type="text" id="civic" name="civic"
          value="{{ old('civic', $center?->civic) }}">
 </div>
+
+<script>
+  window.GEO_BASE = "{{ url('/geo') }}";
+</script>

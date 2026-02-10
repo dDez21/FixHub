@@ -21,15 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
     resetSelect(citySel, 'Seleziona una città');
     if (!regionId) return;
 
-    const res = await fetch(`/geo/regions/${regionId}/provinces`, { headers: { 'Accept':'application/json' }});
-    const data = await res.json();
+    const base = window.GEO_BASE || '';
+    const res = await fetch(`${base}/regions/${regionId}/provinces`, { headers:{Accept:'application/json'} });    const data = await res.json();
 
     data.forEach(p => {
-      const opt = document.createElement('option');
-      opt.value = p.id;
-      opt.textContent = `${p.name} (${p.code})`;
-      if (String(p.id) === String(selectValue)) opt.selected = true;
-      provSel.appendChild(opt);
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = `${p.name} (${p.code})`;
+        if (String(p.id) === String(selectValue)) opt.selected = true;
+        provSel.appendChild(opt);
     });
   }
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     resetSelect(citySel, 'Seleziona una città');
     if (!provinceId) return;
 
-    const res = await fetch(`/geo/provinces/${provinceId}/cities`, { headers: { 'Accept':'application/json' }});
+    const res = await fetch(`${base}/provinces/${provinceId}/cities`, { headers:{Accept:'application/json'} });
     const data = await res.json();
 
     data.forEach(c => {
