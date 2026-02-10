@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="back-button">
+<div class="product-action back-button">
         <a id="back" class="add-user" href="{{ route('catalog' )}}">
             <img class="add-user-icon" src="{{ asset('icon/back.png') }}" alt="">
         </a>
