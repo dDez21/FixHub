@@ -1,66 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => { //aspetto che documento sia caricato
+document.addEventListener('DOMContentLoaded', () => {
+  const centers = document.querySelectorAll('.center-single');
+  const cards = document.querySelectorAll('.center-detail');
+  if (!centers.length) return;
 
-    const centers = document.querySelectorAll('.center-single'); //prendo tutti i centri
-    if(!centers.length) return; //se non ci sono centri esco
+  function hideAll() {
+    cards.forEach(c => (c.style.display = 'none'));
+  }
 
-    // prendo elementi card
-    const nameCenter = document.getElementById('center-name'); //nome centro
-    const addressCenter = document.getElementById('center-address'); //indirizzo centro
-    const phoneCenter = document.getElementById('center-phone'); //telefono centro
-    const emailCenter = document.getElementById('center-email'); //email centro
+  function showCenterById(id) {
+    hideAll();
+    const card = document.getElementById(`center-data-${id}`);
+    if (card) card.style.display = 'block';
+  }
 
-
-    //prendo centro selezionato
-    function showCenter(el){
-        
-        //metto i dati del centro selezionato nella card
-        const name = el.dataset.name || '';
-        const region = el.dataset.region || '';
-        const provincia = el.dataset.provincia || '';
-        const address = el.dataset.address || '';
-        const civic = el.dataset.civic || '';
-        const city = el.dataset.city || '';
-        const phone = el.dataset.phone || '';
-        const email = el.dataset.email || '';
-
-        //controllo sui dati
-        if(nameCenter) nameCenter.textContent = name || '';
-
-        //costruisco indirizzo completo
-        if(addressCenter){
-            const totalAddress = `${address} ${civic} - ${city} (${provincia}), ${region}`;
-            addressCenter.textContent = totalAddress;
-        }
-
-        if(phoneCenter) phoneCenter.textContent = phone ? `Telefono: +39 ${phone}` : '';
-        if(emailCenter) emailCenter.textContent = email ? `Email: ${email}` : '';
-    }
-
-
-    //centro viene selezionato
-    function selectCenter(el){
-
-        //prende unicità selezione
-        centers.forEach(c => c.classList.remove('is-selected'));
-        el.classList.add('is-selected');
-        
-        //mostra dati centro selezionato
-        showCenter(el);
-    }
-
-
-    //aggiungo evento click a tutti i centri
-    centers.forEach(el => {
-        el.addEventListener('click', () => selectCenter(el));
-
-        // selezione anche da tastiera (Enter / Spazio)
-        el.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                selectCenter(el);
-                }
-            });
+  centers.forEach(el => {
+    el.addEventListener('click', () => {
+      centers.forEach(c => c.classList.remove('is-selected'));
+      el.classList.add('is-selected');
+      showCenterById(el.dataset.id);
     });
 
-    selectCenter(centers[0]); //seleziono il primo centro di default
-}); 
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        centers.forEach(c => c.classList.remove('is-selected'));
+        el.classList.add('is-selected');
+        showCenterById(el.dataset.id);
+      }
+    });
+  });
+
+  // Mostra il primo di default
+  centers[0].classList.add('is-selected');
+  showCenterById(centers[0].dataset.id);
+});
