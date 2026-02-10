@@ -91,7 +91,7 @@ class CenterController extends Controller{
             'street' => 'required|string|max:160',
             'civic' => 'nullable|string|max:20',
             ]);
-
+        return redirect()->route('where')->with('success','Centro modificato');
     }
 
 
