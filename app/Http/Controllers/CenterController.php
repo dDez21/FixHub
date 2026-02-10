@@ -41,7 +41,7 @@ class CenterController extends Controller{
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'phone' => ['required', 'regex:/^\+?[0-9]{8,15}$/'],
-            'email' => 'required|email|max:255',
+            'email' => ['required','email','max:255','unique:centers,email'],
             'region_id' => ['required', 'exists:regions,id'],
             'province_id' => [
                 'required',
@@ -73,7 +73,7 @@ class CenterController extends Controller{
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'phone' => ['required', 'regex:/^\+?[0-9]{8,15}$/'],
-            'email' => 'required|email|max:255',
+            'email' => ['required','email','max:255','unique:centers,email'],
 
             'region_id' => ['required', 'exists:regions,id'],
             'province_id' => [
@@ -88,6 +88,7 @@ class CenterController extends Controller{
             'street' => 'required|string|max:160',
             'civic' => 'nullable|string|max:20',
             ]);
+
     }
 
 
