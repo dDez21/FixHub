@@ -54,13 +54,16 @@ class DatabaseSeeder extends Seeder
         
 
         //seeder centri assistenza
+        [$rid, $pid, $cid] = $this->geoIds('Lombardia', 'MI', 'Milano');
+
+
         $center = Center::create([
             'name' => 'Tutto elettronica',
             'phone' => '3634262456',
             'email'=> 'support.milano@fixtech.com',
-            'region_id' => 'Lombardia',
-            'province_id' => 'MI',
-            'city_id' => 'Milano',
+            'region_id' => $rid,
+            'province_id' => $pid,
+            'city_id' => $cid,
             'street' => 'Via Roma',
             'civic' => '123',
         ]);
@@ -358,17 +361,18 @@ class DatabaseSeeder extends Seeder
     }
 
     private function geoIds(string $regionName, string $provCode, string $cityName): array
-        {
-            $region = \App\Models\Region::where('name', $regionName)->first();
-            if (!$region) $region = \App\Models\Region::create(['name' => $regionName, 'code' => null]);
+{
+    $region = \App\Models\Region::where('name', $regionName)->firstOrFail();
 
-            $province = \App\Models\Province::where('region_id', $region->id)->where('code', $provCode)->first();
-            if (!$province) $province = \App\Models\Province::create(['region_id' => $region->id, 'code' => $provCode, 'name' => $provCode]);
+    $province = \App\Models\Province::where('region_id', $region->id)
+        ->where('code', strtoupper($provCode))
+        ->firstOrFail();
 
-            $city = \App\Models\City::where('province_id', $province->id)->where('name', $cityName)->first();
-            if (!$city) $city = \App\Models\City::create(['province_id' => $province->id, 'name' => $cityName, 'cap' => null]);
+    $city = \App\Models\City::where('province_id', $province->id)
+        ->where('name', $cityName)
+        ->firstOrFail();
 
-            return [$region->id, $province->id, $city->id];
-        }
+    return [$region->id, $province->id, $city->id];
+}
 
 }
