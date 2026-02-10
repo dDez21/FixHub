@@ -20,7 +20,11 @@
         @endphp
 
 
-            c
+            <!-- nome -->
+            <div class="form-space">
+                <label class="form-label" for="name">Nome</label>
+                <input class="form-input"type="text" id="name" name="name" value="{{ old('name', $user?->name) }}" required>
+            </div>
 
             <!-- cognome -->
             <div class="form-space">
@@ -95,7 +99,7 @@
                         
                         @foreach($centers as $center)
                             <option class="list-value" value="{{ $center->id }}" @selected((string)$centerSelected === (string)$center->id)>
-                            {{ $center->name }}, {{ $center->city_id }}
+                            {{ $center->name }}, {{ $center->$city->name }}
                             </option>
                         @endforeach                    
                     </select>
