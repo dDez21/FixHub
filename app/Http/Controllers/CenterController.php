@@ -66,7 +66,7 @@ class CenterController extends Controller{
         $regions = Region::orderBy('name')->get();
         $provinces = Province::orderBy('name')->get();
         $cities = City::orderBy('name')->get();
-        return view('pages.admin.centers.editCenter', compact('regions','provinces','cities'));
+        return view('pages.admin.centers.editCenter', compact('center', 'regions','provinces','cities'));
     }
 
     public function update(Request $request, Center $center){
