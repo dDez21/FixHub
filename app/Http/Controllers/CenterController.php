@@ -22,7 +22,11 @@ class CenterController extends Controller{
         $isAdmin = ($role === 'admin');
     
 
-        $centers = Center::with('regions:id,name', 'province:id,name', 'city:id,name')->orderBy('name')->get(); //prendo tutti i centri
+        $centers = Center::with([
+                                                'region:id,name',
+                                                'province:id,name,code',
+                                                'city:id,name'
+                                            ])->orderBy('name')->get();
         
         return view('pages.where', compact('centers', 'isAdmin')); //passo i centri e isAdmin alla vista
     }
