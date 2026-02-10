@@ -14,6 +14,7 @@
                 <a class="add-user" href="{{ route('admin.centers.create') }}">
                     <img class="add-user-icon" src="{{ asset('icon/add.png') }}" alt="">
                 </a>
+            @endif
         </div>
 
         <!-- card centri -->
