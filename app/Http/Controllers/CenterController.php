@@ -40,7 +40,11 @@ class CenterController extends Controller{
 
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'phone' => ['required', 'regex:/^\+?[0-9]{8,15}$/'],
+            'phone' => [
+                    'required',
+                    'regex:/^\+?[0-9]{8,15}$/',
+                    Rule::unique('centers', 'phone'),
+                ],
             'email' => ['required','email','max:255','unique:centers,email'],
             'region_id' => ['required', 'exists:regions,id'],
             'province_id' => [
@@ -71,8 +75,12 @@ class CenterController extends Controller{
 
     public function update(Request $request, Center $center){
         $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => ['required', 'regex:/^\+?[0-9]{8,15}$/'],
+            'name' => ['required','string','max:255'],
+            'phone' => [
+                    'required',
+                    'regex:/^\+?[0-9]{8,15}$/',
+                    Rule::unique('centers', 'phone')->ignore($center->id),
+                ],
             'email' => [
             'required','email','max:255',
                 Rule::unique('centers', 'email')->ignore($center->id),
@@ -93,7 +101,7 @@ class CenterController extends Controller{
             ]);
 
         $center->update($data);
-        
+
         return redirect()->route('where')->with('success','Centro modificato');
     }
 
