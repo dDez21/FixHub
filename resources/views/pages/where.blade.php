@@ -62,7 +62,7 @@
         @if ($isAdmin)
                 <div class="user-action">
                 <div class="new-element">
-                    <a id="user-edit-link" class="add-user" href="{{ route('admin.centers.edit') }}>
+                    <a id="user-edit-link" class="add-user" href="{{ route('admin.centers.edit', ['center' => $center]) }}">
                         <img class="add-user-icon" src="{{ asset('icon/edit.png') }}" alt="">
                     </a>
                 </div>
