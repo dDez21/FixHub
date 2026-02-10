@@ -76,7 +76,7 @@ class ProductController extends Controller
 
     // salvo modifiche prodotto
     public function update(Request $request, Product $product){
-        error_log('errore foto');
+
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
