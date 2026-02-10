@@ -11,7 +11,7 @@
             <h1 class="text">I nostri centri</h1>
 
             @if ($isAdmin)
-                <a class="add-user" href="{{ route('admin.centers.create') }}">
+                <a class="add-product" href="{{ route('admin.centers.create') }}">
                     <img class="add-user-icon" src="{{ asset('icon/new.png') }}" alt="">
                 </a>
             @endif
