@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const citySel   = document.getElementById('city_id');
 
   if (!regionSel || !provSel || !citySel) return;
+  
+  const base = window.GEO_BASE || '';
 
   const initialProvince = provSel.dataset.initial || '';
   const initialCity     = citySel.dataset.initial || '';
@@ -21,13 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
     resetSelect(citySel, 'Seleziona una città');
     if (!regionId) return;
 
-    const base = window.GEO_BASE || '';
     const res = await fetch(`${base}/regions/${regionId}/provinces`, { headers:{Accept:'application/json'} });    const data = await res.json();
 
     data.forEach(p => {
         const opt = document.createElement('option');
         opt.value = p.id;
-        opt.textContent = `${p.name} (${p.code})`;
+        opt.textContent = opt.textContent = p.code ? p.code : p.name;
         if (String(p.id) === String(selectValue)) opt.selected = true;
         provSel.appendChild(opt);
     });
