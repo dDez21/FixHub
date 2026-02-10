@@ -18,7 +18,7 @@ class ProfileController extends Controller
         // carico relazioni solo se è tecnico
         if ($isTech) {
             $user->load([
-                'tech.center',
+                'tech.center.city:id,name',
             ]);
         }
 

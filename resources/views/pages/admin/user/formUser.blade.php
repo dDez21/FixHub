@@ -99,7 +99,7 @@
                         
                         @foreach($centers as $center)
                             <option class="list-value" value="{{ $center->id }}" @selected((string)$centerSelected === (string)$center->id)>
-                            {{ $center->name }}, {{ $center->name }}
+                            {{ $center->name }}
                             </option>
                         @endforeach                    
                     </select>

@@ -31,7 +31,7 @@
                 <p><strong>Centro associato:</strong>
                     {{ $user->tech->center->name ?? '-' }} -
                     {{ $user->tech->center->street ?? '' }} {{ $user->tech->center->civic ?? '' }},
-                    {{ $user->tech->center->city_id ?? '' }}
+                    {{ $user->tech->center?->city?->name ?? '' }}
                 </p>   
             @endif
 
