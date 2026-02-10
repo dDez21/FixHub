@@ -86,20 +86,29 @@ class ProductController extends Controller
             'installation'=> 'required|string',
         ]);
 
+        //se carico nuova foto cancello vecchia
+        if ($request->hasFile('photo')) {
 
-        if ($request->boolean('remove_photo')) {
             if ($product->photo) {
                 Storage::disk('public')->delete($product->photo);
             }
-            $data['photo'] = null;
-        }
 
-        // Se carichi una nuova foto: sostituisci (cancella vecchia)
-        if ($request->hasFile('photo')) {
             $data['photo'] = $request->file('photo')->store('products', 'public');
+
+        //non carino nuova foto ma rimuovo foto
+        } elseif ($request->boolean('remove_photo')) {
+
+            if ($product->photo) {
+                Storage::disk('public')->delete($product->photo);
+            }
+
+            $data['photo'] = null;
+
+        // non faccio nulla sulla foto
         } else {
             unset($data['photo']);
         }
+            
 
         $product->update($data);
 

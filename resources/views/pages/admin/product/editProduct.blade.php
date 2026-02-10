@@ -7,7 +7,7 @@
 <div class="card user-space">
 
     <!-- sezione form -->
-    <form method="POST" action="{{ route('admin.products.update', $product->id) }}" class="create-product-form">
+    <form method="POST" action="{{ route('admin.products.update', $product->id) }}" class="create-product-form" enctype="multipart/form-data">
         @csrf   
         @method('PUT')
         

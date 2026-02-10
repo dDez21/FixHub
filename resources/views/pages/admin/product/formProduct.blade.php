@@ -74,4 +74,5 @@
                 accept="image/*"
                 class="file-input"
             >
+        </div>
     </div>

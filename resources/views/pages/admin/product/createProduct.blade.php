@@ -7,7 +7,7 @@
 <div class="card user-space">
 
     <!-- sezione form -->
-    <form method="POST" action="{{ route('admin.products.store') }}" class="create-product-form">
+    <form method="POST" action="{{ route('admin.products.store') }}" class="create-product-form" enctype="multipart/form-data">
         @csrf   
         
         <div class="user-grid">
