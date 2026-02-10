@@ -18,7 +18,15 @@
 <!-- telefono -->
 <div class="form-space">
   <label class="form-label" for="phone">Numero di telefono</label>
-  <input class="form-input" type="tel" id="phone" name="phone"
+  <input class="form-input" 
+        type="tel"
+        name="phone"
+        id="phone"
+        inputmode="numeric"
+        autocomplete="tel"
+        pattern="^\+?[0-9]{8,15}$"
+        maxlength="16"
+        placeholder="Es. 0711234567 oppure +393331234567"
          value="{{ old('phone', $center?->phone) }}" required>
 </div>
 
