@@ -54,12 +54,7 @@ class ProductController extends Controller
             'use_techniques'=> 'required|string',
             'installation'=> 'required|string',
         ]);
-        dd(
-            $request->hasFile('photo'),
-            $request->file('photo')?->getClientOriginalName(),
-            $request->file('photo')?->getSize(),
-            $request->file('photo')?->getMimeType()
-            );
+        
         // salvo foto
         if($request->hasFile('photo')) {
             $data['photo'] = $request->file('photo')->store('products', 'public');
@@ -91,16 +86,18 @@ class ProductController extends Controller
             'installation'=> 'required|string',
         ]);
 
+
         //se carico nuova foto cancello vecchia
         if ($request->hasFile('photo')) {
-
+ error_log('foto vecchia non eliminata');
+            
             if ($product->photo) {
                 Storage::disk('public')->delete($product->photo);
             }
-
+           
             $data['photo'] = $request->file('photo')->store('products', 'public');
 
-        //non carino nuova foto ma rimuovo foto
+        //non carico nuova foto ma rimuovo foto
         } elseif ($request->boolean('remove_photo')) {
 
             if ($product->photo) {
