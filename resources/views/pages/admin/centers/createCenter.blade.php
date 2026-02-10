@@ -12,7 +12,7 @@
         
         <div class="user-grid">
             <!-- prendo elementi form -->
-        @include('pages.admin.center.formCenter', ['center' => null])
+        @include('pages.admin.centers.formCenter', ['center' => null])
         </div>
         
 

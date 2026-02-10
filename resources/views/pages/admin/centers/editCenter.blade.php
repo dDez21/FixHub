@@ -10,7 +10,7 @@
     <div class="user-grid">
 
         <!-- prendo elementi form -->
-        @include('pages.admin.center.formCenter', ['center' => $center])
+        @include('pages.admin.centers.formCenter', ['center' => $center])
     </div>
 
     <!-- bottoni azioni -->
