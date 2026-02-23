@@ -42,7 +42,6 @@
                         data-name="{{ $m->name }}"
                         data-description="{{ $m->description }}"
                         data-solution="{{ $m->solution }}"
-
                         @if($isStaff)
                             data-edit-url="{{ route('staff.products.malfunctions.edit', ['product' => $product, 'malfunction' => $m]) }}"
                             data-delete-url="{{ route('staff.products.malfunctions.deleteConfirm', ['product' => $product, 'malfunction' => $m]) }}"

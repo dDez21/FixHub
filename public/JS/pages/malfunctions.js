@@ -10,10 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!items.length || !card) return;
 
+    //mostra malfunzionamento
     function showMalfunction(el) {
         const name = el.dataset.name || '';
         const desc = el.dataset.description || '';
         const solution = el.dataset.solution || '';
+
 
         card.style.display = 'block';
         card.setAttribute('aria-hidden', 'false');
@@ -22,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         descEl.textContent = desc;
         solutionEl.textContent = solution ? `Soluzione: ${solution}` : '';
 
-        // aggiorno i link se presenti
+        // aggiorno i link per modifica malf se presenti
         if (editLink && el.dataset.editUrl) {
             editLink.href = el.dataset.editUrl;
             editLink.setAttribute('aria-disabled', 'false');
@@ -38,16 +40,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    //seleziono malfunzionamento
     function selectMalfunction(el) {
+        //tolgo a tutti selezione
         items.forEach(i => i.classList.remove('is-selected'));
+        //do selezione solo a quel malfunzionamento
         el.classList.add('is-selected');
+        //lo mostro
         showMalfunction(el);
     }
 
-    
+    //aggiungo selezione ad ogni elemento della lista
     items.forEach(el => {
         el.addEventListener('click', () => selectMalfunction(el));
 
+        //navigazione con tastiera
         el.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();

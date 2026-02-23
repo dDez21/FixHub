@@ -30,8 +30,6 @@ class AppServiceProvider extends ServiceProvider
         $links = config("level.$role") ?? config("level.guest"); /* prendo elementi in base al livello di login da file in config/level */
         $view->with('navLinks', $links);
         $view->with('navRole', $role); 
-    });
-
-
+        });
     }
 }

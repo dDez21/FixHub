@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteWrap = document.getElementById('delete-wrap');
     const deleteLink = document.getElementById('user-delete-link');
 
+
+    //prendo ruolo utente
     function roleLabel(role) {
         if (role === 'admin') return 'Admin';
         if (role === 'tech') return 'Tecnico';
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return role || '';
     }
 
+    //mi serve per caricare dati extra di staff e tech
     async function fetchJson(url) {
         if (!url) return null;
         try {

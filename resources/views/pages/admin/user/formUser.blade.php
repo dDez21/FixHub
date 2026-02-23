@@ -107,21 +107,21 @@
             </div>
 
 
-    <!-- categorie -->
-    <div id="categories-options" @if(!$showCategories) hidden @endif>
-        <div class="form-group">
-            <p class="form-label">Categorie</p>
+        <!-- categorie -->
+        <div id="categories-options" @if(!$showCategories) hidden @endif>
+            <div class="form-group">
+                <p class="form-label">Categorie</p>
 
-            <div class="categories-box">
-                @foreach($categories as $category)
-                    <label class="category-item">
-                        <input type="checkbox" name="categories[]" value="{{ $category->id }}"
-                            @checked(in_array($category->id, $selectedCategories))>
-                        <span>{{ $category->name }}</span>
-                    </label>
-                @endforeach
+                <div class="categories-box">
+                    @foreach($categories as $category)
+                        <label class="category-item">
+                            <input type="checkbox" name="categories[]" value="{{ $category->id }}"
+                                @checked(in_array($category->id, $selectedCategories))>
+                            <span>{{ $category->name }}</span>
+                        </label>
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
-  
+    
             

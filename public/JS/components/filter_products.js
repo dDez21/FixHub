@@ -18,27 +18,36 @@ document.addEventListener('DOMContentLoaded', () =>{ //aspetto che pagina sia ca
     const wordsOf = (s) => norm(s).split(/[^\wàèéìòù]+/i).filter(Boolean);
 
 
+    //definisco criteri per filtro
     const matchToken = (allText, words, t) => {
+        
+        //testo vuoto
         if (!t) return true;
 
-        // "*" 
+        // solo * 
         if (t === "*") return true;
 
+
+        //cerco * nel testo
         const starPos = t.indexOf("*");
+        
+        //* non presente, restituisco tutto il testo
         if (starPos === -1) {
-            //
             return allText.includes(t);
         }
 
-        // *  solo carattere finale
+        // *  accettabile solo come carattere finale
         if (starPos !== t.length - 1) {
             return false;
         }
 
+        //prende parole prima di *
         const prefix = t.slice(0, -1);
+        
+        //prefisso vuoto do tutto
         if (prefix === "") return true;
 
-        // parole con quel prefisso
+        //restituisco parole con quel prefisso
         return words.some(w => w.startsWith(prefix));
     };
 
@@ -74,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () =>{ //aspetto che pagina sia ca
             // filtro testo
             const textOk = tokens.every(t => matchToken(all, words, t));
 
+            //mostro categoria e prodotti coerenti alla barra di ricerca
             const show = catSelected && textOk;
-
             card.style.display = show ? "" : "none";
             if (show) visibleCount++;
         });
