@@ -29,6 +29,10 @@ Route::get('/pages/catalog', [CategoriesController::class,'show'])
 Route::get('/pages/product/{product}', [ProductController::class,'show'])
 ->name('product');
 
+
+
+
+
 //per province e città
 Route::middleware('auth')->group(function () {
         Route::get('/geo/regions/{region}/provinces', [GeoController::class, 'provinces'])->name('geo.provinces');
@@ -40,8 +44,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile'); //pagina profilo utente
 
-
-    
 });
 
 
@@ -78,6 +80,8 @@ Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->grou
     Route::get('/products/{product}/malfunctions/{malfunction}/edit', [MalfunctionsController::class, 'edit'])
     ->name('products.malfunctions.edit');
 
+
+    //put se cambio tutti i dati dell'elemento, se uso patch forse meglio. verifica
     Route::put('/products/{product}/malfunctions/{malfunction}', [MalfunctionsController::class, 'update'])
     ->name('products.malfunctions.update');
 

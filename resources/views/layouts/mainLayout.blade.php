@@ -11,13 +11,10 @@
 
         <!-- stili testi -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /> 
-        
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />         
         
         <link rel="icon" type="image/png" href="{{ asset('icon/browIcon.png') }}"> <!-- logo browser tab -->
 
-
-        <!-- Scripts -->
         <link rel="stylesheet" href="{{ asset(path: 'css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/components/header.css') }}">
         <link rel="stylesheet" href="{{ asset('css/views/home.css') }}">

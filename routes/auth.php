@@ -2,25 +2,13 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 
 /* utente non loggato */
 Route::middleware('guest')->group(function () {
 
-    /* creo utente */
-    Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('register');
-
-    /* creo utente + lo autentico */
-    Route::post('register', [RegisteredUserController::class, 'store']);
 
     /* vado al login */
     Route::get('login', [AuthenticatedSessionController::class, 'create'])

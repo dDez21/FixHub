@@ -31,6 +31,9 @@
         @if(auth()->check() && (auth()->user()->role === 'tech' || auth()->user()->role === 'staff'))
             
             <!-- decido la route in base al livello di autenticazione -->
+
+            <!-- da sistemare, posso direttamente passare alla schermata il livello d'autenticazione (sempre che già non lo faccia) -->
+            <!-- posso passare valori dalla route su web.php senza usare php se sono valori fattibili -->
             @php
                 $routeName = auth()->user()->role === 'staff'
                     ? 'staff.products.malfunctions'
