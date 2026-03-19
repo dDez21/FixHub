@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
 
             $navLinks = config( //leggo nella cartella config
 
-                "navigation.$role", config('navigation.guest', []) //in base al livello di autenticazione prendo gli elementi giusti
+                "level.$role", config('level.guest', []) //in base al livello di autenticazione prendo gli elementi giusti
             );
 
             $view->with('navLinks', $navLinks); //mando navLink alla view
