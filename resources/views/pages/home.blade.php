@@ -23,8 +23,8 @@
                 </div>
             </div>
 
-            <button class="carousel-button prev" type="button"></a> <!-- indietro -->
-            <button class="carousel-button next" type="button"></a> <!-- avanti -->
+            <a class="carousel-button prev" type="button"></a> <!-- indietro -->
+            <a class="carousel-button next" type="button"></a> <!-- avanti -->
     </div>
  
 

@@ -11,7 +11,7 @@
 
             <!-- documento -->
             <div class="header-description-space">
-                Per scaricare la documentazione     
+                Per visualizzare la documentazione     
                 <strong><a href="{{ asset('docs\relazione_progetto.pdf') }}" class="alert-link">clicca qui!</a></strong>
             </div>
         </div>
