@@ -44,8 +44,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
 
-        //chiamato ogni volta che devo reinderizzare l'header
-        View::composer('components.header', function($view){
+        //chiamato ogni volta che devo reinderizzare header e footer
+        View::composer(['components.header', 'components.footer'], function($view){
 
             $role = 'guest'; //imposto inizialmente il ruolo di guest
 
