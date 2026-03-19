@@ -161,18 +161,14 @@ class DatabaseSeeder extends Seeder
                 'user_id' => $tecn->id,
                 'center_id' => $centerUser->id,
                 'birth_date' => '1999-05-20',
+                'specializations' => 'Reti internet, sostituzione componenti, diagnosi guasti',
             ]);
 
-        //associo categorie al tecnico
-        $tecn->categories()->sync([
-            $catComputer->id,
-            $catTelefoniTablet->id,
-        ]);
 
         //associo categorie allo staff
         $staff->categories()->sync([
-            $catStampantiScanner->id,
-            $catWiFi->id,
+            $catComputer->id,
+            $catTelefoniTablet->id,
         ]);
 
 

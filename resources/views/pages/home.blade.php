@@ -3,7 +3,7 @@
 @section('content')
     
     <!-- elenco immagini -->
-    <div class="carousel" data-interval="5000">    
+    <div class="carousel">    
             
             <div class="carousel-track"> <!-- contenitore immagini -->
                 <div class="carousel-slide">
@@ -23,10 +23,8 @@
                 </div>
             </div>
 
-            <a class="carousel-button prev" type="button"></a> <!-- indietro -->
-            <a class="carousel-button next" type="button"></a> <!-- avanti -->
-
-            <div class="carousel-dots"></div> <!-- pallini -->
+            <button class="carousel-button prev" type="button"></a> <!-- indietro -->
+            <button class="carousel-button next" type="button"></a> <!-- avanti -->
     </div>
  
 

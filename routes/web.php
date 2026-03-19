@@ -8,26 +8,79 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\MalfunctionsController;
 use App\Http\Controllers\GeoController;
 use Illuminate\Support\Facades\Route;
-
-//home non loggato
-Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Auth\PasswordController;
 
 
-//pagina elenco centri
-Route::get('/pages/where', [CenterController::class, 'show'])
-->name('where');
+//utente non loggato_________________________________________________________________________________________________________________
+
+    //home
+    Route::get('/', function () {
+        return view('pages.home');
+    })->name('home');
 
 
-//pagina catalogo
-Route::get('/pages/catalog', [CategoriesController::class,'show'])
-->name('catalog');
+    //elenco centri
+    Route::get('/pages/where', [CenterController::class, 'show'])
+    ->name('where');
 
 
-//pagina prodotto
-Route::get('/pages/product/{product}', [ProductController::class,'show'])
-->name('product');
+    //catalogo
+    Route::get('/pages/catalog', [CategoriesController::class,'show'])
+    ->name('catalog');
+
+
+    //prodotto selezionato
+    Route::get('/pages/product/{product}', [ProductController::class,'show'])
+    ->name('product');
+
+
+
+
+
+
+//autenticazione_________________________________________________________________________________________________________________
+
+    //middleware verifica se utente non è loggato
+    Route::middleware('guest')->group(function () {
+
+        /* vado al login */
+        Route::get('login', [AuthenticatedSessionController::class, 'create'])
+            ->name('login');
+
+        /* autentica utente */
+        Route::post('login', [AuthenticatedSessionController::class, 'store']);
+    });
+
+
+
+
+
+
+    
+
+//utente loggato_________________________________________________________________________________________________________________
+
+
+/* utente loggato */
+Route::middleware('auth')->group(function () {
+
+    /* form ppw */
+    Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
+        ->name('password.confirm');
+
+    /* conferma ppw */
+    Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
+
+    /* aggiorna ppw */
+    Route::put('password', [PasswordController::class, 'update'])->name('password.update');
+
+    /* logout */
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->name('logout');
+});
+
 
 
 
@@ -47,8 +100,9 @@ Route::middleware('auth')->group(function () {
 });
 
 
+//rotte tecnico_________________________________________________________________________________________________________________
 
-// rotte tecnico
+
 Route::prefix('tecn')->name('tecn.')->middleware(['auth', 'role:tech'])->group(function () {
 
     //pagina malfunzionamenti
@@ -60,8 +114,8 @@ Route::prefix('tecn')->name('tecn.')->middleware(['auth', 'role:tech'])->group(f
 
 
 
+//rotte staff_________________________________________________________________________________________________________________
 
-// rotte staff
 Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->group(function () {
 
     //pagina malfunzionamenti
@@ -96,7 +150,8 @@ Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->grou
 
 
 
-// rotte admin
+//rotte admin_________________________________________________________________________________________________________________
+
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
 
     //pagina lista utenti
@@ -185,6 +240,4 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::delete('/centers/{center}', [CenterController::class, 'delete'])
     ->name('centers.delete');
 });
-
-
-require __DIR__.'/auth.php';
+;

@@ -1,52 +1,32 @@
-//inizializzo carousel
-function initCarousel(carousel){
+//inizializzo carousel, uso jQuery
+function initCarousel($carousel){ //$carousel è l'elemento jQuery del carosello
 
-    const track = carousel.querySelector(".carousel-track"); //prendo riga che scorre
-    const slides = Array.from(carousel.querySelectorAll(".carousel-slide")) //prendo tutte le immagini
-    const dotsWrap = carousel.querySelector(".carousel-dots"); //contenitore pallini
+    const $track = $carousel.find(".carousel-track"); //prendo riga che scorre
+    const $images = $carousel.find(".carousel-slide"); //prendo tutte le immagini
     
-    //prendo bottoni
-    const prevBtn = carousel.querySelector(".carousel-button.prev");
-    const nextBtn = carousel.querySelector(".carousel-button.next");
 
-    const interval = Number(carousel.dataset.interval || 5000); //tempo tra ogni scorrimento
+    //prendo bottoni
+    const $prevBtn = $carousel.find('.carousel-button.prev');
+    const $nextBtn = $carousel.find('.carousel-button.next');
+
+    const interval = 5000; //intervallo di tempo tra ogni scorrimento
 
     let index = 0; //indice prima immagine
-    let timer = null;
+    let timer = null; //timer per scorrimento
 
-    if(!track || slides.length === 0) return //condizione che mi fa partire il carousel
-
-    const dots = []; //creo array indicatori
-    if (dotsWrap){
-        dotsWrap.innerHTML = ""; //ripulisco già presenti
-        
-        //creo pallino per ogni immagine
-        slides.forEach((_, i) => {
-            const dot = document.createElement("button");
-            dot.type = "button";
-            dot.className = "carousel-dot"; //gli do classe per gli indicatori creata
-
-            if(i == 0) dot.classList.add("is-active") //ho preso il primo indicatore
-        
-            dot.addEventListener("click", () => goTo(i)); //cambio immagine se clicco su indicatore corrispondente
-            
-            dotsWrap.appendChild(dot) //lo aggiungo all'elenco degli indicatori
-            dots.push(dot); //lo salvo nell'array degli indicatori
-
-        });
-    }
+    //condizione che mi fa partire il carousel, evita che parta se non ho preso correttamente le foto
+    if($track.length === 0 || $images.length === 0) return 
 
 
-    //aggiorno posizione track e stato indicatori
+    //aggiorno posizione carosello
     function update(){
-        track.style.transform = `translateX(-${index * 100}%)`; //sposto striscia
-        dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
+        $track.css("transform", `translateX(-${index * 100}%)`); //css mi permette di modificare proprietà CSS elemento
     }
 
 
     //va all'immagine associata
     function goTo(i){
-        index = (i + slides.length) % slides.length;
+        index = (i + $images.length) % $images.length;
         update(); //applico cambio
     }
 
@@ -64,28 +44,32 @@ function initCarousel(carousel){
 
 
     //collegamento bottoni
-    if (nextBtn) nextBtn.addEventListener("click", next);
-    if (prevBtn) prevBtn.addEventListener("click", prev);
+    if ($nextBtn.length) $nextBtn.on("click", next);
+    if ($prevBtn.length) $prevBtn.on("click", prev);
 
 
     //autoplay
     function start(){
-        stop() //parto da 0 nel timer
-        timer = setInterval(next, interval);
+        stop() //chiamato prima per evitare di creare un altro timer
+        timer = setInterval(next, interval);  //richiama next() ogni tot tempo dato da interval
     }
 
 
     //ferma autoplay 
     function stop(){
         if (timer) clearInterval(timer); //cancello timer
-        timer = null;
+        timer = null; //reimposto timer a null
     }
 
-    update() //inizio da 0
-    start() //avvia autoplay
+    update(); //inizio da 0
+    start(); //avvia autoplay
 }
 
 //inizializzo carosello quando DOM pronto
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".carousel").forEach(initCarousel);
+$(document).ready(function(){
+
+    //eseguo il codice per ogni immagine nel carosello
+    $(".carousel").each(function(){
+        initCarousel($(this));
+    });
 });

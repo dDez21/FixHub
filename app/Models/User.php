@@ -46,7 +46,7 @@ class User extends Authenticatable
         return $this -> hasOne(Tech::class);
     }
 
-   
+    //relazione con categorie (0:N)
     public function categories(){
         return $this -> belongsToMany(Category::class, 'category_user');
     }

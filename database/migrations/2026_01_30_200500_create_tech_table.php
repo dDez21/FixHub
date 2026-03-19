@@ -28,6 +28,8 @@ return new class extends Migration
 
             $table->date('birth_date');
             
+            $table->text('specializations');
+
             $table->timestamps();
         });
     }

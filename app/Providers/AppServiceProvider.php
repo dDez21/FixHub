@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,15 +22,22 @@ class AppServiceProvider extends ServiceProvider
 
 
     public function boot(): void
-    {    
-        $this->app->useLangPath(base_path('lang'));
-        
-        /* ricavo il livello di autenticazione */
-        View::composer('*', function ($view) {
-        $role = auth()->check() ? auth()->user()->role : 'guest'; /* verifico login */
-        $links = config("level.$role") ?? config("level.guest"); /* prendo elementi in base al livello di login da file in config/level */
-        $view->with('navLinks', $links);
-        $view->with('navRole', $role); 
+    {            
+
+        //gate per admin
+        Gate::define('isAdmin', function (User $user) {
+            return $user->role === 'admin';
+        });
+
+
+        //gate per tecnico
+        Gate::define('isTech', function (User $user) {
+            return $user->role === 'tech';
+        });
+
+        //gate per staff
+        Gate::define('isStaff', function (User $user) {
+            return $user->role === 'staff';
         });
     }
 }
