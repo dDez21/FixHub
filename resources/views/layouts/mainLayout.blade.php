@@ -14,7 +14,6 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />         
         
         <link rel="icon" type="image/png" href="{{ asset('icon/browIcon.png') }}"> <!-- logo browser tab -->
-
         <link rel="stylesheet" href="{{ asset(path: 'css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/components/header.css') }}">
         <link rel="stylesheet" href="{{ asset('css/views/home.css') }}">
@@ -38,9 +37,7 @@
         <main class="page">
             @yield("content") <!-- contenuto principale -->
         </main>            
-        
-        <script src="{{ asset('JS/components/carousel.js') }}" defer></script> <!-- animazione carosello -->
-
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script src="{{ asset('JS/components/filter_products.js') }}" defer></script> <!-- barra di ricerca -->
 
         @include('components.footer')
