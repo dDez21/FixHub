@@ -14,6 +14,7 @@
     display: flex; /* scorrimento orizzontale */
     transition: transform .6s ease; /* animazione cambio immagine */
     will-change: transform; /* miglioro animazioni */
+    height: 100%;
 }
 
 
@@ -23,6 +24,7 @@
     display: flex; /* centro il contenuto della slide */
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 
 
@@ -88,30 +90,6 @@
     background: rgba(0,0,0,.65);
 }
 
-/* pallini in basso */
-.carousel-dots{
-    position: absolute;
-    left: 50%;
-    bottom: 12px;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 5;
-}
-
-/* singolo pallino */
-.carousel-dot{
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  border: 0;
-  background: rgba(255,255,255,.45);
-  cursor: pointer;
-}
-
-.carousel-dot.is-active{
-  background: rgba(255,255,255,.95);
-}
 
 /* testo sotto */
 .text-section{

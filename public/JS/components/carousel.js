@@ -65,6 +65,8 @@ function initCarousel($carousel){ //$carousel è l'elemento jQuery del carosello
     start(); //avvia autoplay
 }
 
+console.log("carousel js caricato");
+
 //inizializzo carosello quando DOM pronto
 $(document).ready(function(){
 
