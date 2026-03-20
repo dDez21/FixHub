@@ -67,4 +67,7 @@
             </div>
         </div>
     </section>    
+
+
+<script src="{{ asset('JS/components/carousel.js') }}" defer></script>
 @endsection
