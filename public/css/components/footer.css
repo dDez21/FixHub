@@ -87,7 +87,8 @@
 
 
 /* documentazione sito */
-.document-space{
-    text-align: center;
-    width: 100%;
+.site-document{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
