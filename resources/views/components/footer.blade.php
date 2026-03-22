@@ -67,8 +67,10 @@
 
 
     <!-- documentazione sito -->
-    <div class="site-document">
-        Per visualizzare la documentazione     
-    <strong><a href="{{ asset('docs\relazione_progetto.pdf') }}" class="alert-link">clicca qui!</a></strong>
+    <div class="document-space">
+        <div class="site-document">
+            Per visualizzare la documentazione     
+            <strong><a href="{{ asset('docs\relazione_progetto.pdf') }}" class="alert-link">clicca qui!</a></strong>
+        </div>
     </div>
 </footer>
