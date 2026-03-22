@@ -89,7 +89,7 @@
 
 /* documentazione sito */
 .document-space{
-    display: flex;
-    justify-content: center; /* centro orizzontalmente */
-    align-items: center;     /* centro verticalmente */
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
 }
