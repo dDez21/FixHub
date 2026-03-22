@@ -2,18 +2,9 @@
 
     <div class="header-info">
         
-        <!-- logo e documentazione -->
+        <!-- logo -->
         <div class="header-left">
-            <!-- logo -->
-            <div class="header-logo-space">
-                <img class="header-logo" src="{{ asset('images/logo.png') }}" alt="FixHub">
-            </div>
-
-            <!-- documento -->
-            <div class="header-description-space">
-                Per visualizzare la documentazione     
-                <strong><a href="{{ asset('docs\relazione_progetto.pdf') }}" class="alert-link">clicca qui!</a></strong>
-            </div>
+            <img class="header-logo" src="{{ asset('images/logo.png') }}" alt="FixHub">
         </div>
             
         <!-- pagine selezionabili -->

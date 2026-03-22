@@ -64,4 +64,11 @@
     <div class="footer-rights">
         <p class="small-text">© {{ date('Y') }} <strong>FixHub</strong> — Tutti i diritti riservati.</p>
     </div>
+
+
+    <!-- documentazione sito -->
+    <div class="site-document">
+        Per visualizzare la documentazione     
+        <strong><a href="{{ asset('docs\relazione_progetto.pdf') }}" class="alert-link">clicca qui!</a></strong>
+    </div>
 </footer>
