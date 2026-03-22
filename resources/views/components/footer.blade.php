@@ -69,6 +69,6 @@
     <!-- documentazione sito -->
     <div class="site-document">
         Per visualizzare la documentazione     
-        <strong><a href="{{ asset('docs\relazione_progetto.pdf') }}" class="alert-link">clicca qui!</a></strong>
+    <strong><a href="{{ asset('docs\relazione_progetto.pdf') }}" class="alert-link">clicca qui!</a></strong>
     </div>
 </footer>

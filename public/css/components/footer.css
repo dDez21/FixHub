@@ -86,8 +86,9 @@
 }
 
 
+
 /* documentazione sito */
 .site-document{
-    align-items: center;
-    color: #fff;
+    display: block;
+
 }
