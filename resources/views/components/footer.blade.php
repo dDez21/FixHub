@@ -69,8 +69,8 @@
     <!-- documentazione sito -->
     <div class="footer-rights">
         <div class="site-document">
-            <span class="medium-text">Per visualizzare la documentazione</span>     
-            <strong><a href="{{ asset('docs/relazione_progetto.pdf') }}" class="medium-text selected-footer">clicca qui!</a></strong>
+            <span class="document-text">Per visualizzare la documentazione</span>     
+            <strong><a href="{{ asset('docs/relazione_progetto.pdf') }}" class="document-text selected-footer">clicca qui!</a></strong>
         </div>
     </div>
 </footer>

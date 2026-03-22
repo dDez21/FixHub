@@ -93,3 +93,11 @@
     align-items: center;
     justify-content: center;
 }
+
+
+.document-text{
+    font-size: 16px;
+    opacity: .8;
+    color: #fff;
+    font-weight: 400;
+}
