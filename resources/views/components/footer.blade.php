@@ -69,7 +69,7 @@
     <!-- documentazione sito -->
     <div class="document-space">
         <div class="site-document">
-            Per visualizzare la documentazione     
+            <p class="small-text">Per visualizzare la documentazione</p>     
             <strong><a href="{{ asset('docs\relazione_progetto.pdf') }}" class="selected-footer">clicca qui!</a></strong>
         </div>
     </div>
