@@ -69,8 +69,8 @@
     <!-- documentazione sito -->
     <div class="footer-rights">
         <div class="site-document">
-            <p class="small-text" style="text-sixe:20px;">Per visualizzare la documentazione</p>     
-            <strong><a href="{{ asset('docs\relazione_progetto.pdf') }}" class="small-text selected-footer" style="text-sixe:20px;">clicca qui!</a></strong>
+            <p class="small-text" style="font-sixe:20px;">Per visualizzare la documentazione</p>     
+            <strong><a href="{{ asset('docs\relazione_progetto.pdf') }}" class="small-text selected-footer" style="font-sixe:20px;">clicca qui!</a></strong>
         </div>
     </div>
 </footer>
