@@ -185,7 +185,7 @@
 
 /* card modalità */
 .service-card{
-    flex: 0 0 220px; /* dimensioni card */
+    flex: 0 0 320px; /* dimensioni card */
     border: 1px solid #ADCA21;
     border-radius: 10px;
     padding-top: 20px;

@@ -99,7 +99,7 @@
 
 
             <div class="service-card">
-                <h1 class="medium-text">Accesso autenticato</h1>
+                <h1 class="medium-text-access">Accesso autenticato</h1>
 
                 <p class="small-text">
                     Gli utenti autenticati accedono all’area riservata tramite credenziali personali e hanno a loro disposizione funzionalità disponibili in base al proprio ruolo all'interno dell'azienda.
