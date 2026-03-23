@@ -109,8 +109,8 @@
 
 
        <!-- livelli di accesso --> 
-        <div class="service-card">
-            <h1 class="medium-text">Livelli di accesso</h1>
+        <div class="access-level-card">
+            <h1 class="medium-text-access">Livelli di accesso</h1>
 
             <p class="small-text">
                 <strong>Tecnico</strong>: visualizzazione delle informazioni del sito e dell’azienda, dell’elenco dei centri di assistenza, del catalogo prodotti e delle relative schede, inclusi malfunzionamenti e soluzioni, senza possibilità di modifica.<br><br>
