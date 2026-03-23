@@ -166,19 +166,11 @@
     flex-direction: column;
 }
 
-/* titolo sezione */
-.auth-title{
-
-}
-
-
-/* sezione card modalità */
-.auth-zone{
-    
-}
-
 
 /* card modalità */
 .service-card{
-
+    flex: 0 0 220px; /* dimensioni card */
+    border: 1px solid #ADCA21;
+    border-radius: 10px;
+    padding-top: 20px;
 }

@@ -73,7 +73,7 @@
     <section class="auth-description">
 
         <!-- titolo descrizione sezione-->
-        <div class="auth-title">
+        <div class="text-section">
             <h1 class="title">Modalità di accesso</h1>
         
             <p class="medium-text">
@@ -83,7 +83,7 @@
         </div>
 
         <!-- elenco servizi -->
-        <div class="auth-zone">
+        <div class="catalog-categories">
             
             <div class="service-card">
                 <h1 class="medium-text">Accesso pubblico</h1>
