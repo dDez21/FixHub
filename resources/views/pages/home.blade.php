@@ -90,8 +90,8 @@
 
                 <p class="small-text">
                     Gli utenti non autenticati possono:<br>
-                    - consultare la home page, il catalogo dei prodotti e l'elenco dei nostri centri assistenza<br>
-                    - visualizzare le informazioni principali del sito<br>
+                    - consultare la home page, il catalogo dei prodotti e l'elenco dei nostri centri assistenza<br><br>
+                    - visualizzare le informazioni principali del sito<br><br>
                     - accedere alla documentazione del progetto
                 </p>
             </div>
