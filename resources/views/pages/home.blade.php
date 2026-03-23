@@ -89,7 +89,7 @@
                 <h1 class="medium-text-access">Accesso pubblico</h1>
 
                 <p class="small-text">
-                    Gli utenti non autenticati possono:<br>
+                    Gli utenti non autenticati possono:<br><br>
                     - consultare la home page, il catalogo dei prodotti e l'elenco dei nostri centri assistenza<br><br>
                     - visualizzare le informazioni principali del sito<br><br>
                     - accedere alla documentazione del progetto
