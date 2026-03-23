@@ -103,7 +103,6 @@
 /* sezione catalogo */
 .catalog-section{
     border-top: 3px solid #ADCA21;
-    border-bottom: 3px solid #ADCA21;
     padding-top: 10px;
     padding-bottom: 10px;
     width: 100vw;
@@ -165,13 +164,21 @@
     flex-direction: column;
 }
 
-
 /* testo sopra */
 .upper-section{
     text-align: center;
     margin: 0 auto;
     max-width: 1200px;
     padding: 40px 50px;
+}
+
+
+/* guest e auth */
+.access-categories{
+    display: flex;
+    gap: 90px;
+    padding: 20px 0;
+    justify-content: center;
 }
 
 
