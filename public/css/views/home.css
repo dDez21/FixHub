@@ -162,12 +162,9 @@
     border-top: 3px solid #ADCA21;
     padding-top: 10px;
     padding-bottom: 40px;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+    align-items: center;
     display: flex;
-    flex-direction: column; /* orientamento verticale */
-    gap: 20px;
-    box-sizing: border-box;
+    flex-direction: column;
 }
 
 /* titolo sezione */

@@ -70,7 +70,7 @@
 
 
     <!-- modalità d'accesso sito -->
-    <section class="catalog-section">
+    <section class="auth-description">
 
         <!-- titolo descrizione sezione-->
         <div class="auth-title">
