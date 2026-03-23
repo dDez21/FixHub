@@ -105,7 +105,6 @@
                     Gli utenti autenticati accedono all’area riservata tramite credenziali personali e hanno a loro disposizione funzionalità disponibili in base al proprio ruolo all'interno dell'azienda.
                 </p>
             </div>
-
         </div>
 
 
