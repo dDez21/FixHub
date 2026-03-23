@@ -73,7 +73,7 @@
     <section class="auth-description">
 
         <!-- titolo descrizione sezione-->
-        <div class="text-section">
+        <div class="upper-section">
             <h1 class="title">Modalità di accesso</h1>
         
             <p class="medium-text">

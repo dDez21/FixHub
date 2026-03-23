@@ -166,6 +166,16 @@
 }
 
 
+/* testo sopra */
+.upper-section{
+    text-align: center; /* centro  testo */
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px 20 px;
+}
+
+
+
 /* card modalità */
 .service-card{
     flex: 0 0 220px; /* dimensioni card */
