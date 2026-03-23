@@ -34,7 +34,7 @@
     max-height: 100%;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* evita lo zoom mostrando l'intera immagine */
+    object-fit: cover; /* evita lo zoom mostrando l'intera immagine */
     object-position: center;
     display: block;
 }
