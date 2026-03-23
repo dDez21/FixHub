@@ -160,17 +160,35 @@
 
 /* sezione modalità d'accesso */
 .auth-description{
-    padding-top: 10px;
-    padding-bottom: 40px;
+    border-top: 3px solid #ADCA21;
+    padding: 40px 30px;
     display: flex;
     flex-direction: column;
+    gap: 30px;
+    box-sizing: border-box;
+    width: 100%;
 }
+
+
+/* tipi di accesso */
+.access-catalog{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    padding: 0 30px;
+    box-sizing: border-box;
+} 
+
 
 
 /* card modalità */
 .service-card{
-    flex: 0 0 220px; /* dimensioni card */
+    width: 350px;
+    min-height: 220px;
     border: 1px solid #ADCA21;
     border-radius: 10px;
-    padding-top: 20px;
+    padding: 20px;
+    box-sizing: border-box;
 }

@@ -83,10 +83,10 @@
         </div>
 
         <!-- elenco servizi -->
-        <div class="catalog-categories">
+        <div class="access-categories">
             
             <div class="service-card">
-                <h1 class="medium-text" style="align-content: center">Accesso pubblico</h1>
+                <h1 class="medium-text">Accesso pubblico</h1>
 
                 <p class="small-text">
                     Gli utenti non autenticati possono:<br>
@@ -99,7 +99,7 @@
 
 
             <div class="service-card">
-                <h1 class="medium-text" style="align-content: center">Accesso autenticato</h1>
+                <h1 class="medium-text">Accesso autenticato</h1>
 
                 <p class="small-text">
                     Gli utenti autenticati accedono all’area riservata tramite credenziali personali e hanno a loro disposizione funzionalità disponibili in base al proprio ruolo all'interno dell'azienda.
@@ -111,16 +111,14 @@
 
        <!-- livelli di accesso --> 
         <div class="service-card">
-            <h1 class="medium-text style="align-content: center"">Livelli di accesso</h1>
+            <h1 class="medium-text">Livelli di accesso</h1>
 
             <p class="small-text">
-                <strong>Tecnico</strong>: visualizzazione delle informazioni del sito e dell’azienda, dell’elenco dei centri di assistenza, del catalogo prodotti e delle relative schede, inclusi malfunzionamenti e soluzioni, senza possibilità di modifica.<br>
-                <strong>Staff</strong>: gestione dei malfunzionamenti e delle relative soluzioni associate ai prodotti di competenza.<br>                    <strong>Admin</strong>: gestione dei prodotti e delle relative informazioni (ad esclusione di malfunzionamenti e soluzioni), amministrazione degli utenti registrati nel sistema e dei centri di assistenza.
+                <strong>Tecnico</strong>: visualizzazione delle informazioni del sito e dell’azienda, dell’elenco dei centri di assistenza, del catalogo prodotti e delle relative schede, inclusi malfunzionamenti e soluzioni, senza possibilità di modifica.<br><br>
+                <strong>Staff</strong>: gestione dei malfunzionamenti e delle relative soluzioni associate ai prodotti di competenza.<br><br>
+                <strong>Admin</strong>: gestione dei prodotti e delle relative informazioni (ad esclusione di malfunzionamenti e soluzioni), amministrazione degli utenti registrati nel sistema e dei centri di assistenza.
             </p>
         </div>
-
-       
-
     </section>
 
 
