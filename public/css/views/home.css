@@ -103,6 +103,7 @@
 /* sezione catalogo */
 .catalog-section{
     border-top: 3px solid #ADCA21;
+    border-bottom: 3px solid #ADCA21;
     padding-top: 10px;
     padding-bottom: 40px;
     width: 100vw;
@@ -159,10 +160,8 @@
 
 /* sezione modalità d'accesso */
 .auth-description{
-    border-top: 3px solid #ADCA21;
     padding-top: 10px;
     padding-bottom: 40px;
-    align-items: center;
     display: flex;
     flex-direction: column;
 }
