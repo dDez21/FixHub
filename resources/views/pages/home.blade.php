@@ -66,7 +66,63 @@
                     <a class="selected" href="{{ route('catalog') }}">Wi-Fi</a>
             </div>
         </div>
-    </section>    
+    </section>
 
-<script src="{{ asset('JS/components/carousel.js') }}" defer></script> <!-- animazione carosello -->
+
+    <!-- modalità d'accesso sito -->
+    <section class="auth-description">
+
+        <!-- titolo descrizione sezione-->
+        <div class="auth-title">
+            <h1 class="title">Modalità di accesso</h1>
+        
+            <p class="medium-text">
+            FixHub prevede una parte pubblica accessibile senza autenticazione e una parte riservata accessibile tramite login.
+            In base al ruolo assegnato, ogni utente visualizza funzionalità e contenuti differenti.
+            </p>
+        </div>
+
+        <!-- elenco servizi -->
+        <div class="auth-zone">
+            
+            <div class="service-card">
+                <h1 class="medium-text">Accesso pubblico</h1>
+
+                <p class="small-text">
+                    Gli utenti non autenticati possono:<br>
+                    - consultare la home page, il catalogo dei prodotti e l'elenco dei nostri centri assistenza<br>
+                    - visualizzare le informazioni principali del sito<br>
+                    - accedere alla documentazione del progetto
+                </p>
+            </div>
+
+
+
+            <div class="service-card">
+                <h1 class="medium-text">Accesso autenticato</h1>
+
+                <p class="small-text">
+                    Gli utenti autenticati accedono all’area riservata tramite credenziali personali e hanno a loro disposizione funzionalità disponibili in base al proprio ruolo all'interno dell'azienda.
+                </p>
+            </div>
+
+
+
+            <div class="service-card">
+                <h1 class="medium-text">Livelli di accesso</h1>
+
+                <p class="small-text">
+                    <strong>Tecnico</strong>: visualizzazione delle informazioni del sito e dell’azienda, dell’elenco dei centri di assistenza, del catalogo prodotti e delle relative schede, inclusi malfunzionamenti e soluzioni, senza possibilità di modifica.<br>
+                    <strong>Staff</strong>: gestione dei malfunzionamenti e delle relative soluzioni associate ai prodotti di competenza.<br>
+                    <strong>Admin</strong>: gestione dei prodotti e delle relative informazioni (ad esclusione di malfunzionamenti e soluzioni), amministrazione degli utenti registrati nel sistema e dei centri di assistenza.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+<script src="{{ asset('JS/components/carousel.js') }}" defer></script> <!-- per animazione carosello -->
 @endsection
