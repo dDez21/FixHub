@@ -76,7 +76,7 @@
         <div class="upper-section">
             <h1 class="title">Modalità di accesso</h1>
         
-            <p class="medium-text">
+            <p class="text footer-text-margin">
             FixHub prevede una parte pubblica accessibile senza autenticazione e una parte riservata accessibile tramite login.
             In base al ruolo assegnato, ogni utente visualizza funzionalità e contenuti differenti.
             </p>
