@@ -190,3 +190,12 @@
     border-radius: 10px;
     padding-top: 20px;
 }
+
+
+.medium-text-access{
+    text-align: center;
+    font-size: 18px;
+    opacity: .8;
+    color: #fff;
+    font-weight: 600;
+}

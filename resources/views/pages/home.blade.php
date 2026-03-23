@@ -86,7 +86,7 @@
         <div class="access-categories">
             
             <div class="service-card">
-                <h1 class="medium-text">Accesso pubblico</h1>
+                <h1 class="medium-text-access">Accesso pubblico</h1>
 
                 <p class="small-text">
                     Gli utenti non autenticati possono:<br>
