@@ -104,6 +104,8 @@ class SaveCenterRequest extends FormRequest
         return [
             'phone.unique' => 'Questo numero di telefono è già associato a un altro centro.',
             'email.unique' => 'Questa email è già associata a un altro centro.',
+            'email.email' => 'Inserisci un indirizzo email valido.',
+            'email.max' => 'L’email non può superare 255 caratteri.',
         ];
     }
 }

@@ -49,7 +49,7 @@
 
                 <li class="elements">
                     <img class="icon" src="{{ asset('icon/sms.png') }}" alt="" aria-hidden="true">
-                    <span>support@fixtech.com</span>                
+                    <span>support.fixhub@gmail.com</span>                
                 </li>
             </ul>
         </div>
