@@ -26,9 +26,6 @@
     <label class="form-label" for="username">Username</label>
     <input class="form-input"type="text" id="username" name="username" value="{{ old('username', $user?->username) }}" required>
 </div>
-@error('username')
-        <p class="form-error">{{ $message }}</p>
-@enderror
 
 
 <!-- password -->
