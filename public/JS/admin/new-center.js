@@ -5,92 +5,141 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!regionSel || !provSel || !citySel) return;
   
+  //recupero url geografico globale 
   const base = window.GEO_BASE || '';
 
-  //valori iniziali provincia e città
+  //valori iniziali di provincia e città
   const initialProvince = provSel.dataset.initial || '';
   const initialCity     = citySel.dataset.initial || '';
 
+
   //svuota tutte opzioni prov/cit quando cambio dati e metto placeholder
   function resetSelect(select, placeholder) {
-    
-    //svuota tutte le opzioni
-    select.innerHTML = '';
-
-    //creo nuova opzione placeholder
-    const opt = document.createElement('option');
-    opt.value = '';
-    opt.textContent = placeholder;
-
-    //inserisco opzione
-    select.appendChild(opt);
+      
+    //metto txt placeholder nella casella
+    select.innerHTML = `<option value="">${placeholder}</option>`;
   }
+
+
+
+
+  //riempio select con lista elementi
+  function fillSelect(select, items, selectedValue, getLabel){
+      
+    items.forEach(item =>{
+
+      //creo elemento html option + gli do il valore corrispondente al suo id
+      const opt = document.createElement('option');
+      opt.value = item.id;
+
+      //imposto testo visibile
+      opt.textContent = getLabel(item);
+
+
+      //verifico se id elemento coincide con valore dell'elemento associato
+      if(String(item.id) === String(selectedValue)){
+          opt.selected = true;
+      }
+
+      //aggiungo option dentro la select
+      select.appendChild(opt);
+    })
+  }
+
+
+
+  //la uso per fare richiesta a un URL, mi restituisce JSON
+  async function getJson(url){
+
+    //mando richiesta HTTP a URL passato chiedendo una risposta JSON
+    const res = await fetch(url, { headers: { Accept : 'application/json' }});
+  
+    //errore nella risposta JSON
+    if(!res.ok){
+      throw new Error(`Errore nella richiesta: ${res.status}`);
+    }
+  
+    //se risposta va bene
+    return res.json();
+  }
+
+
+
 
   //carico provincie
   async function loadProvinces(regionId, selectValue = '') {
-    
+      
     //resetto valori
     resetSelect(provSel, 'Seleziona una provincia');
     resetSelect(citySel, 'Seleziona una città');
-    
+      
     //condizione regione scelta
     if (!regionId) return;
 
-    //creo url dinamico per prendere le provincie
-    //await mi fa attendere che arrivi la risposta
-    const res = await fetch(`${base}/regions/${regionId}/provinces`, { headers:{Accept:'application/json'} });    
-    
-    //converto in json ottenendo un array di provincie
-    const data = await res.json();
+    //chiamo funzione per ottenere provincie associate a quella regione
+    const data = await getJson(`${base}/regions/${regionId}/provinces`);
 
-    //do opzione ad ogni provincia
-    data.forEach(p => {
-        const opt = document.createElement('option');
-        opt.value = p.id;
-        opt.textContent = opt.textContent = p.code ? p.code : p.name;
-        
-        //se ho già provincia selezionata
-        if (String(p.id) === String(selectValue)) opt.selected = true;
-        
-        //aggiungo opzione al DOM
-        provSel.appendChild(opt);
-    });
+    //riempio select provincie con i dati ricevuti
+    fillSelect(
+      profSel,
+      data,
+      selectValue,
+      p => `${p.name}`
+    )
   }
+
+
+
 
   //carico città
   async function loadCities(provinceId, selectValue = '') {
+    
     resetSelect(citySel, 'Seleziona una città');
     if (!provinceId) return;
 
-    const res = await fetch(`${base}/provinces/${provinceId}/cities`, { headers:{Accept:'application/json'} });
-    const data = await res.json();
+    //recupero città di quella provincia
+    const data = await getJson(`${base}/provinces/${provinceId}/cities`);
 
-    data.forEach(c => {
-      const opt = document.createElement('option');
-      opt.value = c.id;
-      opt.textContent = c.name;
-      if (String(c.id) === String(selectValue)) opt.selected = true;
-      citySel.appendChild(opt);
-    });
+    //riempio select
+    fillSelect(
+      citySel,
+      data,
+      selectedValue,
+      c => c.name
+    );
   }
+
+
 
   //cambio regione scelta
   regionSel.addEventListener('change', async () => {
+    
+    //aspetto caricamento provincie
     await loadProvinces(regionSel.value, '');
   });
 
+
   //cambio provincia scelta
   provSel.addEventListener('change', async () => {
+    
+    //aspetto caricamento città
     await loadCities(provSel.value, '');
   });
 
+
+
   //imposto le risposte che le funzioni async devono aspettare prima di essere eseguite
   (async () => {
-    if (regionSel.value) {
-      await loadProvinces(regionSel.value, initialProvince);
-      if (initialProvince) {
-        await loadCities(initialProvince, initialCity);
-      }
+
+    //necessito di selezionare una regione
+    if (!regionSel.value) return;
+
+    //carico province associate a regione scelta
+    await loadProvinces(regionSel.value, initialProvince);
+    
+    //se ho provincia scelta carico città
+    if (initialProvince) {
+      await loadCities(initialProvince, initialCity);
     }
   })();
 });

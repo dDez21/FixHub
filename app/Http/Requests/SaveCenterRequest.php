@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Center;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreCenterRequest extends FormRequest
+class SaveCenterRequest extends FormRequest
 {
 
     //per vedere se utente loggato ha autorizzazione di svolgere tale azione
@@ -19,6 +19,20 @@ class StoreCenterRequest extends FormRequest
     //regole di validazione
     public function rules(): array
     {
+
+        //prende dalla route il centro selezionato, se siamo in create il valore è vuoto
+        $center = $this->route('center');
+
+        $phoneRule = Rule::unique('centers', 'phone');
+        $emailRule = Rule::unique('centers', 'email');
+
+
+        //ignoro queste regole solo per il singolo centro, evita di inserire dati di altri centri
+        if ($center) {
+            $phoneRule = $phoneRule->ignore($center->id);
+            $emailRule = $emailRule->ignore($center->id);
+        }
+
         return [
             
             'name' => [
@@ -29,7 +43,7 @@ class StoreCenterRequest extends FormRequest
             'phone' => [
                 'required',
                 'regex:/^[0-9]{10}$/',
-                Rule::unique('centers', 'phone'),
+                $phoneRule,
             ],
 
             'email' => [
@@ -38,7 +52,7 @@ class StoreCenterRequest extends FormRequest
                 Rule::email()
                     ->rfcCompliant(strict: false)
                     ->validateMxRecord(),
-                Rule::unique('centers', 'email'),
+                $emailRule,
             ],
 
             'region_id' => [

@@ -14,7 +14,7 @@
         id="phone"
         inputmode="numeric"
         autocomplete="tel"
-        pattern="^\+?[0-9]{8,15}$"
+        pattern="/^[0-9]{10}$/"
         maxlength="16"
         placeholder="Non inserire prefisso o spazi"
          value="{{ old('phone', $center?->phone) }}" required>
@@ -89,6 +89,8 @@
          value="{{ old('civic', $center?->civic) }}">
 </div>
 
+
+<!-- variabile globale js per geo -->
 <script>
   window.GEO_BASE = "{{ url('/geo') }}";
 </script>
