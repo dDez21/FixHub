@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    //eseguo richiesta AJAX per staff e tech
+    //eseguo richiesta AJAX per recuperare dati staff e tech
     function fetchAjax(url, onSuccess) {
         
         //ho url non valido
@@ -86,67 +86,95 @@ document.addEventListener('DOMContentLoaded', () => {
             username = ''
         } = user.dataset;
 
+        //aggiorno i dati nella card
         if (nameUser) nameUser.textContent = name;
         if (surnameUser) surnameUser.textContent = surname;
         if (roleUser) roleUser.textContent = role ? `Ruolo: ${role}` : '';
         if (usernameUser) usernameUser.textContent = `Username: ${username}`;
 
-        // aggiorno link azioni (FIX “sempre stesso utente”)
+        // aggiorno link azioni
         if (editLink) editLink.href = user.dataset.editUrl || '#';
         if (deleteLink) deleteLink.href = user.dataset.deleteUrl || '#';
 
-        // reset box
-        if (techBox) techBox.style.display = 'none';
-        if (techCenter) techCenter.textContent = '';
-        if (techCategories) techCategories.textContent = '';
+        
+        //resetto ulteriori dati
+        resetTechData();
+        resetStaffData();
+        
 
-        if (staffBox) staffBox.style.display = 'none';
-        if (staffCategories) staffCategories.textContent = '';
-
-        // TECH details
+        // utente selezionato è tecnico
         if (role === 'tech') {
-        const data = await fetchJson(user.dataset.techUrl);
-        if (data && data.tech) {
-            if (techBox) techBox.style.display = 'block';
-            const centerName = data.tech.center || '';
-            const categories = data.tech.categories || [];
-            if (techCenter) techCenter.textContent = centerName ? `Centro: ${centerName}` : 'Centro: Nessun centro associato';
-            if (techCategories) techCategories.textContent = categories.length ? `Categorie: ${categories.join(', ')}` : '';
-        }
+
+            //chiamata AJAX al controller dei dati del tecnico
+            fetchAjax(el.dataset.techUrl, function (data) {
+                
+                //verifico esistenza risposta e dati del tecnico
+                if (data && data.tech) {
+                    
+                    //mostro box tecnico
+                    if (techBox) techBox.style.display = 'block';
+                    
+                    //recupero dati tecnico
+                    const birthdate = data.tech.birthdate?.name || data.tech.birthdate || '';
+                    const centerName = data.tech.center || '';
+                    const specializations = data.tech.specializations || '';
+                
+                    //aggiorno caselle con i dati
+                    if (techBirthdate) techBirthdate.textContent = birthdate ? `Data di nascita: ${birthdate}`: 'Data di nascita: -';
+                    if (techCenter) techCenter.textContent = centerName ? `Centro: ${centerName}` : 'Centro: Nessun centro associato';
+                    if (techSpecializations) techSpecializations.textContent = specializations ? `Specializzazioni: ${specializationNames.join(', ')}` : 'Specializzazioni: -';
+                }  
+            });
         }
 
-        // STAFF details
+
+        //utente selezionato è staff
         if (role === 'staff') {
-        const data = await fetchJson(user.dataset.staffUrl);
-        if (data && data.staff) {
-            if (staffBox) staffBox.style.display = 'block';
-            const categories = data.staff.categories || [];
-            if (staffCategories) staffCategories.textContent = categories.length ? `Categorie: ${categories.join(', ')}` : 'Categorie: -';
-        }
+            
+            //chiamata AJAX al controller dei dati staff
+            fetchAjax(el.dataset.staffUrl, function (data) {
+                
+                //verifico esistenza risposta e dati staff
+                if (data && data.staff) {
+
+                    //mostro box staff
+                    if (staffBox) staffBox.style.display = 'block';
+                    
+                    //recupero categorie e aggiorno la card
+                    const categories = data.staff.categories || [];
+                    if (staffCategories) staffCategories.textContent = categories.length ? `Categorie: ${categories.join(', ')}` : 'Categorie: -';
+                }
+            });
         }
 
         if (role === 'admin') {
+
+            //nascondo bottone elimina
             deleteWrap.style.display = 'none';
         } else {
+
+            //mostro bottone elimina
             deleteWrap.style.display = 'block';
         }
     }
 
+
+    //selezione di un utente
     function selectUser(user) {
+
+        //tolgo selezione a tutti e la do all'unico utente selezionato
         users.forEach(c => c.classList.remove('is-selected'));
         user.classList.add('is-selected');
         showUser(user);
     }
 
+
+    //aggiungo eventi a tutti i membri della lista utenti
     users.forEach(user => {
         user.addEventListener('click', () => selectUser(user));
-        user.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            selectUser(user);
-        }
-        });
     });
 
+
+    //seleziono di default primo utente
     selectUser(users[0]);
 });
