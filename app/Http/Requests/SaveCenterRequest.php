@@ -96,4 +96,14 @@ class SaveCenterRequest extends FormRequest
             'civic' => $this->filled('civic') ? trim((string) $this->civic) : null,
         ]);
     }
+
+
+    //messaggi di errore personalizzati
+    public function messages(): array
+    {
+        return [
+            'phone.unique' => 'Questo numero di telefono è già associato a un altro centro.',
+            'email.unique' => 'Questa email è già associata a un altro centro.',
+        ];
+    }
 }
