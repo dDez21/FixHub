@@ -26,16 +26,19 @@ class UsersController extends Controller{
     //prendo dettagli tecnico
     public function tech(User $user){
         
+
+        //controllo diretto per verificare ruolo utente scelto
         abort_unless($user->role === 'tech', 404);
     
 
-        //carico centro e categorie tecnico
+        //carico dati tecnico
         $user->load([
             'birthdate:id,name',
             'tech.center:id,name',
             'specializations:id,name'
         ]);
 
+        //js usa richiesta json per ottenere dati da mostrare
         return response()->json([
             'tech' => $user->tech ? [
                 'birthdate' => $user->tech->birthdate,
@@ -49,6 +52,7 @@ class UsersController extends Controller{
     //categorie staff
     public function staff(User $user)
     {
+        //controllo diretto per verificare ruolo utente scelto
         abort_unless($user->role === 'staff', 404);
 
         $user->load('categories:id,name');

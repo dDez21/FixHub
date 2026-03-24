@@ -8,8 +8,6 @@ document.addEventListener('DOMContentLoaded', () => { //aspetto che documento si
     const addressCenter = document.getElementById('center-address'); //indirizzo centro
     const phoneCenter = document.getElementById('center-phone'); //telefono centro
     const emailCenter = document.getElementById('center-email'); //email centro
-    const editLink = document.getElementById('center-edit-link');
-    const deleteLink = document.getElementById('center-delete-link');
 
 
     //mostro centro selezionato
@@ -24,14 +22,12 @@ document.addEventListener('DOMContentLoaded', () => { //aspetto che documento si
             civic = '',
             city = '',
             phone = '',
-            email = '',
-            editUrl = '',
-            deleteUrl = ''
+            email = ''
         } = center.dataset;
 
 
         //aggiorno nome centro
-        if(nameCenter) nameCenter.textContent = name || '';
+        if(nameCenter) nameCenter.textContent = name;
 
         //costruisco e aggiorno indirizzo
         if(addressCenter){

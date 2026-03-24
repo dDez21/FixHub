@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const usernameUser = document.getElementById('user-username');
 
     const techBox = document.getElementById('tech-data');
+    const techBirthdate = document.getElementById('user-tech-birthdate')
     const techCenter = document.getElementById('user-tech-center');
-    const techCategories = document.getElementById('user-tech-categories');
+    const techSpecializations = document.getElementById('user-tech-specializations');
+
 
     const staffBox = document.getElementById('staff-data');
     const staffCategories = document.getElementById('user-staff-categories');
@@ -19,41 +21,79 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteLink = document.getElementById('user-delete-link');
 
 
-    //prendo ruolo utente
-    function roleLabel(role) {
-        if (role === 'admin') return 'Admin';
-        if (role === 'tech') return 'Tecnico';
-        if (role === 'staff') return 'Staff';
-        return role || '';
+    //resetto dati extra tecnico
+    function resetTechData(){
+        
+        // nascondo box tecnico
+        if (techBox) techBox.style.display = 'none';
+
+        //svuoto i dati
+        if (techBirthdate) techBirthdate.textContent = '';
+        if (techCenter) techCenter.textContent = '';
+        if (techSpecializations) techSpecializations.textContent = '';
     }
 
-    //mi serve per caricare dati extra di staff e tech
-    async function fetchJson(url) {
+
+    //resetto dati extra staff
+    function resetStaffData(){
+        
+        //nascondo box staff
+        if (staffBox) staffBox.style.display = 'none';
+
+        //svuoto dati
+        if (staffCategories) staffCategories.textContent = '';
+    }
+
+
+
+
+    //eseguo richiesta AJAX per staff e tech
+    function fetchAjax(url, onSuccess) {
+        
+        //ho url non valido
         if (!url) return null;
-        try {
-        const res = await fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
-        if (!res.ok) return null;
-        return await res.json();
-        } catch (e) {
-        console.error('Errore fetch:', e);
-        return null;
-        }
+ 
+        
+        $.ajax({ //invio richiesta Ajax
+
+            
+            url: url, //url a cui fare richiesta
+
+            type: 'GET', //metodo HTTP usato da richiesta
+
+            dataType: 'json', //voglio risposta in Json
+
+            //successo nella richiesta
+            success: function(data){
+                onSuccess(data);
+            },
+
+            //errore alla richiesta
+            error: function (xhr, status, error) {
+                console.error('Errore AJAX:', error);
+            }
+        })
     }
 
-    async function showUser(el) {
-        const name = el.dataset.name || '';
-        const surname = el.dataset.surname || '';
-        const role = el.dataset.role || '';
-        const username = el.dataset.username || '';
+
+    //mostro i dati aggiornando alla scelta dell'utente
+    function showUser(user) {
+
+        const{
+            name = '',
+            surname = '',
+            role = '',
+            username = ''
+        } = user.dataset;
 
         if (nameUser) nameUser.textContent = name;
         if (surnameUser) surnameUser.textContent = surname;
-        if (roleUser) roleUser.textContent = role ? `Ruolo: ${roleLabel(role)}` : '';
+        if (roleUser) roleUser.textContent = role ? `Ruolo: ${role}` : '';
         if (usernameUser) usernameUser.textContent = `Username: ${username}`;
 
         // aggiorno link azioni (FIX “sempre stesso utente”)
-        if (editLink) editLink.href = el.dataset.editUrl || '#';
-        if (deleteLink) deleteLink.href = el.dataset.deleteUrl || '#';
+        if (editLink) editLink.href = user.dataset.editUrl || '#';
+        if (deleteLink) deleteLink.href = user.dataset.deleteUrl || '#';
 
         // reset box
         if (techBox) techBox.style.display = 'none';
@@ -65,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // TECH details
         if (role === 'tech') {
-        const data = await fetchJson(el.dataset.techUrl);
+        const data = await fetchJson(user.dataset.techUrl);
         if (data && data.tech) {
             if (techBox) techBox.style.display = 'block';
             const centerName = data.tech.center || '';
@@ -77,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // STAFF details
         if (role === 'staff') {
-        const data = await fetchJson(el.dataset.staffUrl);
+        const data = await fetchJson(user.dataset.staffUrl);
         if (data && data.staff) {
             if (staffBox) staffBox.style.display = 'block';
             const categories = data.staff.categories || [];
@@ -92,18 +132,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function selectUser(el) {
+    function selectUser(user) {
         users.forEach(c => c.classList.remove('is-selected'));
-        el.classList.add('is-selected');
-        showUser(el);
+        user.classList.add('is-selected');
+        showUser(user);
     }
 
-    users.forEach(el => {
-        el.addEventListener('click', () => selectUser(el));
-        el.addEventListener('keydown', (e) => {
+    users.forEach(user => {
+        user.addEventListener('click', () => selectUser(user));
+        user.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            selectUser(el);
+            selectUser(user);
         }
         });
     });
