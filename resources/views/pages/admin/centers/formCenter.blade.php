@@ -14,10 +14,12 @@
         id="phone"
         inputmode="numeric"
         autocomplete="tel"
-        pattern="/^[0-9]{10}$/"
-        maxlength="16"
+        pattern="[0-9]{10}"
+        minlength="10"
+        maxlength="10"
         placeholder="Non inserire prefisso o spazi"
-         value="{{ old('phone', $center?->phone) }}" required>
+        value="{{ old('phone', $center?->phone) }}"
+        required>
 </div>
 
 <!-- email -->
