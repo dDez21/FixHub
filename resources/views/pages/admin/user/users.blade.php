@@ -25,7 +25,8 @@
                         data-staff-url="{{ route('admin.users.staff', $u) }}"
                         data-edit-url="{{ route('admin.users.editUser', $u) }}"
                         data-delete-url="{{ route('admin.users.deleteConfirm', $u) }}"
-                                            >
+                        >
+
                         <p class="medium-text user-item">{{ $u->name }} {{ $u->surname }}</p>
 
                         <p class="small-text user-item">
@@ -56,8 +57,9 @@
 
             <!-- tech -->
             <div id="tech-data" style="display: none;">
+                <p class="user-item medium-text" id="user-tech-birthdate"></p>
                 <p class="user-item medium-text" id="user-tech-center"></p>
-                <p class="user-item medium-text" id="user-tech-categories"></p>
+                <p class="user-item medium-text" id="user-tech-specializations"></p>
             </div>
 
             <!-- staff -->

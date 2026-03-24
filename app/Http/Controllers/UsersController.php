@@ -31,14 +31,16 @@ class UsersController extends Controller{
 
         //carico centro e categorie tecnico
         $user->load([
+            'birthdate:id,name',
             'tech.center:id,name',
-            'categories:id,name'
+            'specializations:id,name'
         ]);
 
         return response()->json([
             'tech' => $user->tech ? [
+                'birthdate' => $user->tech->birthdate,
                 'center' => $user->tech->center?->name,
-                'categories' => $user->categories->pluck('name')->values(),
+                'specializations' => $user->tech->specializations,
             ] : null,
         ]);
     }

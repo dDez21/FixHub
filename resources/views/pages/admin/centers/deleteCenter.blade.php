@@ -15,8 +15,11 @@
             <form action="{{ route('admin.centers.delete', $center) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="button" class="button button-back" onclick="history.back()">Annulla</button>
-                <button type="submit" class="button">Elimina</button>
+                
+                <div class="button-section">
+                    <button type="button" class="button button-back" onclick="history.back()">Annulla</button>
+                    <button type="submit" class="button">Elimina</button>
+                </div>
                 
             </form>
     </div>

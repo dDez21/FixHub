@@ -13,7 +13,11 @@
             <form action="{{ route('admin.products.delete', $product) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="button">Elimina</button>
+                
+                <div class="button-section">
+                    <button type="button" class="button button-back" onclick="history.back()">Annulla</button>
+                    <button type="submit" class="button">Elimina</button>
+                </div>
             </form>
     </div>
 @endsection
