@@ -103,7 +103,7 @@ Route::middleware('auth')->group(function () {
 //rotte tecnico_________________________________________________________________________________________________________________
 
 
-Route::prefix('tecn')->name('tecn.')->middleware(['auth', 'role:tech'])->group(function () {
+Route::prefix('tecn')->name('tecn.')->middleware(['auth', 'can:isTech'])->group(function () {
 
     //pagina malfunzionamenti
     Route::get('/products/{product}/malfunctions', [MalfunctionsController::class, 'show'])
@@ -116,7 +116,7 @@ Route::prefix('tecn')->name('tecn.')->middleware(['auth', 'role:tech'])->group(f
 
 //rotte staff_________________________________________________________________________________________________________________
 
-Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->group(function () {
+Route::prefix('staff')->name('staff.')->middleware(['auth', 'can:isStaff'])->group(function () {
 
     //pagina malfunzionamenti
     Route::get('/products/{product}/malfunctions', [MalfunctionsController::class, 'show'])
@@ -152,7 +152,7 @@ Route::prefix('staff')->name('staff.')->middleware(['auth', 'role:staff'])->grou
 
 //rotte admin_________________________________________________________________________________________________________________
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'can:isAdmin'])->group(function () {
 
     //pagina lista utenti
     Route::get('/users', [UsersController::class, 'show'])
@@ -215,6 +215,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
     Route::delete('/products/{product}', [ProductController::class, 'delete'])
     ->name('products.delete');
+
 
 
 

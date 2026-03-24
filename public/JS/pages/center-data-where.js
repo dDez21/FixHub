@@ -11,58 +11,56 @@ document.addEventListener('DOMContentLoaded', () => { //aspetto che documento si
     const editLink = document.getElementById('center-edit-link');
     const deleteLink = document.getElementById('center-delete-link');
 
-    //prendo centro selezionato
-    function showCenter(el){
-        
-        //metto i dati del centro selezionato nella card
-        const name = el.dataset.name || '';
-        const region = el.dataset.region || '';
-        const provincia = el.dataset.provincia || '';
-        const address = el.dataset.address || '';
-        const civic = el.dataset.civic || '';
-        const city = el.dataset.city || '';
-        const phone = el.dataset.phone || '';
-        const email = el.dataset.email || '';
-        if (editLink)   editLink.href = el.dataset.editUrl || '#';
-        if (deleteLink) deleteLink.href = el.dataset.deleteUrl || '#';
 
-        //controllo sui dati
+    //mostro centro selezionato
+    function showCenter(center){
+        
+        //imposto valori del centro
+        const{
+            name = '',
+            region = '',
+            provincia = '',
+            address = '',
+            civic = '',
+            city = '',
+            phone = '',
+            email = '',
+            editUrl = '',
+            deleteUrl = ''
+        } = center.dataset;
+
+
+        //aggiorno nome centro
         if(nameCenter) nameCenter.textContent = name || '';
 
-        //costruisco indirizzo completo
+        //costruisco e aggiorno indirizzo
         if(addressCenter){
-            const totalAddress = `${address} ${civic} - ${city} (${provincia}), ${region}`;
-            addressCenter.textContent = totalAddress;
+            addressCenter.textContent = `${address} ${civic} - ${city} (${provincia}), ${region}`;
         }
 
+        //aggiorno tel e mail
         if(phoneCenter) phoneCenter.textContent = phone ? `Telefono: +39 ${phone}` : '';
         if(emailCenter) emailCenter.textContent = email ? `Email: ${email}` : '';
     }
 
 
     //centro viene selezionato
-    function selectCenter(el){
+    function selectCenter(center){
 
-        //prende unicità selezione
+        //tolgo stile selezione a tutti i centri
         centers.forEach(c => c.classList.remove('is-selected'));
-        el.classList.add('is-selected');
+
+        //do stile selezione a centro selezionato
+        center.classList.add('is-selected');
         
         //mostra dati centro selezionato
-        showCenter(el);
+        showCenter(center);
     }
 
 
     //aggiungo evento click a tutti i centri
-    centers.forEach(el => {
-        el.addEventListener('click', () => selectCenter(el));
-
-        // selezione anche da tastiera (Enter / Spazio)
-        el.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                selectCenter(el);
-                }
-            });
+    centers.forEach(center => {
+        center.addEventListener('click', () => selectCenter(center));
     });
 
     selectCenter(centers[0]); //seleziono il primo centro di default

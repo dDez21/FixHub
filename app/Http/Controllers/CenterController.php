@@ -10,24 +10,21 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Center;
+use Illuminate\Support\Facades\Gate;
+
 
 class CenterController extends Controller{
 
     //mostro elenco centri
     public function show(){
 
-        $user = request()->user();
-        $role = $user?->role;
-        $isAdmin = ($role === 'admin');
-    
-
         $centers = Center::with([
-                                                'region:id,name',
-                                                'province:id,name,code',
-                                                'city:id,name'
-                                            ])->orderBy('name')->get();
+            'region:id,name',
+            'province:id,name,code',
+            'city:id,name'
+        ])->orderBy('name')->get();
         
-        return view('pages.where', compact('centers', 'isAdmin')); //passo i centri e isAdmin alla vista
+        return view('pages.where', compact('centers')); //passo i centri alla vista
     }
 
 

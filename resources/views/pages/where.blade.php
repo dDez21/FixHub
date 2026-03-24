@@ -10,11 +10,11 @@
         <div class="centers-header">
             <h1 class="text">I nostri centri</h1>
 
-            @if ($isAdmin)
+            @can($isAdmin)
                 <a class="add-product" href="{{ route('admin.centers.create') }}">
                     <img class="add-user-icon" src="{{ asset('icon/new.png') }}" alt="">
                 </a>
-            @endif
+            @endcan
         </div>
 
         <!-- card centri -->
@@ -22,24 +22,22 @@
             
             <!-- scroller verticale -->
             <div class="centers" role="list">
-                
-                
+                  
                 @forelse ($centers as $center)
                     
                     <!-- prendo dati di ogni centro-->
                     <div class="center-single" role="button" tabindex="0"
-                         data-id="{{ $center->id }}" 
-                         data-name="{{ $center->name }}"
-                         data-address="{{ $center->street }}"
-                         data-civic="{{ $center->civic }}"
-                         data-city="{{ $center->city?->name }}"
-                         data-phone="{{ $center->phone }}"
-                         data-email="{{ $center->email }}"
-                         data-provincia="{{ $center->province?->name }}"
-                         data-region="{{ $center->region?->name }}"
-                         data-edit-url="{{ route('admin.centers.edit', ['center' => $center->id]) }}"
-                         data-delete-url="{{ route('admin.centers.deleteConfirm', ['center' => $center->id]) }}"
-                        >
+                        data-id="{{ $center->id }}" 
+                        data-name="{{ $center->name }}"
+                        data-address="{{ $center->street }}"
+                        data-civic="{{ $center->civic }}"
+                        data-city="{{ $center->city?->name }}"
+                        data-phone="{{ $center->phone }}"
+                        data-email="{{ $center->email }}"
+                        data-provincia="{{ $center->province?->name }}"
+                        data-region="{{ $center->region?->name }}"
+                        data-edit-url="{{ route('admin.centers.edit', ['center' => $center->id]) }}"
+                        data-delete-url="{{ route('admin.centers.deleteConfirm', ['center' => $center->id]) }}">
 
                         <!-- dati mostrati nell'elenco centri -->
                         <p class="medium-text center-item">{{ $center->name }}</p>
@@ -63,7 +61,7 @@
         <p class="center-item medium-text" id="center-phone"></p> <!-- telefono centro -->
         <p class="center-item medium-text" id="center-email"></p> <!-- email centro -->
 
-        @if ($isAdmin)
+        @can($isAdmin)
                 <div class="user-action">
                     <div class="new-element">
                         <a id="center-edit-link" class="add-user" href="#">
@@ -77,7 +75,7 @@
                         </a>
                     </div>
                 </div>
-        @endif
+        @endcan
     </div> 
     
     
