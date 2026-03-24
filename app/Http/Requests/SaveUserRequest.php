@@ -102,4 +102,12 @@ class SaveUserRequest extends FormRequest
             'username' => trim((string) $this->username),
         ]);
     }
+    
+    //messaggi d'errore personalizzati
+    public function messages(): array{
+        return [
+            'password.confirmed' => 'Le due password non coincidono.',
+            'username.unique' => 'Questo username è già in uso.',
+        ];
+    }
 }
