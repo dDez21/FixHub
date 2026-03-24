@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (role === 'tech') {
 
             //chiamata AJAX al controller dei dati del tecnico
-            fetchAjax(el.dataset.techUrl, function (data) {
+            fetchAjax(user.dataset.techUrl, function (data) {
                 
                 //verifico esistenza risposta e dati del tecnico
                 if (data && data.tech) {
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     //aggiorno caselle con i dati
                     if (techBirthdate) techBirthdate.textContent = birthdate ? `Data di nascita: ${birthdate}`: 'Data di nascita: -';
                     if (techCenter) techCenter.textContent = centerName ? `Centro: ${centerName}` : 'Centro: Nessun centro associato';
-                    if (techSpecializations) techSpecializations.textContent = specializations ? `Specializzazioni: ${specializationNames.join(', ')}` : 'Specializzazioni: -';
+                    if (techSpecializations) techSpecializations.textContent = specializations ? `Specializzazioni: ${specializations}` : 'Specializzazioni: -';
                 }  
             });
         }
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (role === 'staff') {
             
             //chiamata AJAX al controller dei dati staff
-            fetchAjax(el.dataset.staffUrl, function (data) {
+            fetchAjax(user.dataset.staffUrl, function (data) {
                 
                 //verifico esistenza risposta e dati staff
                 if (data && data.staff) {
