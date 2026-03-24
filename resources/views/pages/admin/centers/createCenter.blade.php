@@ -11,7 +11,8 @@
         @csrf   
         
         <div class="user-grid">
-            <!-- prendo elementi form -->
+        
+        <!-- prendo elementi form -->
         @include('pages.admin.centers.formCenter', ['center' => null])
         </div>
         
@@ -25,7 +26,7 @@
             
             <!-- conferma creazione -->
             <div class="form-confirm">
-                <button type="submit" class="button button-confirm">Crea utente</button>
+                <button type="submit" class="button button-confirm">Crea centro</button>
             </div>
         </div>
     </form>

@@ -1,3 +1,4 @@
+<!-- gestione errori -->
 @if ($errors->any())
   <div class="card" style="padding:12px; border:1px solid #c00;">
     <ul style="margin:0; padding-left:18px;">
@@ -26,7 +27,7 @@
         autocomplete="tel"
         pattern="^\+?[0-9]{8,15}$"
         maxlength="16"
-        placeholder="Es. 0711234567 oppure +393331234567"
+        placeholder="Non inserire prefisso o spazi"
          value="{{ old('phone', $center?->phone) }}" required>
 </div>
 

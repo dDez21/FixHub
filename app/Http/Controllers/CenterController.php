@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Center;
-use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\Center\StoreCenterRequest;
 
 
 class CenterController extends Controller{
@@ -36,33 +36,12 @@ class CenterController extends Controller{
         return view('pages.admin.centers.createCenter', compact('regions','provinces','cities'));
     }
 
-    public function store(Request $request){
+    public function store(StoreCenterRequest $request){
 
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => [
-                    'required',
-                    'regex:/^\+?[0-9]{8,15}$/',
-                    Rule::unique('centers', 'phone'),
-                ],
-            'email' => ['required','email','max:255','unique:centers,email'],
-            'region_id' => ['required', 'exists:regions,id'],
-            'province_id' => [
-                'required',
-                Rule::exists('provinces','id')->where(fn($q) => $q->where('region_id', $request->region_id)),
-            ],
-            'city_id' => [
-                'required',
-                Rule::exists('cities','id')->where(fn($q) => $q->where('province_id', $request->province_id)),
-            ],
-
-            'street' => 'required|string|max:160',
-            'civic' => 'nullable|string|max:20',
-            ]);;
-
+        $data = $request->validated();
         Center::create($data);
 
-        return redirect()->route('where')->with('success','Centro creato');        
+        return redirect()->route('where')->with('success','Centro creato correttamente');        
     }
 
     public function edit(Center $center){
