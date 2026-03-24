@@ -8,7 +8,6 @@ use App\Models\Region;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Models\Center;
 use App\Http\Requests\SaveCenterRequest;
 
@@ -52,7 +51,7 @@ class CenterController extends Controller{
         return view('pages.admin.centers.editCenter', compact('center', 'regions','provinces','cities'));
     }
 
-    public function update(Request $request, Center $center){
+    public function update(SaveCenterRequest $request, Center $center){
         
         $data = $request->validated();
         $center->update($data);
