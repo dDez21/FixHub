@@ -106,7 +106,7 @@
     <!-- specializzazioni -->
     <div class="form-space">
         <label class="form-label" for="name">Specializzazioni tecnico</label>
-        <input class="form-input"type="text" id="specializations" name="specializations" value="{{ old('specializations', $user?->specializations) }}" required>
+        <input class="form-input"type="text" id="specializations" name="specializations" value="{{ old('specializations', $user?->tech?->specializations) }}" required>
     </div>
 </div>
 
