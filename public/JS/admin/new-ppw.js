@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const ppwBox = document.getElementById('password-box');
   const ppwText = document.getElementById('password');
   const ppwConfirm = document.getElementById('password_confirmation');
+  
+  //verifica esistenza degli elementi
   if (!ppwCheckbox || !ppwBox || !ppwText || !ppwConfirm) return;
   
   function sync() {

@@ -54,7 +54,8 @@ class SaveUserRequest extends FormRequest
             'password' => [
                         $user ? 'nullable' : 'required',
                         'string',
-                        'min:6'],
+                        'min:6',
+                        'confirmed'],
 
             'role' => [
                 'required',
