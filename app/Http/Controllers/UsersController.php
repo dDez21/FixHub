@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Center;
 use App\Models\Category;
 use App\Models\Tech;
+use App\Http\Requests\SaveUserRequest;
 
 class UsersController extends Controller{
 
@@ -31,17 +30,13 @@ class UsersController extends Controller{
         abort_unless($user->role === 'tech', 404);
     
 
-        //carico dati tecnico
-        $user->load([
-            'tech.birthdate:id,name',
-            'tech.center:id,name',
-            'tech.specializations:id,name'
-        ]);
+        //carico centro associato
+        $user->load('tech.center:id,name');
 
         //js usa richiesta json per ottenere dati da mostrare
         return response()->json([
             'tech' => $user->tech ? [
-                'birthdate' => $user->tech->birthdate,
+                'birthdate' => $user->tech->birth_date,
                 'center' => $user->tech->center?->name,
                 'specializations' => $user->tech->specializations,
             ] : null,
@@ -78,23 +73,9 @@ class UsersController extends Controller{
 
 
     //immagazzino nuovo utente
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            'name' => ['required','string','max:255'],
-            'surname' => ['required','string','max:255'],
-            'username' => ['required','string','max:255','unique:users,username'],
-            'password' => ['required','string','min:6'],
-            'role' => ['required','in:tech,staff,admin'],
-
-            // solo tech
-            'birth_date' => ['required_if:role,tech', 'date', 'before_or_equal:today'],
-            'center_id' => ['nullable','exists:centers,id'],
-            
-            //solo tech e staff
-            'categories' => ['nullable','array'],
-            'categories.*' => ['integer','exists:categories,id'],
-        ]);
+    public function store(SaveUserRequest $request){
+    
+        $data = $request->validated();
 
         DB::transaction(function () use ($data) {
             
@@ -109,13 +90,12 @@ class UsersController extends Controller{
 
             //salvo dati tecnico in tech
             if ($user->role === 'tech') {
-                $tech = Tech::create([
+                Tech::create([
                     'user_id' => $user->id,
                     'center_id' => $data['center_id'] ?? null,
                     'birth_date' => $data['birth_date'],
+                    'specializations' => $data['specializations'] ?? null,
                 ]);
-
-                $user->categories()->sync($data['categories'] ?? []);
             }
 
             //salvo dati staff
@@ -143,27 +123,10 @@ class UsersController extends Controller{
     }
 
 
-
     //aggiorno dati utente
-    public function update(Request $request, User $user)
+    public function update(SaveUserRequest $request, User $user)
     {
-        $data = $request->validate([
-            'name' => ['required','string','max:255'],
-            'surname' => ['required','string','max:255'],
-            'username' => ['required','string','max:255', Rule::unique('users','username')->ignore($user->id)],
-            'role' => ['required','in:tech,staff,admin'],
-
-            // password opzionale
-            'password' => ['nullable','string','min:8','confirmed'],
-
-            // campi tech
-            'birth_date' => ['required_if:role,tech','date','before_or_equal:today'],
-            'center_id' => ['nullable','exists:centers,id'],
-
-            // categorie (tech/staff)
-            'categories' => ['nullable','array'],
-            'categories.*' => ['integer','exists:categories,id'],
-        ]);
+        $data = $request->validated();
 
         DB::transaction(function () use ($user, $data) {
 
@@ -179,15 +142,15 @@ class UsersController extends Controller{
             $user->save();
 
             if ($user->role === 'tech') {
-                $tech = Tech::updateOrCreate(
+                Tech::updateOrCreate(
                     ['user_id' => $user->id],
                     [
                         'center_id' => $data['center_id'] ?? null,
                         'birth_date' => $data['birth_date'],
+                        'specializations' => $data['specializations'] ?? null,
                     ]
                 );
-
-                $user->categories()->sync($data['categories'] ?? []);
+                $user->categories()->detach();
             } else {
                 // se non è tech, elimina profilo tech (se esiste)
                 if ($user->tech) {
@@ -217,10 +180,9 @@ class UsersController extends Controller{
     public function delete(User $user): RedirectResponse
     {
         DB::transaction(function () use ($user) {
-            $user->load('tech');
+            
 
             if ($user->tech) {
-                $user->categories()->detach();
                 $user->tech->delete();
             }
 

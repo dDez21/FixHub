@@ -8,7 +8,7 @@ class Tech extends Model{
     
     protected $table = 'tech';
 
-    protected $fillable = ['user_id','center_id','birth_date'];
+    protected $fillable = ['user_id','birth_date','center_id','specializations'];
 
     //relazione con utente (1:1)
     public function user()

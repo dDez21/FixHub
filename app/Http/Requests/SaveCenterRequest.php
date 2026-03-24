@@ -52,7 +52,7 @@ class SaveCenterRequest extends FormRequest
                 Rule::email()
                     ->rfcCompliant(strict: false)
                     ->validateMxRecord(),
-                $emailRule,
+                $emailRule
             ],
 
             'region_id' => [
@@ -99,8 +99,7 @@ class SaveCenterRequest extends FormRequest
 
 
     //messaggi di errore personalizzati
-    public function messages(): array
-    {
+    public function messages(): array{
         return [
             'phone.unique' => 'Questo numero di telefono è già associato a un altro centro.',
             'email.unique' => 'Questa email è già associata a un altro centro.',

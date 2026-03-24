@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
         $center = Center::create([
             'name' => 'Tutto elettronica',
             'phone' => '3634262456',
-            'email'=> 'support.milano@fixtech.com',
+            'email'=> 'support.milano@gmail.com',
             'region_id' => $rid,
             'province_id' => $pid,
             'city_id' => $cid,
@@ -73,7 +73,7 @@ class DatabaseSeeder extends Seeder
         $centerUser = Center::create([
             'name' => 'Centro Assistenza',
             'phone' => '3881161585',
-            'email'=> 'support.osimostz@fixhub.com',
+            'email'=> 'support.osimostz@gmail.com',
             'region_id' => $rid,
             'province_id' => $pid,
             'city_id' => $cid,
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
         $center = Center::create([
             'name' => 'Dorica Service',
             'phone' => '3469234672',
-            'email'=> 'support.ancona@fixhub.com',
+            'email'=> 'support.ancona@gmail.com',
             'region_id' => $rid,
             'province_id' => $pid,
             'city_id' => $cid,
@@ -99,7 +99,7 @@ class DatabaseSeeder extends Seeder
         $center = Center::create([
             'name' => 'TT - Techno Turin',
             'phone' => '3130348893',
-            'email'=> 'support.torino@fixhub.com',
+            'email'=> 'support.torino@gmail.com',
             'region_id' => $rid,
             'province_id' => $pid,
             'city_id' => $cid,
@@ -112,7 +112,7 @@ class DatabaseSeeder extends Seeder
         $center = Center::create([
             'name' => 'FixHub Roma',
             'phone' => '3774142590',
-            'email'=> 'support.roma@fixhub.com',
+            'email'=> 'support.roma@gmail.com',
             'region_id' => $rid,
             'province_id' => $pid,
             'city_id' => $cid,
@@ -125,7 +125,7 @@ class DatabaseSeeder extends Seeder
         $center = Center::create([
             'name' => 'Napolitech',
             'phone' => '3924115833',
-            'email'=> 'support.napoli@fixhub.com',
+            'email'=> 'support.napoli@gmail.com',
             'region_id' => $rid,
             'province_id' => $pid,
             'city_id' => $cid,
@@ -138,7 +138,7 @@ class DatabaseSeeder extends Seeder
         $center = Center::create([
             'name' => 'Rinascimento tecnologico',
             'phone' => '3852156675',
-            'email'=> 'support.firenze@fixhub.com',
+            'email'=> 'support.firenze@gmail.com',
             'region_id' => $rid,
             'province_id' => $pid,
             'city_id' => $cid,
