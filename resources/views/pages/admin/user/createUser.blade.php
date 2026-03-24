@@ -23,7 +23,7 @@
         <div class="button-section">
             <!-- annulla creazione -->
             <div class="form-confirm">
-                <button type="button" class="button button-back" onclick="window.location='{{ route('admin.users.show') }}'">Annulla</button>
+                <button type="button" class="button button-back" onclick="window.location='{{ route('admin.users') }}'">Annulla</button>
             </div>
             
             <!-- conferma creazione -->
