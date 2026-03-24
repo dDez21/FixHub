@@ -1,3 +1,4 @@
+<!-- estrae il ruolo dell'utente e mi prepara la schermata adeguata ad esso -->
 @php
     $role = old('role', $user?->role ?? 'tech');
     $isTech = ($role === 'tech');

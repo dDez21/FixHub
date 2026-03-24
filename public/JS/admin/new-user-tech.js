@@ -5,14 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!roleSelect) return;
 
+  //prendo input dentro sezione riservata al tecnico (se esiste)
   const techFields = techOptions ? techOptions.querySelectorAll('input, select, textarea') : [];
   const birthDate = document.getElementById('birth_date');
+  
+  //prendo sezione categorie
   const catFields = categoriesOptions ? categoriesOptions.querySelectorAll('input, select, textarea') : [];
 
   function update() {
     const role = roleSelect.value;
     const isTech = role === 'tech';
-    const showCats = (role === 'tech' || role === 'staff');
+    const showCats = ( role === 'staff');
 
     // solo tech
     if (techOptions) {
