@@ -10,7 +10,7 @@
         <div class="centers-header">
             <h1 class="text">I nostri centri</h1>
 
-            @can($isAdmin)
+            @can('isAdmin')
                 <a class="add-product" href="{{ route('admin.centers.create') }}">
                     <img class="add-user-icon" src="{{ asset('icon/new.png') }}" alt="">
                 </a>
@@ -61,7 +61,7 @@
         <p class="center-item medium-text" id="center-phone"></p> <!-- telefono centro -->
         <p class="center-item medium-text" id="center-email"></p> <!-- email centro -->
 
-        @can($isAdmin)
+        @can('isAdmin')
                 <div class="user-action">
                     <div class="new-element">
                         <a id="center-edit-link" class="add-user" href="#">
