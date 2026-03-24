@@ -33,9 +33,9 @@ class UsersController extends Controller{
 
         //carico dati tecnico
         $user->load([
-            'birthdate:id,name',
+            'tech.birthdate:id,name',
             'tech.center:id,name',
-            'specializations:id,name'
+            'tech.specializations:id,name'
         ]);
 
         //js usa richiesta json per ottenere dati da mostrare
