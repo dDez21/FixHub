@@ -50,6 +50,14 @@ body{
     font-weight: 400;
 }
 
+.small-text-results{
+    font-size: 14px;
+    opacity: .8;
+    color: #000;
+    font-weight: 400;
+}
+
+
 [hidden] {
     display: none !important; 
 }
