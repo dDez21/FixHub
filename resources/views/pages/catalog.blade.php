@@ -85,6 +85,10 @@
                     <p class="text">Nessun prodotto presente</p>
                 @endforelse
             </div>
+
+            <p class="no-results" id="no-results" style="display:none;">
+                La ricerca non ha prodotto risultati
+            </p>
     </div>
 </div>
 @endsection

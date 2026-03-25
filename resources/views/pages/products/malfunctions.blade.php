@@ -14,9 +14,17 @@
     
 
     <!-- elenco centri -->
-    <div class="malfunctions-list">
+    <div class="malfunctions-list" data-search-url="{{ route('malfunction.search', $product) }}">
         
         <h1 class="text">Lista malfunzionamenti @if(isset($product)) {{ $product->name }} @endif </h1>
+
+
+        <!-- barra di ricerca -->
+        <div class="search-bar">
+            <input class="search-input" id="malf-input" type="text" placeholder="Ricerca un malfunzionamento">
+            <button id="malf-button" type="button" class="search-btn">🔍</button>
+        </div>
+
 
         <!-- card centri -->
         <div class="card malfunctions-card">
@@ -34,19 +42,11 @@
 
 
             <!-- scroller verticale -->
-            <div class="malfunctions" role="list">
+            <div class="malfunctions" role="list" id="malfunctions">
                 @forelse ($malfunctions as $m)
                     
                     <!-- prendo dati di ogni malfunction -->
-                    <div class="malfunction-single" role="button" tabindex="0"
-                        data-name="{{ $m->name }}"
-                        data-description="{{ $m->description }}"
-                        data-solution="{{ $m->solution }}"
-                        @if($isStaff)
-                            data-edit-url="{{ route('staff.products.malfunctions.edit', ['product' => $product, 'malfunction' => $m]) }}"
-                            data-delete-url="{{ route('staff.products.malfunctions.deleteConfirm', ['product' => $product, 'malfunction' => $m]) }}"
-                        @endif
-                    >
+                    <div class="malfunction-single" role="button" tabindex="0">
 
                         <!-- dati mostrati nell'elenco centri -->
                         <p class="medium-text malfunction-item">{{ $m->name }}</p>
@@ -57,11 +57,15 @@
                     <div class="malfunction-item">Nessun malfunzionamento registrato.</div>
                 @endforelse
             </div>
+
+            <p class="no-results" id="no-results" style="display:none;">
+                La ricerca non ha prodotto risultati
+            </p>
         </div>
     </div>
 
 
-    <!-- dettagli centro selezionato -->
+    <!-- dettagli malf selezionato -->
     <div class="malfunction-data-container">
         <div class="card card-malfunction-data" id="malfunction-data" style="display:none;" aria-hidden="true"> <!-- la mostro solo quando ho un centro selezionato -->
             

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class MalfunctionsController extends Controller
 {
 
-    // mostro malfunzionamenti prodotto
+    //mostro malfunzionamenti prodotto
     public function show(Product $product)
     {
 
@@ -23,6 +23,35 @@ class MalfunctionsController extends Controller
         $malfunctions = $product->malfunctions()->orderBy('created_at', 'desc')->get();
         return view('pages.products.malfunctions', compact('product', 'malfunctions', 'isStaff'));
     }
+
+
+    //filtro ricerche malfunzionamenti
+    public function search(Product $product, Request $request){
+
+        //prendo input barra di ricerca
+        $query = trim($request->input('input', ''));
+
+
+        //preparo query per malf del prodotto selezionato
+        $malfsQuery = $product->malfunctions()->orderBy('name');
+
+        if ($query !== '') { 
+            
+            // metto in sicurezza eventuali caratteri speciali
+            $query = preg_quote($query, '/');
+
+            $malfsQuery->where('description', 'regexp', '[[:<:]]' . $query . '[[:>:]]');
+        }
+        $malfs = $malfsQuery->get()->map(function ($malf) {
+            return [
+                'id' => $malf->id,
+                'name' => $malf->name,
+            ];
+        });
+        
+        return response()->json($malfs);
+    }
+
 
 
     //vado a pagina nuovo malfunzionamento

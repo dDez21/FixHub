@@ -30,17 +30,9 @@
         <!-- lista malfunzionamenti -->
         @canany(['isStaff', 'isTech'])
             
-
-            @php
-                $routeName = auth()->user()->role === 'staff'
-                    ? 'staff.products.malfunctions'
-                    : 'tecn.products.malfunctions';
-            @endphp
-
             <p class="medium-text product-cat">Malfunzionamenti</p>
 
-            <!-- collegamento a lista malfunzionamenti del prodotto selezionato -->
-            <a class="product-malf" href="{{ route($routeName, $product) }}">
+            <a class="product-malf" href="{{ route(auth()->user()->role === 'staff' ? 'staff.products.malfunctions' : 'tecn.products.malfunctions', $product) }}">
                 Vedi elenco malfunzionamenti →
             </a>
         @endcanany

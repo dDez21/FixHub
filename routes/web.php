@@ -115,6 +115,10 @@ Route::prefix('tecn')->name('tecn.')->middleware(['auth', 'can:isTech'])->group(
     Route::get('/products/{product}/malfunctions', [MalfunctionsController::class, 'show'])
     ->name('products.malfunctions');
 
+    //filtro ricerca malf
+    Route::get('/products/{product}/malfunctions/search', [MalfunctionsController::class, 'search'])
+    ->name('products.malfunctions.search');
+
 });
 
 
@@ -127,6 +131,10 @@ Route::prefix('staff')->name('staff.')->middleware(['auth', 'can:isStaff'])->gro
     //pagina malfunzionamenti
     Route::get('/products/{product}/malfunctions', [MalfunctionsController::class, 'show'])
     ->name('products.malfunctions');
+
+    //filtro ricerca malf
+    Route::get('/products/{product}/malfunctions/search', [MalfunctionsController::class, 'search'])
+    ->name('products.malfunctions.search');
 
     //crea malfunzionamento
     Route::get('/products/{product}/malfunctions/create', [MalfunctionsController::class, 'create'])
