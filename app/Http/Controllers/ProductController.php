@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\SaveProductRequest;
+
 
 
 class ProductController extends Controller
@@ -39,7 +41,7 @@ class ProductController extends Controller
 
 
     // salvo nuovo prodotto
-    public function store(Request $request){
+    public function store(SaveProductRequest $request){
 
         $data = $request->validated();
         
@@ -63,7 +65,7 @@ class ProductController extends Controller
 
 
     // salvo modifiche prodotto
-    public function update(Request $request, Product $product){
+    public function update(SaveProductRequest $request, Product $product){
 
         $data = $request->validated();
 
