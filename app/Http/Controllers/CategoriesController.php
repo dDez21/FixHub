@@ -43,7 +43,7 @@ class CategoriesController extends Controller{
         $query = trim($request->input('input', ''));
         
         //prende id categoria selezionata, o vuota se nessuna selezionata
-        $categoryId = $request->input('category_id', '');
+        $categoryId = $request->input('category_id', 'all');
 
         if ($query === '*' || $query === '') {
             $query = '';
@@ -66,14 +66,14 @@ class CategoriesController extends Controller{
 
 
             //se provo a filtrare categoria non sua da vuoto
-            if ($categoryId !== '' && !in_array((int) $categoryId, $allowedCategoryIds, true)) {
+            if ($categoryId !== 'all' && !in_array((int) $categoryId, $allowedCategoryIds, true)) {
                 return response()->json([]);
             }
 
         } 
         
         //categoria selezionata
-        if ($categoryId !== '') {
+        if ($categoryId !== 'all') {
             $productsQuery->where('category_id', $categoryId);
         }
 

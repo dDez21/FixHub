@@ -8,10 +8,10 @@ $(document).ready(function () {
     const $selectedCategoryLabel = $('#selected-category-label');
     const searchUrl = $('.products-layout').data('search-url');
 
-    let activeCategoryId = '';
+    let activeCategoryId = 'all';
 
     // evidenzio "Tutte le categorie" se esiste
-    const $allCategoriesLink = $('.single-category[data-category-id=""]');
+    const $allCategoriesLink = $('.single-category[data-category-id="all"]');
     if ($allCategoriesLink.length) {
         $allCategoriesLink.addClass('selected');
     }
@@ -120,11 +120,7 @@ $(document).ready(function () {
     $categoryLinks.on('click', function (select) {
         select.preventDefault();
 
-        activeCategoryId = $(this).data('category-id');
-
-        if (activeCategoryId === undefined || activeCategoryId === null) {
-            activeCategoryId = '';
-        }
+        activeCategoryId = $(this).attr('data-category-id') || 'all';
 
         $categoryLinks.removeClass('selected');
         $(this).addClass('selected');

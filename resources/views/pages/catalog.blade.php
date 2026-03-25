@@ -18,7 +18,7 @@
             <!-- mostro tutti i prodotti -->
             @if(!auth()->check() || auth()->user()->role !== 'staff')
             <li>
-                <a class="single-category" href="#" data-category-id="">Tutte le categorie</a>
+                <a class="single-category" href="#" data-category-id="all">Tutte le categorie</a>
             </li>
             @endif
             
