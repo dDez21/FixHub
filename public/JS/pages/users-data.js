@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const techCenter = document.getElementById('user-tech-center');
     const techSpecializations = document.getElementById('user-tech-specializations');
 
-const techCenterAddress = document.getElementById('user-tech-center-address');
+
     const staffBox = document.getElementById('staff-data');
     const staffCategories = document.getElementById('user-staff-categories');
 
@@ -30,7 +30,6 @@ const techCenterAddress = document.getElementById('user-tech-center-address');
         //svuoto i dati
         if (techBirthdate) techBirthdate.textContent = '';
         if (techCenter) techCenter.textContent = '';
-        if (techCenterAddress) techCenterAddress.textContent = '';
         if (techSpecializations) techSpecializations.textContent = '';
     }
 
@@ -116,20 +115,15 @@ const techCenterAddress = document.getElementById('user-tech-center-address');
                     if (techBox) techBox.style.display = 'block';
                     
                     //recupero dati tecnico
-                    const birthdate = data.tech.birthdate || '';
+                    const birthdate = data.tech.birthdate?.name || data.tech.birthdate || '';
                     const centerName = data.tech.center || '';
                     const specializations = data.tech.specializations || '';
                 
                     //aggiorno caselle con i dati
                     if (techBirthdate) techBirthdate.textContent = birthdate ? `Data di nascita: ${birthdate}`: 'Data di nascita: -';
                     if (techCenter) techCenter.textContent = centerName ? `Centro: ${centerName}` : 'Centro: Nessun centro associato';
-                    if (techCenterAddress) {
-            techCenterAddress.textContent = center?.address
-                ? `Indirizzo: ${center.address}`
-                : 'Indirizzo: -';
-        }
-
                     if (techSpecializations) techSpecializations.textContent = specializations ? `Specializzazioni: ${specializations}` : 'Specializzazioni: -';
+
                 }  
             });
         }

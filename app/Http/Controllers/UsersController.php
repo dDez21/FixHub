@@ -31,21 +31,15 @@ class UsersController extends Controller{
     
 
         //carico centro associato
-        $user->load([
-        'tech.center:id,name,address',
-        'specializations:id,name'
-    ]);
+        $user->load('tech.center:id,name');
 
         //js usa richiesta json per ottenere dati da mostrare
         return response()->json([
             'tech' => $user->tech ? [
                 'birthdate' => $user->tech->birth_date,
-                'center' => $user->tech->center ? [
-                'name' => $user->tech->center->name,
-                'address' => $user->tech->center->address,
+                'center' => $user->tech->center?->name,
+                'specializations' => $user->tech->specializations,
             ] : null,
-            'specializations' => $user->tech->specializations->pluck('name')->all(),
-        ] : null,
         ]);
     }
 
