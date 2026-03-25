@@ -45,6 +45,10 @@ class CategoriesController extends Controller{
         //prende id categoria selezionata, o vuota se nessuna selezionata
         $categoryId = $request->input('category_id', '');
 
+        if ($query === '*' || $query === '') {
+            $query = '';
+        }
+
         //preparo query
         $productsQuery = Product::query()->orderBy('name');
         

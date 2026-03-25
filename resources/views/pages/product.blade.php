@@ -28,7 +28,7 @@
 
 
         <!-- lista malfunzionamenti -->
-        @can('isAdmin' || 'isTech')
+        @can('isStaff' || 'isTech')
             
             <!-- decido la route in base al livello di autenticazione -->
 

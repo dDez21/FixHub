@@ -69,7 +69,12 @@ $(document).ready(function () {
     function doSearch() {
 
         //leggo testo input
-        const query = $searchInput.val().trim();
+        let query = $searchInput.val().trim();
+
+        // input vuoto o solo * = nessun filtro testuale
+        if (query === '*' || query === '') {
+            query = '';
+        }
 
 
         //chiamata AJAX, cioè mando richiesta a server
