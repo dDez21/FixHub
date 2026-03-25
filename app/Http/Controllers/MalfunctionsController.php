@@ -59,8 +59,13 @@ class MalfunctionsController extends Controller
     //vado a pagina nuovo malfunzionamento
     public function create(Product $product){
         
+        $allowedCategoryIds = request()->user()->categories()->pluck('categories.id')->all();
+
+        $products = Product::whereIn('category_id', $allowedCategoryIds)
+            ->orderBy('name')
+            ->get();
+
         //fornisco elenco prodotti
-        $products = Product::orderBy('name')->get();
         return view('pages.products.createMalfunction', compact('product', 'products'));
     }
 
@@ -85,7 +90,13 @@ class MalfunctionsController extends Controller
     public function edit(Product $product, Malfunction $malfunction){
 
         abort_unless($malfunction->product_id === $product->id, 404);
-        $products = Product::orderBy('name')->get();
+        
+        $allowedCategoryIds = request()->user()->categories()->pluck('categories.id')->all();
+
+        $products = Product::whereIn('category_id', $allowedCategoryIds)
+            ->orderBy('name')
+            ->get();
+
         return view('pages.products.editMalfunction', [
             'product' => $product,
             'malf' => $malfunction,
