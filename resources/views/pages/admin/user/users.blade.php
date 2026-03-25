@@ -59,6 +59,7 @@
             <div id="tech-data" style="display: none;">
                 <p class="user-item medium-text" id="user-tech-birthdate"></p>
                 <p class="user-item medium-text" id="user-tech-center"></p>
+                <p class="user-item medium-text" id="user-tech-center-address"></p>
                 <p class="user-item medium-text" id="user-tech-specializations"></p>
             </div>
 
