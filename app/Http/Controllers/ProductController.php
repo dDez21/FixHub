@@ -43,7 +43,23 @@ class ProductController extends Controller
     // salvo nuovo prodotto
     public function store(SaveProductRequest $request){
 
-        dd(Storage::disk('public')->put('products/test.txt', 'ciao'));
+        $data = $request->validated();
+
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('products', 'public');
+
+            if ($path === false) {
+                return back()
+                    ->withInput()
+                    ->withErrors(['photo' => 'Impossibile salvare fisicamente il file immagine nello storage.']);
+            }
+
+        $data['photo'] = $path;
+    }
+
+    Product::create($data);
+
+    return redirect()->route('catalog')->with('success', 'Prodotto creato.');
     }
 
 
@@ -56,30 +72,29 @@ class ProductController extends Controller
 
 
     // salvo modifiche prodotto
-    public function update(SaveProductRequest $request, Product $product)
-{
+    public function update(SaveProductRequest $request, Product $product){
     $data = $request->validated();
 
-    if ($request->boolean('remove_photo')) {
-        if ($product->photo) {
-            Storage::disk('public')->delete($product->photo);
-        }
-        $data['photo'] = null;
-    }
-
-    if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+    if ($request->hasFile('photo')) {
         if ($product->photo) {
             Storage::disk('public')->delete($product->photo);
         }
 
-        $data['photo'] = $request->file('photo')->store('products', 'public');
+        $path = $request->file('photo')->store('products', 'public');
+
+        if ($path === false) {
+            return back()
+                ->withInput()
+                ->withErrors(['photo' => 'Impossibile salvare fisicamente il file immagine nello storage.']);
+        }
+
+        $data['photo'] = $path;
     }
 
     $product->update($data);
 
     return redirect()->route('product', $product)->with('success', 'Prodotto aggiornato.');
 }
-
 
 
     //elimino prodotto
