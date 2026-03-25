@@ -13,45 +13,43 @@
         <h1 class="title categories-title">Elenco categorie</h1>
 
         <!-- elenco categorie -->
-        <div class="categories-list">
+        <ul class="categories-list">
 
             <!-- mostro tutti i prodotti -->
             @if(!auth()->check() || auth()->user()->role !== 'staff')
             <li>
                 <a class="single-category" href="#" data-category-id="">Tutte le categorie</a>
             </li>
-        @endif
+            @endif
             
-            <!-- riferimenti per singola categoria -->
-            @forelse ($categories as $category)
+            <!-- elenco categorie -->
+            @foreach ($categories as $category)
                 <li>
                     <a class="single-category" href="#" data-category-id="{{ $category->id }}">{{ $category->name }}</a>
                 </li>
             
-            @empty
-            @endforelse
-        </div>
+            @endforeach
+            </ul>
     </div>
 
 
     <!-- contenitore prodotti -->
-    <div class="products-layout">
+    <div class="products-layout" data-search-url="{{ route('catalog.search') }}>
 
-        @if ($isAdmin)
-
+        @can ('isAdmin')
             <!-- aggiungo prodotto  -->
             <div class="new-element">
                 <a class="add-product" href="{{ route('admin.products.createProduct') }}">
                     <img class="add-product-icon" src="{{ asset('icon/new.png') }}" alt="">
                 </a>
             </div>
-        @endif
+        @endcan
         
 
         <!-- barra di ricerca -->
         <div class="search-bar">
             <input class="search-input" id="search-input" type="text" placeholder="Ricerca un prodotto">
-            <!-- aggiungi bottone ricerca -->
+            <button id="search-button" type="button" class="search-btn">🔍</button>
         </div>
 
 
@@ -67,15 +65,11 @@
                 @forelse ($products as $product)
 
                     <!-- creo card singolo prodotto -->
-                    <div class="card product-card"
-                        data-name="{{ $product->name }}"
-                        data-photo="{{ $product->photo }}"
-                        data-description="{{ $product->description }}"                    
-                        data-category-id="{{ $product->category_id }}">
+                    <div class="card product-card">
                         
                         <!-- foto prodotto -->
                         <div class="product-icon">
-                            <img src="{{ url(Storage::url($product->photo)) }}" alt="">
+                            <img src="{{ asset('storage/images/' . $product->photo) }}" alt="{{ $product->photo }}">
                         </div>
                         
                         <!-- nome prodotto -->

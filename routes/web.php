@@ -31,9 +31,15 @@ use App\Http\Controllers\Auth\PasswordController;
     ->name('catalog');
 
 
+    //ricerca prodotto nel catalogo
+    Route::get('/catalog/search', [CategoriesController::class,'search'])
+    ->name('catalog.search');
+
+
     //prodotto selezionato
     Route::get('/pages/product/{product}', [ProductController::class,'show'])
     ->name('product');
+
 
 
 

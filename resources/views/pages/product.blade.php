@@ -28,7 +28,7 @@
 
 
         <!-- lista malfunzionamenti -->
-        @if(auth()->check() && (auth()->user()->role === 'tech' || auth()->user()->role === 'staff'))
+        @can('isAdmin' || 'isTech')
             
             <!-- decido la route in base al livello di autenticazione -->
 
@@ -46,7 +46,7 @@
             <a class="product-malf" href="{{ route($routeName, $product) }}">
                 Vedi elenco malfunzionamenti →
             </a>
-        @endif
+        @endcan
     </div>
 
     <!-- foto prodotto -->
@@ -55,7 +55,7 @@
     </div>
 
 
-    @if ($isAdmin)
+    @can('isAdmin')
         <div class="product-action">
 
             <!-- modifica prodotto -->
@@ -72,7 +72,7 @@
                 </a>
             </div>
         </div>
-    @endif
+    @endcan
 
 </div>
 @endsection

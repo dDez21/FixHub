@@ -8,29 +8,24 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Gate;
 
 
 class ProductController extends Controller
 {
     // mostro dati del prodotto ricevuto
     public function show(Product $product, Request $request ){
-
-        $user = $request->user();
-        $role = $user?->role;
-
-        $isAdmin = ($role === 'admin');
-        $isStaff = ($role === 'staff');
         
-
+        
         //membro loggato: staff
-        if ($isStaff) {
-            $allowedCategoryIds = $user->categories()->pluck('categories.id')->all();
+        if (Gate::allows('isStaff')) {
+            $allowedCategoryIds = $request->user()->categories()->pluck('categories.id')->all();
             abort_unless(in_array($product->category_id, $allowedCategoryIds), 403);
         }
 
         $product->load('category');
 
-        return view('pages.product', compact('product', 'isAdmin', 'isStaff'));
+        return view('pages.product', compact('product'));
     }
 
 
