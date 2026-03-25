@@ -15,7 +15,10 @@
         @include('pages.products.formMalfunction', ['malfunction' => null])
         </div>
         
-
+        <!-- annulla creazione -->
+        <div class="form-confirm">
+            <button type="button" class="button button-back" onclick="window.location='{{ route('products.malfunctions') }}'">Annulla</button>
+        </div>
         
         <!-- conferma creazione -->
         <div class="form-confirm">

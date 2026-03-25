@@ -8,6 +8,7 @@ use App\Models\Malfunction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\SaveMalfunctionRequest;
 
 
 class MalfunctionsController extends Controller
@@ -55,7 +56,6 @@ class MalfunctionsController extends Controller
     }
 
 
-
     //vado a pagina nuovo malfunzionamento
     public function create(Product $product){
         
@@ -71,14 +71,10 @@ class MalfunctionsController extends Controller
 
 
     // salvo nuovo malfunzionamento
-    public function store(Request $request, Product $product){
+    public function store(SaveMalfunctionRequest $request, Product $product){
         
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'solution' => 'required|string',
-        ]);
 
+        $data = $request->validated();
         $data['product_id'] = $product->id;
         Malfunction::create($data);
 
@@ -104,16 +100,11 @@ class MalfunctionsController extends Controller
         ]);
     }
 
-    public function update(Request $request, Product $product, Malfunction $malfunction){
+    public function update(SaveMalfunctionRequest $request, Product $product, Malfunction $malfunction){
 
         abort_unless($malfunction->product_id === $product->id, 404);
 
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'solution' => 'required|string',
-        ]);
-
+        $data = $request->validated();
         $malfunction->update($data);
 
         return redirect()->route('staff.products.malfunctions', $product)->with('success', 'Malfunzionamento modificato.');    

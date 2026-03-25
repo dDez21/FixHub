@@ -16,7 +16,7 @@
     <!-- bottoni azioni -->
     <div class="button-section">
       <div class="form-confirm">
-        <button type="button" class="button button-back" onclick="history.back()">Annulla</button>
+        <button type="button" class="button button-back" onclick="window.location='{{ route('products.malfunctions') }}'">Annulla</button>
       </div>
 
       <div class="form-confirm">
