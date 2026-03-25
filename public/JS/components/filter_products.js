@@ -43,14 +43,14 @@ $(document).ready(function () {
 
 
     //mostra i prodotti ricevuti nella griglia
-    function renderProducts(products) {
+    function showProducts(products) {
         
         //svuoto griglia
         $grid.empty();
 
         //no prodotti
         if (!products.length) {
-            $noResults.show();
+            $noResults.text('La ricerca non ha prodotto risultati').show();
             return;
         }
 
@@ -85,7 +85,7 @@ $(document).ready(function () {
 
             //filtraggio riuscito
             success: function (products) {
-                renderProducts(products);
+                showProducts(products);
             },
 
 

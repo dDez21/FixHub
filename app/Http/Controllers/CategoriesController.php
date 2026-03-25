@@ -39,7 +39,7 @@ class CategoriesController extends Controller{
 
     public function search(Request $request){
 
-        //prendo ricerca inserita
+        //prendo input barra
         $query = trim($request->input('input', ''));
         
         //prende id categoria selezionata, o vuota se nessuna selezionata
@@ -60,29 +60,41 @@ class CategoriesController extends Controller{
 
             $productsQuery->whereIn('category_id', $allowedCategoryIds);
 
+
+            //se provo a filtrare categoria non sua da vuoto
             if ($categoryId !== '' && !in_array((int) $categoryId, $allowedCategoryIds, true)) {
                 return response()->json([]);
             }
 
         } 
         
+        //categoria selezionata
         if ($categoryId !== '') {
             $productsQuery->where('category_id', $categoryId);
         }
 
         
-        //query non vuota
+        //input non vuoto
         if ($query !== '') {            
+
+            //verifico e rimuovo eventuale *
+            $hasWildcard = str_ends_with($query, '*');
             $term = trim(rtrim($query, '*'));
 
+            
             if ($term !== '') {
-                 if (str_ends_with($term, '*')) {
-                    $term = trim(rtrim($term, '*'));
-                    $productsQuery = Product::where('description', 'regexp', '[[:<:]]' . $term)->get();
+                
+                // metto in sicurezza eventuali caratteri speciali
+                $term = preg_quote($term, '/');
+
+                //ricerca parola parziale
+                if ($hasWildcard) {
+                    $productsQuery->where('description', 'regexp', '[[:<:]]' . $term);
                 }
-                // Ricerca esatta (match parola intera nella descrizione)
+
+                //ricerca parola intera
                 else {
-                    $productsQuery = Product::where('description', 'regexp', '[[:<:]]' . $term . '[[:>:]]')->get();
+                    $productsQuery->where('description', 'regexp', '[[:<:]]' . $term . '[[:>:]]');
                 } 
             }
         }
