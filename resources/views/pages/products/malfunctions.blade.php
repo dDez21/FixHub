@@ -14,7 +14,7 @@
     
 
     <!-- elenco centri -->
-    <div class="malfunctions-list" data-search-url="{{ route('malfunction.search', $product) }}">
+    <div class="malfunctions-list" data-search-url="{{ route('products.malfunction.search', $product) }}">
         
         <h1 class="text">Lista malfunzionamenti @if(isset($product)) {{ $product->name }} @endif </h1>
 
