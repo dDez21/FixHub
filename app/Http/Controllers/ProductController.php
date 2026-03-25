@@ -43,7 +43,6 @@ class ProductController extends Controller
     // salvo nuovo prodotto
     public function store(SaveProductRequest $request){
 
-
         dd(Storage::disk('public')->put('products/test.txt', 'ciao'));
     }
 
