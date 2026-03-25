@@ -42,18 +42,23 @@ class ProductController extends Controller
 
     // salvo nuovo prodotto
     public function store(SaveProductRequest $request){
-    $data = $request->validated();
+        $data = $request->validated();
 
-    if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
-        $data['photo'] = $request->file('photo')->store('products', 'public');
-    } else {
-        $data['photo'] = null;
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+
+            dd([
+                'hasFile' => $request->hasFile('photo'),
+                'isValid' => $file->isValid(),
+                'error' => $file->getError(),
+                'errorMessage' => $file->getErrorMessage(),
+                'originalName' => $file->getClientOriginalName(),
+                'store_result' => $file->store('products', 'public'),
+            ]);
+        }
+
+        dd('nessun file ricevuto');
     }
-
-    Product::create($data);
-
-    return redirect()->route('catalog')->with('success', 'Prodotto creato.');
-}
 
 
     // vado a modifica prodotto
