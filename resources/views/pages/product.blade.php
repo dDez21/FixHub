@@ -28,9 +28,9 @@
 
 
         <!-- lista malfunzionamenti -->
-        @canany('isStaff' || 'isTech')
+        @canany(['isStaff', 'isTech'])
             
-            
+
             @php
                 $routeName = auth()->user()->role === 'staff'
                     ? 'staff.products.malfunctions'
