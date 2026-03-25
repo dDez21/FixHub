@@ -83,7 +83,7 @@ class ProductController extends Controller
         } elseif ($request->boolean('remove_photo')) {
 
             if ($product->photo) {
-                Storage::disk('public')->delete($product->photo);
+                Storage::disk('public/products')->delete($product->photo);
             }
 
             $data['photo'] = null;
@@ -113,7 +113,7 @@ class ProductController extends Controller
 
             // elimina foto da storage (se esiste)
             if ($product->photo) {
-                Storage::disk('public')->delete($product->photo);
+                Storage::disk('public/products')->delete($product->photo);
             }
 
             // elimina record dal DB
