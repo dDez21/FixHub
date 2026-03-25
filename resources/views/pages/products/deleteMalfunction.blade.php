@@ -15,7 +15,7 @@
                 @method('DELETE')
                 
                 <div class="button-section">
-                    <button type="button" class="button button-back" onclick="window.location='{{ route('staff.products.malfunctions') }}'">Annulla</button>
+                    <button type="button" class="button button-back" onclick="window.location='{{ route('staff.products.malfunctions', $product) }}'">Annulla</button>
                     <button type="submit" class="button">Elimina</button>
                 </div>
             </form>
