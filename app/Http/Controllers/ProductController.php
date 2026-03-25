@@ -73,16 +73,16 @@ class ProductController extends Controller
         if ($request->hasFile('photo')) {
 
             
-            if ($product->photo) {
+            if ($product->photo && Storage::disk('public')->exists($product->photo)) {
                 Storage::disk('public')->delete($product->photo);
             }
-           
+
             $data['photo'] = $request->file('photo')->store('products', 'public');
 
         //non carico nuova foto ma rimuovo foto
         } elseif ($request->boolean('remove_photo')) {
 
-            if ($product->photo) {
+            if ($product->photo && Storage::disk('public')->exists($product->photo)) {
                 Storage::disk('public')->delete($product->photo);
             }
 
@@ -112,7 +112,7 @@ class ProductController extends Controller
         DB::transaction(function () use ($product) {
 
             // elimina foto da storage (se esiste)
-            if ($product->photo) {
+            if ($product->photo && Storage::disk('public')->exists($product->photo)) {
                 Storage::disk('public')->delete($product->photo);
             }
 

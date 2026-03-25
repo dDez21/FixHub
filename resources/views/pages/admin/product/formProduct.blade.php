@@ -74,5 +74,18 @@
                 accept="image/*"
                 class="file-input"
             >
+            
+            <!-- rimozione foto -->
+            @if($product?->photo)
+                <label style="display:block; margin-top:10px;">
+                    <input
+                        type="checkbox"
+                        name="remove_photo"
+                        value="1"
+                        {{ old('remove_photo') ? 'checked' : '' }}
+                    >
+                    Rimuovi foto attuale
+                </label>
+            @endif
         </div>
     </div>

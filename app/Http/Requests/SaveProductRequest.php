@@ -23,9 +23,10 @@ class SaveProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string',' max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'description' => ['required','string'],
-            'photo' => ['nullable','file','mimes:jpg,jpeg,png,webp','max:4096'],
+            'photo' => ['nullable','image','mimes:jpg,jpeg,png,webp','max:4096'],
+            'remove_photo' => ['nullable', 'boolean'],
             'category_id' => ['required', 'exists:categories,id'],
             'use_techniques'=> ['required','string'],
             'installation'=> ['required','string'],
