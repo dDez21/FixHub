@@ -41,18 +41,32 @@ class ProductController extends Controller
 
 
     // salvo nuovo prodotto
-    public function store(SaveProductRequest $request){
+    public function store(SaveProductRequest $request)
+{
+    $data = $request->validated();
 
-        $data = $request->validated();
+    if ($request->hasFile('photo')) {
+        $file = $request->file('photo');
 
-        if ($request->hasFile('photo')) {
-            $path = $request->file('photo')->store('products', 'public');
+        dd([
+            'originalName' => $file->getClientOriginalName(),
+            'isValid' => $file->isValid(),
+            'errorCode' => $file->getError(),
+            'errorMessage' => $file->getErrorMessage(),
+            'tmpPath' => $file->getPathname(),
+            'tmpExists' => file_exists($file->getPathname()),
+            'publicWritable' => is_writable(storage_path('app/public')),
+            'productsExists' => file_exists(storage_path('app/public/products')),
+            'productsWritable' => is_writable(storage_path('app/public/products')),
+        ]);
 
-            if ($path === false) {
-                return back()
-                    ->withInput()
-                    ->withErrors(['photo' => 'Impossibile salvare fisicamente il file immagine nello storage.']);
-            }
+        $path = $file->store('products', 'public');
+
+        if ($path === false) {
+            return back()
+                ->withInput()
+                ->withErrors(['photo' => 'Impossibile salvare fisicamente il file immagine nello storage.']);
+        }
 
         $data['photo'] = $path;
     }
@@ -60,7 +74,7 @@ class ProductController extends Controller
     Product::create($data);
 
     return redirect()->route('catalog')->with('success', 'Prodotto creato.');
-    }
+}
 
 
     // vado a modifica prodotto
