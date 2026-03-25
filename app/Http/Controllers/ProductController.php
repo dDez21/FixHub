@@ -41,14 +41,7 @@ class ProductController extends Controller
     // salvo nuovo prodotto
     public function store(Request $request){
 
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'photo' => ['nullable','file','mimes:jpg,jpeg,png,webp','max:4096'],
-            'category_id' => 'required|exists:categories,id',
-            'use_techniques'=> 'required|string',
-            'installation'=> 'required|string',
-        ]);
+        $data = $request->validated();
         
         // salvo foto
         if($request->hasFile('photo')) {
@@ -72,15 +65,7 @@ class ProductController extends Controller
     // salvo modifiche prodotto
     public function update(Request $request, Product $product){
 
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'photo' => ['nullable','file','mimes:jpg,jpeg,png,webp','max:4096'],
-            'category_id' => 'required|exists:categories,id',
-            'use_techniques'=> 'required|string',
-            'installation'=> 'required|string',
-        ]);
-
+        $data = $request->validated();
 
         //se carico nuova foto cancello vecchia
         if ($request->hasFile('photo')) {

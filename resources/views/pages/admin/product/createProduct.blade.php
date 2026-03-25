@@ -15,6 +15,11 @@
             @include('pages.admin.product.formProduct', ['product' => null])
         </div>
         
+        <!-- annulla creazione -->
+        <div class="form-confirm">
+            <button type="button" class="button button-back" onclick="window.location='{{ route('catalog') }}'">Annulla</button>
+        </div>
+
 
         <!-- conferma creazione -->
        <div class="form-confirm">
