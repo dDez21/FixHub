@@ -16,16 +16,13 @@
 
         
             <!-- se utente loggato è tecnico -->
-            @if($isTech && $user->tech)
+            @can('isTech')
                 
                 <!-- data di nascita -->
                 <p><strong>Data di nascita:</strong> {{ $user->tech->birth_date }} </p>
                 
                 <!-- categorie associate -->
-                @php
-                    $catNames = $user->categories->pluck('name')->implode('  -  ');
-                @endphp
-                <p><strong>Categorie:</strong> {{ $catNames ?: '  -  ' }}</p>
+                <p><strong>Sprecializzazioni:</strong> {{ $user->tech->specializations }}</p>
                 
                 <!-- centro associato -->
                 <p><strong>Centro associato:</strong>
@@ -33,16 +30,16 @@
                     {{ $user->tech->center->street ?? '' }} {{ $user->tech->center->civic ?? '' }},
                     {{ $user->tech->center?->city?->name ?? '' }}
                 </p>   
-            @endif
+            @endcan
 
             <!-- se utente loggato è staff -->
-            @if($isStaff)
+            @can('isStaff')
                 @php
                     $catNames = $user->categories->pluck('name')->implode('  -  ');
                 @endphp
 
                 <p><strong>Categorie:</strong> {{ $catNames ?: '  -  ' }}</p>
-            @endif
+            @endcan
             
         </div>
     </div>
