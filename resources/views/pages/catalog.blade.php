@@ -69,7 +69,7 @@
                         
                         <!-- foto prodotto -->
                         <div class="product-icon">
-                            <img src="{{ asset('storage/images/' . $product->photo) }}" alt="{{ $product->photo }}">
+                            <img src="{{ $product?->photo ? asset('storage/' . $product->photo) : asset('images/noPhoto.png') }}" alt="{{ $product->name }}">
                         </div>
                         
                         <!-- nome prodotto -->
