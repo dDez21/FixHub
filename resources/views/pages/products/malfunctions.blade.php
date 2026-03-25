@@ -26,7 +26,7 @@
 
         <div class="search-bar">
             <input class="search-input" id="malf-input" type="text" placeholder="Ricerca un malfunzionamento">
-            <button id="malf-button" type="button" class="search-btn">🔍</button>
+            <button id="malf-button" type="button" class="search-btn">src="{{ asset('icon/search.png') }}"</button>
         </div>
 
         <div class="card malfunctions-card">
