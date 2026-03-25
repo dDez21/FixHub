@@ -42,18 +42,18 @@ class ProductController extends Controller
 
     // salvo nuovo prodotto
     public function store(SaveProductRequest $request){
+    $data = $request->validated();
 
-        $data = $request->validated();
-        
-        // salvo foto
-        if($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('products', 'public');
-        }
-
-        Product::create($data);
-
-        return redirect()->route('catalog')->with('success', 'Prodotto creato.');
+    if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+        $data['photo'] = $request->file('photo')->store('products', 'public');
+    } else {
+        $data['photo'] = null;
     }
+
+    Product::create($data);
+
+    return redirect()->route('catalog')->with('success', 'Prodotto creato.');
+}
 
 
     // vado a modifica prodotto
@@ -65,39 +65,29 @@ class ProductController extends Controller
 
 
     // salvo modifiche prodotto
-    public function update(SaveProductRequest $request, Product $product){
+    public function update(SaveProductRequest $request, Product $product)
+{
+    $data = $request->validated();
 
-        $data = $request->validated();
-
-        //se carico nuova foto cancello vecchia
-        if ($request->hasFile('photo')) {
-
-            
-            if ($product->photo) {
-                Storage::disk('public')->delete($product->photo);
-            }
-           
-            $data['photo'] = $request->file('photo')->store('products', 'public');
-
-        //non carico nuova foto ma rimuovo foto
-        } elseif ($request->boolean('remove_photo')) {
-
-            if ($product->photo) {
-                Storage::disk('public/products')->delete($product->photo);
-            }
-
-            $data['photo'] = null;
-
-        // non faccio nulla sulla foto
-        } else {
-            unset($data['photo']);
+    if ($request->boolean('remove_photo')) {
+        if ($product->photo) {
+            Storage::disk('public')->delete($product->photo);
         }
-            
-
-        $product->update($data);
-
-        return redirect()->route('product', $product)->with('success', 'Prodotto aggiornato.');
+        $data['photo'] = null;
     }
+
+    if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+        if ($product->photo) {
+            Storage::disk('public')->delete($product->photo);
+        }
+
+        $data['photo'] = $request->file('photo')->store('products', 'public');
+    }
+
+    $product->update($data);
+
+    return redirect()->route('product', $product)->with('success', 'Prodotto aggiornato.');
+}
 
 
 
@@ -108,18 +98,15 @@ class ProductController extends Controller
     }
 
     public function delete(Product $product): RedirectResponse
-    {
-        DB::transaction(function () use ($product) {
+{
+    DB::transaction(function () use ($product) {
+        if ($product->photo) {
+            Storage::disk('public')->delete($product->photo);
+        }
 
-            // elimina foto da storage (se esiste)
-            if ($product->photo) {
-                Storage::disk('public/products')->delete($product->photo);
-            }
+        $product->delete();
+    });
 
-            // elimina record dal DB
-            $product->delete();
-        });
-
-        return redirect()->route('catalog')->with('success', 'Prodotto eliminato.');
-    }
+    return redirect()->route('catalog')->with('success', 'Prodotto eliminato.');
+}
 }
