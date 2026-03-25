@@ -5,14 +5,13 @@
 <div class="new-element">
     <a class="add-product" href="{{ route('catalog' )}}">
             <img class="add-product-icon" src="{{ asset('icon/back.png') }}" alt="">
-        </a>
+    </a>
 </div>
 
 
 <div class="malfunctions-layout">
     
     
-
     <!-- elenco centri -->
     <div class="malfunctions-list" data-search-url="{{ route($isStaff ? 'staff.products.malfunctions.search' : 'tecn.products.malfunctions.search', $product) }}">
         
@@ -31,27 +30,32 @@
             
 
             <!-- nuovo malfunzionamento se staff -->
-            @if ($isStaff)
+            @can('$isStaff')
 
                 <div class="new-element">
                     <a class="add-user" href="{{ route('staff.products.malfunctions.create', ['product' => $product]) }}">
                         <img class="add-user-icon" src="{{ asset('icon/new.png') }}" alt="">
                     </a>
                 </div>
-            @endif
+            @endcan
 
 
             <!-- scroller verticale -->
             <div class="malfunctions" role="list" id="malfunctions">
                 @forelse ($malfunctions as $m)
-                    
-                    <!-- prendo dati di ogni malfunction -->
-                    <div class="malfunction-single" role="button" tabindex="0">
-
-                        <!-- dati mostrati nell'elenco centri -->
-                        <p class="medium-text malfunction-item">{{ $m->name }}</p>
+                    <div class="malfunction-single"
+                        role="button"
+                        tabindex="0"
+                        data-id="{{ $m->id }}"
+                        data-name="{{ $m->name }}"
+                        data-description="{{ $m->description }}"
+                        data-solution="{{ $m->solution }}"
+                        @can('$isStaff')
+                            data-edit-url="{{ route('staff.products.malfunctions.edit', ['product' => $product, 'malfunction' => $m]) }}"
+                            data-delete-url="{{ route('staff.products.malfunctions.deleteConfirm', ['product' => $product, 'malfunction' => $m]) }}"
+                        @endcan>
+                            <p class="medium-text malfunction-item">{{ $m->name }}</p>
                     </div>
-
                 @empty
                     <!-- nessun centro inserito -->
                     <div class="malfunction-item">Nessun malfunzionamento registrato.</div>
@@ -79,7 +83,7 @@
         
 
 
-            @if($isStaff)
+            @can('$isStaff')
                 <div class="malfunction-action" id="malfunction-actions" style="display:none;">
                     <div class="new-element">
                         <a id="malf-edit-link" class="add-user" href="javascript:void(0)" aria-disabled="true">
@@ -93,7 +97,7 @@
                         </a>
                     </div>
                 </div>
-            @endif
+            @endcan
         </div>
     </div>
     
