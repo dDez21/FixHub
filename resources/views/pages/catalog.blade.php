@@ -49,7 +49,7 @@
         <!-- barra di ricerca -->
         <div class="search-bar">
             <input class="search-input" id="search-input" type="text" placeholder="Ricerca un prodotto">
-            <button id="search-button" type="button" class="search-btn">src="{{ asset('icon/search.png') }}"</button>
+            <button id="search-button" type="button" class="search-btn">🔍</button>
         </div>
 
 
