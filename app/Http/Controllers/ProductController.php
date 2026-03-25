@@ -56,15 +56,15 @@ class ProductController extends Controller
             $data['photo'] = $path;
         }
 
-                dd([
+                
+        Product::create($data);
+dd([
             'storage_path' => storage_path('app/public'),
             'public_exists' => is_dir(storage_path('app/public')),
             'products_exists' => is_dir(storage_path('app/public/products')),
             'public_writable' => is_writable(storage_path('app/public')),
             'products_writable' => is_writable(storage_path('app/public/products')),
         ]);
-        Product::create($data);
-
         return redirect()->route('catalog')->with('success', 'Prodotto creato.');
     }
 
