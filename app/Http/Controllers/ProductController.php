@@ -46,8 +46,9 @@ class ProductController extends Controller
         $data = $request->validated();
         
         // salvo foto
-        if($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('products', 'public');
+        if ($file = $request->file('photo')) {
+            $filename = $file->hashName(); // nome univoco generato automaticamente
+            $file->storeAs('images', $filename, 'public');
         }
 
         Product::create($data);
@@ -73,11 +74,10 @@ class ProductController extends Controller
         if ($request->hasFile('photo')) {
 
             
-            if ($product->photo && Storage::disk('public')->exists($product->photo)) {
-                Storage::disk('public')->delete($product->photo);
-            }
-
-            $data['photo'] = $request->file('photo')->store('products', 'public');
+            $file = $request->file('photo');
+            $filename = $file->hashName(); // nome univoco generato automaticamente
+            $file->storeAs('images', $filename, 'public');
+            $product->photo = $filename;
 
         //non carico nuova foto ma rimuovo foto
         } elseif ($request->boolean('remove_photo')) {
@@ -113,8 +113,8 @@ class ProductController extends Controller
 
             // elimina foto da storage (se esiste)
             if ($product->photo && Storage::disk('public')->exists($product->photo)) {
-                Storage::disk('public')->delete($product->photo);
-            }
+            Storage::disk('public')->delete($product->photo);
+        }
 
             // elimina record dal DB
             $product->delete();
