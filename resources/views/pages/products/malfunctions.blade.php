@@ -60,7 +60,7 @@
                 @endforelse
             </div>
 
-            <p class="no-results" id="no-results" style="display:none;">
+            <p class="small-text" id="no-results" style="display:none;">
                 La ricerca non ha prodotto risultati
             </p>
         </div>
