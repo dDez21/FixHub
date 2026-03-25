@@ -34,7 +34,7 @@
 
 
     <!-- contenitore prodotti -->
-    <div class="products-layout" data-search-url="{{ route('catalog.search') }}>
+    <div class="products-layout" data-search-url="{{ route('catalog.search') }}">
 
         @can ('isAdmin')
             <!-- aggiungo prodotto  -->
@@ -59,7 +59,7 @@
         </p>
             
             <!-- griglia prodotti -->
-            <div class="products-grid">
+            <div class="products-grid" id="products-grid">
                 
                 <!-- mostro elenco prodotti -->
                 @forelse ($products as $product)
