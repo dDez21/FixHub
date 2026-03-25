@@ -1,4 +1,12 @@
-
+@if ($errors->any())
+    <div class="card" style="margin-bottom: 20px; border: 1px solid red; padding: 15px;">
+        <ul style="margin: 0; padding-left: 20px;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <!-- nome prodotto -->
     <div class="form-space">
         <label class="form-label" for="name">Nome Prodotto</label>
