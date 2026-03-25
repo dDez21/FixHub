@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Malfunction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 
 class MalfunctionsController extends Controller
