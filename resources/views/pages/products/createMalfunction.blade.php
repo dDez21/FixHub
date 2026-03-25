@@ -7,7 +7,7 @@
 <div class="card malfunction-space">
 
     <!-- sezione form -->
-    <form method="POST" action="{{ route('staff.malfunctions.store') }}" class="create-malfunction-form">
+    <form method="POST" action="{{ route('staff.products.malfunctions.store', $product) }}" class="create-malfunction-form">
         @csrf   
         
         <div class="malfunction-grid">

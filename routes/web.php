@@ -140,8 +140,8 @@ Route::prefix('staff')->name('staff.')->middleware(['auth', 'can:isStaff'])->gro
     Route::get('/products/{product}/malfunctions/create', [MalfunctionsController::class, 'create'])
     ->name('products.malfunctions.create');
 
-    Route::post('/malfunctions', [MalfunctionsController::class, 'store'])
-    ->name('malfunctions.store');
+    Route::post('/products/{product}/malfunctions', [MalfunctionsController::class, 'store'])
+    ->name('products.malfunctions.store');
 
 
     //modifica malfunzionamento

@@ -75,8 +75,7 @@ class MalfunctionsController extends Controller
         
 
         $data = $request->validated();
-        $data['product_id'] = $product->id;
-        Malfunction::create($data);
+        $product->malfunctions()->create($data);
 
         return redirect()->route('staff.products.malfunctions', $product)->with('success', 'Malfunzionamento creato.');    
     }
