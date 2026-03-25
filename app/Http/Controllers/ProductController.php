@@ -46,21 +46,7 @@ class ProductController extends Controller
     $data = $request->validated();
 
     if ($request->hasFile('photo')) {
-        $file = $request->file('photo');
-
-        dd([
-            'originalName' => $file->getClientOriginalName(),
-            'isValid' => $file->isValid(),
-            'errorCode' => $file->getError(),
-            'errorMessage' => $file->getErrorMessage(),
-            'tmpPath' => $file->getPathname(),
-            'tmpExists' => file_exists($file->getPathname()),
-            'publicWritable' => is_writable(storage_path('app/public')),
-            'productsExists' => file_exists(storage_path('app/public/products')),
-            'productsWritable' => is_writable(storage_path('app/public/products')),
-        ]);
-
-        $path = $file->store('products', 'public');
+        $path = $request->file('photo')->store('products', 'public');
 
         if ($path === false) {
             return back()
@@ -75,7 +61,6 @@ class ProductController extends Controller
 
     return redirect()->route('catalog')->with('success', 'Prodotto creato.');
 }
-
 
     // vado a modifica prodotto
     public function edit(Product $product){
