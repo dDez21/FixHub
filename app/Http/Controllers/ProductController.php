@@ -41,32 +41,18 @@ class ProductController extends Controller
 
 
     // salvo nuovo prodotto
-    public function store(SaveProductRequest $request){
-        $data = $request->validated();
+    public function store(SaveProductRequest $request)
+{
+    dd([
+        'storage_path' => storage_path('app/public'),
+        'public_exists' => is_dir(storage_path('app/public')),
+        'products_exists' => is_dir(storage_path('app/public/products')),
+        'public_writable' => is_writable(storage_path('app/public')),
+        'products_writable' => is_writable(storage_path('app/public/products')),
+    ]);
+}
 
-        if ($request->hasFile('photo')) {
-            $path = $request->file('photo')->store('products', 'public');
 
-            if ($path === false) {
-                return back()
-                    ->withInput()
-                    ->withErrors(['photo' => 'Impossibile salvare fisicamente il file immagine nello storage.']);
-            }
-
-            $data['photo'] = $path;
-        }
-
-                
-        Product::create($data);
-dd([
-            'storage_path' => storage_path('app/public'),
-            'public_exists' => is_dir(storage_path('app/public')),
-            'products_exists' => is_dir(storage_path('app/public/products')),
-            'public_writable' => is_writable(storage_path('app/public')),
-            'products_writable' => is_writable(storage_path('app/public/products')),
-        ]);
-        return redirect()->route('catalog')->with('success', 'Prodotto creato.');
-    }
 
     // vado a modifica prodotto
     public function edit(Product $product){
@@ -77,29 +63,29 @@ dd([
 
 
     // salvo modifiche prodotto
-    public function update(SaveProductRequest $request, Product $product){
-        $data = $request->validated();
+    public function update(SaveProductRequest $request, Product $product)
+{
+    $data = $request->validated();
 
-        if ($request->hasFile('photo')) {
-            if ($product->photo) {
-                Storage::disk('public')->delete($product->photo);
-            }
+    if ($request->boolean('remove_photo')) {
+        if ($product->photo) {
+            Storage::disk('public')->delete($product->photo);
+        }
+        $data['photo'] = null;
+    }
 
-            $path = $request->file('photo')->store('products', 'public');
-
-            if ($path === false) {
-                return back()
-                    ->withInput()
-                    ->withErrors(['photo' => 'Impossibile salvare fisicamente il file immagine nello storage.']);
-            }
-
-            $data['photo'] = $path;
+    if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+        if ($product->photo) {
+            Storage::disk('public')->delete($product->photo);
         }
 
-            $product->update($data);
-
-            return redirect()->route('product', $product)->with('success', 'Prodotto aggiornato.');
+        $data['photo'] = $request->file('photo')->store('products', 'public');
     }
+
+    $product->update($data);
+
+    return redirect()->route('product', $product)->with('success', 'Prodotto aggiornato.');
+}
 
 
 
